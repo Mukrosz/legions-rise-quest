@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-burgundy: #6e0e1e;
+    --color-obsidian: #121212;
+    --color-parchment: #f5edda;
+    --color-bronze: #b87333;
+    --color-laurel: #2e6f40;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-obsidian text-parchment font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  /* Halftone texture utility */
+  .halftone {
+    background-image: radial-gradient(circle, black 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+
+  /* Comic panel gutter */
+  .comic-gutter {
+    @apply p-4 md:p-8 lg:p-12;
+  }
+
+  /* Panel wipe animation */
+  .panel-enter {
+    animation: panelWipe 0.3s ease-out;
+  }
+
+  /* Text shadow for readability on images */
+  .text-comic-shadow {
+    text-shadow: 
+      -2px -2px 0 var(--color-obsidian),
+      2px -2px 0 var(--color-obsidian),
+      -2px 2px 0 var(--color-obsidian),
+      2px 2px 0 var(--color-obsidian),
+      0 0 8px var(--color-obsidian);
+  }
+
+  /* SFX label style */
+  .sfx-label {
+    @apply font-display font-black text-4xl md:text-6xl 
+           text-bronze tracking-widest
+           transform -rotate-6
+           text-comic-shadow;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bronze);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-burgundy);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Page transition */
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageTransition 0.4s ease-out;
+}
+
+/* Sliding diagonal pattern animation */
+@keyframes slide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+/* Comic-style pulse effect */
+@keyframes comicPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
