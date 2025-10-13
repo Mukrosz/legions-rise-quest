@@ -44,8 +44,8 @@ export default function Stage1Page() {
   };
 
   return (
-    <main 
-      className="min-h-screen flex items-center justify-center p-4"
+    <div 
+      className="min-h-screen"
       style={{
         backgroundImage: 'url("/stage1-bg.png")',
         backgroundSize: 'cover',
@@ -53,10 +53,13 @@ export default function Stage1Page() {
         backgroundAttachment: 'fixed'
       }}
     >
+      {/* Progress Bar at Top */}
       <ProgressBar />
 
-      {/* Glassmorphism Container */}
-      <div 
+      {/* Main Content - Centered */}
+      <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
+        {/* Glassmorphism Container */}
+        <div 
         className="w-full max-w-4xl"
         style={{
           background: 'rgba(255, 255, 255, 0.15)',
@@ -212,7 +215,8 @@ export default function Stage1Page() {
           </button>
         </div>
       </div>
-    </main>
+      </main>
+    </div>
   );
 }
 
