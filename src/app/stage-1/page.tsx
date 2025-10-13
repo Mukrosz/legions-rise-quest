@@ -89,19 +89,21 @@ export default function Stage1Page() {
           <div className="mb-10 text-center">
             <h2 className="font-spectral text-xl md:text-2xl mb-6" 
                 style={{ 
-                  color: '#2b1e14',
+                  color: '#e8f4f8',
                   fontWeight: 600,
                   fontStyle: 'italic',
-                  letterSpacing: '0.02em'
+                  letterSpacing: '0.02em',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.4)'
                 }}>
               Day Seven. The Caravan.
             </h2>
             <div className="font-spectral space-y-4" 
                  style={{ 
-                   color: '#3a2a1e',
+                   color: '#d4e8f0',
                    fontSize: 'clamp(15px, 1.1vw, 17px)',
                    lineHeight: 1.7,
-                   fontWeight: 400
+                   fontWeight: 400,
+                   textShadow: '0 1px 3px rgba(0,0,0,0.5)'
                  }}>
               <p>
                 You march in chains through dust and heat. Behind you, Dardania burns. 
@@ -112,7 +114,7 @@ export default function Stage1Page() {
                 symbols on wax—an old cipher of Caesar's legions. "Remember this," he says. 
                 "Knowledge is the first key to freedom."
               </p>
-              <p className="font-spectral italic" style={{ fontWeight: 500, opacity: 0.9 }}>
+              <p className="font-spectral italic" style={{ fontWeight: 500, color: '#f0f8ff', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
                 The message is shifted. The truth awaits the wise.
               </p>
             </div>
@@ -123,8 +125,8 @@ export default function Stage1Page() {
            style={{ 
              fontSize: 'clamp(16px, 1.3vw, 20px)',
              fontWeight: 500,
-             color: '#2b1e14',
-             opacity: 0.95
+             color: '#b8d4e6',
+             textShadow: '0 2px 4px rgba(0,0,0,0.4)'
            }}>
           "Decode the scribe's whisper"
         </p>
@@ -144,8 +146,9 @@ export default function Stage1Page() {
              style={{ 
                fontSize: 'clamp(20px, 2vw, 28px)',
                fontWeight: 600,
-               color: '#2b1e14',
-               letterSpacing: '0.2em'
+               color: '#1a1a2e',
+               letterSpacing: '0.2em',
+               textShadow: '0 1px 2px rgba(255,255,255,0.5)'
              }}>
             OLEHUWDV
           </p>
@@ -155,9 +158,10 @@ export default function Stage1Page() {
         <p className="font-spectral text-center mb-8" 
            style={{ 
              fontSize: 'clamp(14px, 1vw, 16px)',
-             color: '#3a2a1e',
+             color: '#c8e0f0',
              lineHeight: 1.6,
-             fontWeight: 400
+             fontWeight: 400,
+             textShadow: '0 1px 3px rgba(0,0,0,0.4)'
            }}>
           The scribe used Caesar's method. Each letter shifted by a fixed count. 
           What word brings freedom?
@@ -181,13 +185,20 @@ export default function Stage1Page() {
             className="font-spectral px-6 py-2 transition-all"
             style={{ 
               fontSize: 'clamp(13px, 1vw, 15px)',
-              color: '#3a2a1e',
-              opacity: 0.7,
+              color: '#b8d4e6',
+              opacity: 0.8,
               fontWeight: 500,
-              letterSpacing: '0.03em'
+              letterSpacing: '0.03em',
+              textShadow: '0 1px 2px rgba(0,0,0,0.4)'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.color = '#e8f4f8';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.color = '#b8d4e6';
+            }}
           >
             ← Return to Landing
           </button>
