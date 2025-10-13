@@ -60,63 +60,63 @@ export default function Stage1Page() {
       <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
         {/* Glassmorphism Container */}
         <div 
-        className="w-full max-w-4xl"
-        style={{
-          background: 'rgba(255, 255, 255, 0.15)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderRadius: '24px',
-          border: '1px solid rgba(255, 255, 255, 0.25)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-          padding: 'clamp(32px, 5vw, 64px)',
-        }}
-      >
-        {/* Story Section */}
-        <div className="mb-12 text-center">
-          <h2 className="font-spectral text-xl md:text-2xl mb-6" 
-              style={{ 
-                color: '#2b1e14',
-                fontWeight: 600,
-                fontStyle: 'italic',
-                letterSpacing: '0.02em'
+          className="w-full max-w-4xl"
+          style={{
+            background: 'rgba(255, 255, 255, 0.15)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+            padding: 'clamp(32px, 5vw, 64px)',
+          }}
+        >
+          {/* Puzzle Title - MOVED TO TOP */}
+          <h1 className="font-display text-center mb-8" 
+              style={{
+                fontSize: 'clamp(32px, 4vw, 52px)',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                lineHeight: 1.1,
+                color: '#1a1a2e',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(0,119,182,0.2)',
+                filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.3))'
               }}>
-            Day Seven. The Caravan.
-          </h2>
-          <div className="font-spectral space-y-4" 
-               style={{ 
-                 color: '#3a2a1e',
-                 fontSize: 'clamp(15px, 1.1vw, 17px)',
-                 lineHeight: 1.7,
-                 fontWeight: 400
-               }}>
-            <p>
-              You march in chains through dust and heat. Behind you, Dardania burns. 
-              Ahead—Rome's markets, where men become property. Yet not all is lost.
-            </p>
-            <p>
-              A fellow captive, once a scribe, whispers in the night. He scratches 
-              symbols on wax—an old cipher of Caesar's legions. "Remember this," he says. 
-              "Knowledge is the first key to freedom."
-            </p>
-            <p className="font-spectral italic" style={{ fontWeight: 500, opacity: 0.9 }}>
-              The message is shifted. The truth awaits the wise.
-            </p>
-          </div>
-        </div>
+            CHAINS OF THE CAPTIVE
+          </h1>
 
-        {/* Puzzle Title */}
-        <h1 className="font-display text-center mb-8" 
-            style={{
-              fontSize: 'clamp(32px, 4vw, 52px)',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              lineHeight: 1.1,
-              color: '#5a4630',
-              textShadow: '0 1px 0 rgba(255,255,255,0.65), 0 -1px 0 rgba(0,0,0,0.28), 0 2px 2px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.14)',
-              mixBlendMode: 'multiply'
-            }}>
-          CHAINS OF THE CAPTIVE
-        </h1>
+          {/* Story Section */}
+          <div className="mb-10 text-center">
+            <h2 className="font-spectral text-xl md:text-2xl mb-6" 
+                style={{ 
+                  color: '#2b1e14',
+                  fontWeight: 600,
+                  fontStyle: 'italic',
+                  letterSpacing: '0.02em'
+                }}>
+              Day Seven. The Caravan.
+            </h2>
+            <div className="font-spectral space-y-4" 
+                 style={{ 
+                   color: '#3a2a1e',
+                   fontSize: 'clamp(15px, 1.1vw, 17px)',
+                   lineHeight: 1.7,
+                   fontWeight: 400
+                 }}>
+              <p>
+                You march in chains through dust and heat. Behind you, Dardania burns. 
+                Ahead—Rome's markets, where men become property. Yet not all is lost.
+              </p>
+              <p>
+                A fellow captive, once a scribe, whispers in the night. He scratches 
+                symbols on wax—an old cipher of Caesar's legions. "Remember this," he says. 
+                "Knowledge is the first key to freedom."
+              </p>
+              <p className="font-spectral italic" style={{ fontWeight: 500, opacity: 0.9 }}>
+                The message is shifted. The truth awaits the wise.
+              </p>
+            </div>
+          </div>
 
         {/* Subtitle */}
         <p className="font-spectral text-center italic mb-8" 
@@ -152,7 +152,7 @@ export default function Stage1Page() {
         </div>
 
         {/* Instructions */}
-        <p className="font-spectral text-center mb-6" 
+        <p className="font-spectral text-center mb-8" 
            style={{ 
              fontSize: 'clamp(14px, 1vw, 16px)',
              color: '#3a2a1e',
@@ -163,29 +163,7 @@ export default function Stage1Page() {
           What word brings freedom?
         </p>
 
-        {/* Hint Box */}
-        <div 
-          className="mb-8 p-4"
-          style={{
-            background: 'rgba(255, 255, 255, 0.15)',
-            borderRadius: '12px',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
-          }}
-        >
-          <p className="font-spectral italic text-center" 
-             style={{ 
-               fontSize: 'clamp(12px, 0.9vw, 14px)',
-               color: '#3a2a1e',
-               opacity: 0.8,
-               lineHeight: 1.5,
-               fontWeight: 400
-             }}>
-            Hint: The Roman general himself used a simple shift. The alphabet turns, 
-            but the message remains. Try different rotations until meaning emerges.
-          </p>
-        </div>
-
-        {/* Input Card */}
+        {/* Input Card - Contains built-in hints */}
         <InputCard
           onSubmit={validateAnswer}
           placeholder="Enter the decoded word..."
