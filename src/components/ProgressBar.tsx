@@ -11,14 +11,21 @@ import { getProgress, getStageName } from '@/lib/progress';
 export function ProgressBar() {
   const progress = getProgress();
   const stages = [0, 1, 2, 3, 4, 5]; // 0 = landing, 1-5 = stages
+  
+  // Convert to Roman numerals
+  const toRoman = (num: number): string => {
+    if (num === 0) return '🏛️';
+    const romanNumerals = ['I', 'II', 'III', 'IV', 'V'];
+    return romanNumerals[num - 1] || num.toString();
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto py-8 px-4">
       <div className="flex items-center justify-between relative">
         {/* Progress line */}
-        <div className="absolute top-1/2 left-0 right-0 h-1 bg-obsidian/20 -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/20 -translate-y-1/2" />
         <div 
-          className="absolute top-1/2 left-0 h-1 bg-bronze -translate-y-1/2 transition-all duration-500"
+          className="absolute top-1/2 left-0 h-1 bg-amber-400 -translate-y-1/2 transition-all duration-500"
           style={{ width: `${(progress.stage / 5) * 100}%` }}
         />
 
@@ -36,26 +43,32 @@ export function ProgressBar() {
                   flex items-center justify-center
                   transition-all duration-300
                   ${isComplete 
-                    ? 'bg-bronze border-obsidian' 
-                    : 'bg-parchment border-obsidian/30'
+                    ? 'bg-amber-400 border-white' 
+                    : 'bg-white/30 border-white/50'
                   }
-                  ${isCurrent ? 'ring-4 ring-laurel ring-offset-2' : ''}
+                  ${isCurrent ? 'ring-4 ring-amber-300 ring-offset-2' : ''}
                 `}
               >
                 <span className={`
                   text-xs md:text-sm font-display font-bold
-                  ${isComplete ? 'text-parchment' : 'text-obsidian/40'}
+                  ${isComplete ? 'text-gray-900' : 'text-white/60'}
                 `}>
-                  {stage === 0 ? '🏛️' : stage}
+                  {toRoman(stage)}
                 </span>
               </div>
 
               {/* Stage name */}
-              <div className="absolute top-full mt-2 w-24 text-center">
-                <span className={`
-                  text-[10px] md:text-xs font-body
-                  ${isComplete ? 'text-bronze font-bold' : 'text-obsidian/50'}
-                `}>
+              <div className="absolute top-full mt-2 w-28 text-center">
+                <span 
+                  className={`
+                    text-[11px] md:text-sm font-spectral font-semibold
+                    ${isComplete ? 'text-amber-300' : 'text-white/70'}
+                  `}
+                  style={{
+                    textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.9)',
+                    letterSpacing: '0.02em'
+                  }}
+                >
                   {getStageName(stage)}
                 </span>
               </div>
