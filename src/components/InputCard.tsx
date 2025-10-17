@@ -16,6 +16,10 @@ interface InputCardProps {
   stageNumber: number;
   savedInput?: string;
   onSuccess?: () => void;
+  hint1UnlockDelay?: number;
+  hint2UnlockDelay?: number;
+  hint1UnlockAttempt?: number;
+  hint2UnlockAttempt?: number;
 }
 
 export function InputCard({
@@ -26,10 +30,14 @@ export function InputCard({
   stageNumber,
   savedInput = '',
   onSuccess,
+  hint1UnlockDelay = 60000,
+  hint2UnlockDelay = 120000,
+  hint1UnlockAttempt = 0,
+  hint2UnlockAttempt = 0,
 }: InputCardProps) {
   const [input, setInput] = useState(savedInput);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hasAttempted, setHasAttempted] = useState(false);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -52,7 +60,7 @@ export function InputCard({
         }, 1500);
       } else {
         setShowError(true);
-        setHasAttempted(true);
+        setWrongAttempts(prev => prev + 1);
         setTimeout(() => setShowError(false), 3000);
       }
     } catch (error) {
@@ -137,11 +145,17 @@ export function InputCard({
 
       {/* Hints */}
       <div className="mt-8 space-y-4">
-        <HintBubble hint={hint1} unlockDelay={60000} />
+        <HintBubble 
+          hint={hint1} 
+          unlockDelay={hint1UnlockDelay}
+          unlockOnAttempt={hint1UnlockAttempt}
+          currentAttempts={wrongAttempts}
+        />
         <HintBubble 
           hint={hint2} 
-          unlockDelay={120000}
-          onWrongAttempt={hasAttempted}
+          unlockDelay={hint2UnlockDelay}
+          unlockOnAttempt={hint2UnlockAttempt}
+          currentAttempts={wrongAttempts}
         />
       </div>
     </div>

@@ -9,30 +9,36 @@ import React, { useState, useEffect } from 'react';
 
 interface HintBubbleProps {
   hint: string;
-  unlockDelay?: number; // ms
-  onWrongAttempt?: boolean;
+  unlockDelay?: number; // ms (set to 0 to disable time-based unlock)
+  unlockOnAttempt?: number; // unlock after N wrong attempts (0 = disabled)
+  currentAttempts?: number; // current number of wrong attempts
 }
 
 export function HintBubble({ 
   hint, 
   unlockDelay = 60000,
-  onWrongAttempt = false 
+  unlockOnAttempt = 0,
+  currentAttempts = 0
 }: HintBubbleProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (onWrongAttempt) {
+    // Attempt-based unlock (if enabled)
+    if (unlockOnAttempt > 0 && currentAttempts >= unlockOnAttempt) {
       setIsUnlocked(true);
       return;
     }
 
-    const timer = setTimeout(() => {
-      setIsUnlocked(true);
-    }, unlockDelay);
+    // Time-based unlock (if enabled)
+    if (unlockDelay > 0) {
+      const timer = setTimeout(() => {
+        setIsUnlocked(true);
+      }, unlockDelay);
 
-    return () => clearTimeout(timer);
-  }, [unlockDelay, onWrongAttempt]);
+      return () => clearTimeout(timer);
+    }
+  }, [unlockDelay, unlockOnAttempt, currentAttempts]);
 
   if (!isUnlocked) {
     return null;

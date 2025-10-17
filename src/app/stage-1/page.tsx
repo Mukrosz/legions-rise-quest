@@ -176,6 +176,10 @@ export default function Stage1Page() {
           stageNumber={1}
           savedInput={savedInput}
           onSuccess={handleSuccess}
+          hint1UnlockDelay={0}
+          hint2UnlockDelay={0}
+          hint1UnlockAttempt={1}
+          hint2UnlockAttempt={2}
         />
 
         {/* Navigation */}
