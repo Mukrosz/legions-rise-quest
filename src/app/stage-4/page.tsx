@@ -88,11 +88,11 @@ export default function Stage4Page() {
               <strong className="text-xl text-bronze">Year Five. The Patron's Atrium.</strong>
             </p>
             <p className="mb-3">
-              Citizenship secured, you now navigate Rome's true arena—influence. 
+              Citizenship secured, you now navigate Rome's true arena-influence. 
               Your patron, a senator of old blood, tests your cunning with coded messages.
             </p>
             <p className="mb-3">
-              A courier delivers a mosaic fragment. Numbers hide in its corners—pairs 
+              A courier delivers a mosaic fragment. Numbers hide in its corners-pairs 
               that reference an ancient Greek grid. Decode them, but beware: a second 
               veil awaits, woven with a keyword from Rome's founding motto.
             </p>
@@ -195,7 +195,7 @@ export default function Stage4Page() {
             <div className="bg-burgundy/10 p-4 border-2 border-burgundy rounded">
               <p className="text-sm font-bold text-burgundy mb-2">Historical Note:</p>
               <p className="text-xs text-obsidian/70">
-                SPQR: <em>Senatus Populusque Romanus</em> — "The Senate and People of Rome." 
+                SPQR: <em>Senatus Populusque Romanus</em> - "The Senate and People of Rome." 
                 This acronym appeared on military standards, public buildings, and coins 
                 throughout Roman history.
               </p>
@@ -205,7 +205,7 @@ export default function Stage4Page() {
           <InputCard
             onSubmit={validateAnswer}
             placeholder="Enter the final decoded acronym..."
-            hint1="The grid of Polybius awaits. Numbers hide in mosaic corners—five by five."
+            hint1="The grid of Polybius awaits. Numbers hide in mosaic corners-five by five."
             hint2="First decode the squares, then a keyword from history veils the truth once more."
             stageNumber={4}
             savedInput={savedInput}

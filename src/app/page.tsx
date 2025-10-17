@@ -127,7 +127,7 @@ export default function LandingPage() {
                      maxWidth: '60ch',
                      color: '#3a2a1e'
                    }}>
-                  From the mountain tribes of <span style={{ fontWeight: 600 }}>Dardania</span>, he descended—
+                  From the mountain tribes of <span style={{ fontWeight: 600 }}>Dardania</span>, he descended-
                   a warrior of proud lineage. The legions came. Chains replaced his sword. 
                   The arena became his proving ground. Through <span style={{ fontWeight: 600 }}>cunning, blood, and cryptic wit</span>, 
                   he claimed freedom. Yet freedom was but the first rung.

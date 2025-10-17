@@ -98,7 +98,7 @@ export default function Stage5Page() {
             </p>
             <p className="mb-3">
               You stand at the threshold of Rome's beating heart. Five trials behind you: 
-              chains decoded, arenas conquered, citizenship earned, influence woven, and now—
+              chains decoded, arenas conquered, citizenship earned, influence woven, and now-
               the Senate awaits your voice.
             </p>
             <p className="mb-3">
@@ -151,7 +151,7 @@ export default function Stage5Page() {
                 </p>
                 <p>
                   <span className="font-bold text-bronze">V. Voice:</span> Now speak 
-                  the name that binds all trials—the warrior who ascended.
+                  the name that binds all trials-the warrior who ascended.
                 </p>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function Stage5Page() {
           <InputCard
             onSubmit={validateAnswer}
             placeholder="Enter the full name..."
-            hint1="Fragments from five trials converge. Speak the warrior's full name—his identity reclaimed."
+            hint1="Fragments from five trials converge. Speak the warrior's full name-his identity reclaimed."
             hint2="His journey began in chains, rose through blood, earned rights, wielded influence, and now speaks with authority."
             stageNumber={5}
             savedInput={savedInput}

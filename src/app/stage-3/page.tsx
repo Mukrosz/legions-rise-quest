@@ -87,7 +87,7 @@ export default function Stage3Page() {
               <strong className="text-xl text-bronze">Year Three. The Tabularium.</strong>
             </p>
             <p className="mb-3">
-              Manumission granted. You are free—but not equal. The path to citizenship 
+              Manumission granted. You are free-but not equal. The path to citizenship 
               winds through the Forum, past marble columns and bronze tablets.
             </p>
             <p className="mb-3">
@@ -130,18 +130,18 @@ export default function Stage3Page() {
                 His weapon was rhetoric; his legacy, eternal.
               </p>
               <p className="text-sm text-bronze italic">
-                "O tempora, o mores!" he cried. The times, the customs—Rome at the precipice.
+                "O tempora, o mores!" he cried. The times, the customs-Rome at the precipice.
               </p>
             </div>
 
             <div className="bg-obsidian/10 p-6 rounded mb-8 text-center">
               <p className="text-sm text-obsidian/80 mb-4">
                 The archivist whispers: <em>"Records hidden where scribes leave notes. 
-                Look at the foundation—the very source of this page."</em>
+                Look at the foundation-the very source of this page."</em>
               </p>
               <p className="text-xs text-obsidian/60">
                 (Hint: Builders of webpages leave comments. Inspect what lies beneath 
-                the visible structure. A scholar's cipher—six characters—reveals the name.)
+                the visible structure. A scholar's cipher-six characters-reveals the name.)
               </p>
             </div>
 
@@ -159,7 +159,7 @@ export default function Stage3Page() {
             onSubmit={validateAnswer}
             placeholder="Enter the orator's name..."
             hint1="Records hidden where scribes leave notes. Inspect what builders wrote."
-            hint2="Look at the foundation—the very source. A name encoded in scholar's cipher awaits."
+            hint2="Look at the foundation-the very source. A name encoded in scholar's cipher awaits."
             stageNumber={3}
             savedInput={savedInput}
             onSuccess={handleSuccess}
