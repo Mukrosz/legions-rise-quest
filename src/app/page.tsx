@@ -25,7 +25,7 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-auto">
       {/* Vintage Colosseum Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
@@ -40,8 +40,8 @@ export default function LandingPage() {
       </div>
 
       {/* Parchment scroll with title and story */}
-      <div className="relative flex flex-col justify-center items-center h-full py-2">
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4" style={{ maxHeight: '95vh' }}>
+      <div className="relative flex flex-col justify-center items-center min-h-screen py-8">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
           {/* Parchment scroll with actual image - stretched to fit all content */}
           <div 
             className="relative w-full flex flex-col"
@@ -51,7 +51,7 @@ export default function LandingPage() {
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))',
-              padding: '280px 130px 160px 130px', // Further increased padding for more stretch
+              padding: 'clamp(80px, 15vw, 280px) clamp(30px, 8vw, 130px) clamp(60px, 10vw, 160px) clamp(30px, 8vw, 130px)',
             }}
           >
             {/* Content */}
@@ -228,7 +228,7 @@ export default function LandingPage() {
       </div>
 
       {/* Attribution */}
-      <footer className="relative py-2 text-center z-10">
+      <footer className="relative py-4 text-center z-10">
         <p className="text-amber-900/50 font-spectral tracking-widest drop-shadow-lg"
            style={{ 
              letterSpacing: '0.2em', 
