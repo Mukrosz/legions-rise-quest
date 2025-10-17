@@ -76,7 +76,7 @@ export function InputCard({
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Input field */}
-        <div className="relative">
+        <div className="relative mb-12">
           <input
             type="text"
             value={input}
