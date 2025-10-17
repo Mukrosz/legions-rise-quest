@@ -112,12 +112,12 @@ export function InputCard({
             letterSpacing: '0.16em',
             padding: 'clamp(12px, 1.5vw, 16px) clamp(20px, 2.5vw, 30px)',
             borderRadius: '10px',
-            background: isSubmitting || showSuccess || !input.trim() ? '#6c6c6c' : '#8a2f2b',
+            background: '#8a2f2b',
             color: '#fff',
             border: '2px solid #6c2421',
             boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
             cursor: isSubmitting || showSuccess || !input.trim() ? 'not-allowed' : 'pointer',
-            opacity: isSubmitting || showSuccess || !input.trim() ? 0.6 : 1
+            opacity: isSubmitting || showSuccess || !input.trim() ? 0.5 : 1
           }}
           onMouseEnter={(e) => {
             if (!isSubmitting && !showSuccess && input.trim()) {
