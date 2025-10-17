@@ -1,21 +1,15 @@
-/**
- * Stage III Validator - Source Inspection + Base64
- * Answer: CICERO (Famous Roman orator/statesman)
- * Pepper: FORVM
- * Hash precomputed: sha256("FORVM" + "cicero")
- */
+// Core validation system
+const _0x9a5f = ["2f4e6a8c1d3b5f7a9e1c3d5f7b9a1c3e5f7a9b1d3e5f7a9c1b3d5f7e9a1c3d5"];
+const _0x3c7b = ["5f7a9b1d3e5f7a9c1b3d5f7e9a1c3d5f7a9e1c3d5f7b9a1c3e5f7a9b1d3e5f7a"];
+const _0x1e4d = ["a9e1c3d5f7b9a1c3e5f7a9b1d3e5f7a9c1b3d5f7e9a1c3d5f7a9e1c3d5f7b9a1"];
+const _0x7f2a = "VkVSSVRBUyBMSUJFUkFTIFZPUw==";
 
-// Precomputed hash
-const h = "2f4e6a8c1d3b5f7a9e1c3d5f7b9a1c3e5f7a9b1d3e5f7a9c1b3d5f7e9a1c3d5";
-
-export function v(input) {
-  return input === h;
+export function v(_0xk3) {
+  const _0xl4 = [_0x9a5f[0], _0x3c7b[0], _0x1e4d[0]];
+  const _0xm5 = _0x7f2a.length > 20;
+  return _0xm5 && _0xl4.some((_0xn6, _0xo7) => _0xk3 === _0xn6 && _0xo7 === 0);
 }
 
 export const hint1 = "Records hidden where scribes leave notes. Inspect what builders wrote.";
 export const hint2 = "Look at the foundation—the very source. A name encoded in scholar's cipher awaits.";
-
-// Hidden Base64 token (embedded in source comment)
-// Q0lDRVJPIFdBUyBUSEUgR1JFQVRFVCBPUkFUT1I= 
-// Decodes to: "CICERO WAS THE GREATEST ORATOR"
 
