@@ -105,13 +105,30 @@ export function InputCard({
         <button
           type="submit"
           disabled={isSubmitting || showSuccess || !input.trim()}
-          className="w-full px-8 py-4 bg-bronze hover:bg-bronze/80
-                   disabled:bg-obsidian/50 disabled:cursor-not-allowed
-                   text-parchment font-display text-xl font-bold
-                   border-4 border-obsidian
-                   transition-all duration-200
-                   transform hover:scale-[1.02] active:scale-[0.98]
-                   shadow-lg"
+          className="w-full font-display relative overflow-hidden transition-all duration-300 uppercase"
+          style={{ 
+            fontSize: 'clamp(14px, 1.4vw, 18px)',
+            fontWeight: 700,
+            letterSpacing: '0.16em',
+            padding: 'clamp(12px, 1.5vw, 16px) clamp(20px, 2.5vw, 30px)',
+            borderRadius: '10px',
+            background: isSubmitting || showSuccess || !input.trim() ? '#6c6c6c' : '#8a2f2b',
+            color: '#fff',
+            border: '2px solid #6c2421',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+            cursor: isSubmitting || showSuccess || !input.trim() ? 'not-allowed' : 'pointer',
+            opacity: isSubmitting || showSuccess || !input.trim() ? 0.6 : 1
+          }}
+          onMouseEnter={(e) => {
+            if (!isSubmitting && !showSuccess && input.trim()) {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.35)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.25)';
+          }}
           aria-label="Submit answer"
         >
           {isSubmitting ? 'VALIDATING...' : showSuccess ? 'SUCCESS!' : 'SUBMIT'}
