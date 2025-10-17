@@ -107,11 +107,11 @@ export default function Stage1Page() {
                  }}>
               <p>
                 You march in chains through dust and heat. Behind you, Dardania burns. 
-                Ahead-Rome's markets, where men become property. Yet not all is lost.
+                Ahead - Rome's markets, where men become property. Yet not all is lost.
               </p>
               <p>
                 A fellow captive, once a scribe, whispers in the night. He scratches 
-                symbols on wax-an old cipher of Caesar's legions. "Remember this," he says. 
+                symbols on wax - an old cipher of Caesar's legions. "Remember this," he says. 
                 "Knowledge is the first key to freedom."
               </p>
               <p className="font-spectral italic" style={{ fontWeight: 500, color: '#f0f8ff', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
@@ -171,7 +171,7 @@ export default function Stage1Page() {
         <InputCard
           onSubmit={validateAnswer}
           placeholder="Enter the decoded word..."
-          hint1="A whisper carries through the caravan-shift your view by Roman count."
+          hint1="A whisper carries through the caravan - shift your view by Roman count."
           hint2="Caesar himself taught this cipher. The shift is modest, the message eternal."
           stageNumber={1}
           savedInput={savedInput}

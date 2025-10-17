@@ -72,7 +72,7 @@ export default function Stage2Page() {
               <strong className="text-xl text-bronze">Year One. Ludus Magnus, Capua.</strong>
             </p>
             <p className="mb-3">
-              You grip the rudis-a wooden sword, lighter than the blade you once bore. 
+              You grip the rudis - a wooden sword, lighter than the blade you once bore. 
               The lanista watches, calculating your worth in blood and coin.
             </p>
             <p className="mb-3">
@@ -144,7 +144,7 @@ export default function Stage2Page() {
           <InputCard
             onSubmit={validateAnswer}
             placeholder="Enter the weapon's name..."
-            hint1="The arena map holds secrets. Look beyond what eyes can see-pixels whisper."
+            hint1="The arena map holds secrets. Look beyond what eyes can see - pixels whisper."
             hint2="Three ranks converge. The wooden sword's true name is your passage."
             stageNumber={2}
             savedInput={savedInput}
