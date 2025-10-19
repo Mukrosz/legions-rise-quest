@@ -19,6 +19,29 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+        
+        <script
+          type="text/plain"
+          id="scribe-cipher"
+          dangerouslySetInnerHTML={{
+            __html: `
+
+
+================================================
+  THE SCHOLAR'S CIPHER - SCRIBE'S NOTES
+================================================
+
+const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";
+
+Decode this Base64 string to reveal 
+the path to Gloria.
+
+================================================
+
+
+            `
+          }}
+        />
       </head>
       <body>
         <div className="min-h-screen bg-obsidian">
