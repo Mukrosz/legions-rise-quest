@@ -75,6 +75,44 @@ export function InputCard({
   };
 
   const isStage1 = stageNumber === 1;
+  const isStage3 = stageNumber === 3;
+  const hasCustomStyling = isStage1 || isStage3;
+
+  const getInputStyle = () => {
+    if (isStage1) {
+      return {
+        width: '100%',
+        padding: '16px 24px',
+        fontSize: '18px',
+        background: 'rgba(200, 220, 240, 0.2)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        color: '#1a1a2e',
+        border: '2px solid rgba(212, 175, 55, 0.4)',
+        borderRadius: '12px',
+        boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center',
+        letterSpacing: '0.05em',
+      };
+    }
+    if (isStage3) {
+      return {
+        width: '100%',
+        padding: '16px 24px',
+        fontSize: '18px',
+        background: 'rgba(255, 248, 220, 0.3)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        color: '#654321',
+        border: '2px solid rgba(218, 165, 32, 0.5)',
+        borderRadius: '12px',
+        boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center',
+        letterSpacing: '0.05em',
+      };
+    }
+    return {};
+  };
 
   return (
     <div className="w-full flex flex-col items-center mx-auto">
@@ -86,21 +124,8 @@ export function InputCard({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={placeholder}
-            style={isStage1 ? {
-              width: '100%',
-              padding: '16px 24px',
-              fontSize: '18px',
-              background: 'rgba(200, 220, 240, 0.2)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              color: '#1a1a2e',
-              border: '2px solid rgba(212, 175, 55, 0.4)',
-              borderRadius: '12px',
-              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-              textAlign: 'center',
-              letterSpacing: '0.05em',
-            } : {}}
-            className={isStage1 ? '' : "w-full px-6 py-4 text-lg font-body bg-parchment border-4 border-obsidian focus:border-bronze focus:outline-none transition-colors duration-200 text-obsidian placeholder-obsidian/40"}
+            style={getInputStyle()}
+            className={hasCustomStyling ? '' : "w-full px-6 py-4 text-lg font-body bg-parchment border-4 border-obsidian focus:border-bronze focus:outline-none transition-colors duration-200 text-obsidian placeholder-obsidian/40"}
             aria-label="Puzzle answer input"
             disabled={isSubmitting || showSuccess}
           />

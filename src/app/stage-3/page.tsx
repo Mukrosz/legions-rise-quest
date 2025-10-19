@@ -1,12 +1,12 @@
-/*
-  HIDDEN CLUE FOR SOURCE INSPECTION:
-  U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=
-  
-  This decodes from Base64 to:
-  "Seek the Founders in the #roles channel of Discord. Read of Remus and Romulus, and learn of their Gloria"
-*/
-
 'use client';
+
+/*
+  The scribe's ancient notes, encoded in the scholar's cipher:
+  
+  const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";
+  
+  Decode this Base64 string to reveal the path to Gloria.
+*/
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -97,7 +97,7 @@ export default function Stage3Page() {
           <div className="mb-10 text-center">
             <h2 className="font-spectral text-xl md:text-2xl mb-6" 
                 style={{ 
-                  color: '#FFD700',
+                  color: '#B8860B',
                   fontWeight: 600,
                   fontStyle: 'italic',
                   letterSpacing: '0.02em',
@@ -107,18 +107,18 @@ export default function Stage3Page() {
             </h2>
             <div className="font-spectral" 
                  style={{ 
-                   color: '#F5DEB3',
+                   color: '#5D4E37',
                    fontSize: 'clamp(15px, 1.1vw, 17px)',
                    lineHeight: 1.75,
                    fontWeight: 400,
-                   textShadow: '0 1px 3px rgba(0,0,0,0.5)',
+                   textShadow: '0 1px 2px rgba(255,255,255,0.3)',
                    maxWidth: '700px',
                    margin: '0 auto',
                  }}>
               <p>
                 Manumission granted. You are free - but not equal. The path to citizenship 
                 winds through marble halls where the Founders' legacy echoes. An archivist 
-                whispers: "To claim your place, you must know the Gloria of Rome. Seek the 
+                whispers: "To claim your place, you must know the Glory of Rome. Seek the 
                 Founders' words where brothers gather. There lies the key."
               </p>
             </div>
@@ -128,47 +128,20 @@ export default function Stage3Page() {
            style={{ 
              fontSize: 'clamp(15px, 1.1vw, 17px)',
              fontWeight: 600,
-             color: '#FFD700',
-             textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+             color: '#8B4513',
+             textShadow: '0 2px 4px rgba(255,255,255,0.5)'
            }}>
-          Discover the Gloria that built an empire
+          Seek the ancient cipher where scribes left their marks
         </p>
-
-        <div className="mb-8 flex justify-center">
-          <div 
-            className="p-6 text-center"
-            style={{
-              background: 'rgba(255, 248, 220, 0.25)',
-              borderRadius: '16px',
-              border: '2px solid rgba(218, 165, 32, 0.4)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <p className="font-mono tracking-widest" 
-               style={{ 
-                 fontSize: 'clamp(14px, 1.5vw, 18px)',
-                 fontWeight: 600,
-                 color: '#8B4513',
-                 letterSpacing: '0.15em',
-                 textShadow: '0 1px 2px rgba(255,255,255,0.5)',
-                 lineHeight: 1.6,
-                 maxWidth: '600px',
-               }}>
-              U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=
-            </p>
-          </div>
-        </div>
 
         <p className="font-spectral text-center italic mb-10" 
            style={{ 
              fontSize: '14px',
-             color: '#F5DEB3',
+             color: '#654321',
              opacity: 0.9,
-             textShadow: '0 1px 3px rgba(0,0,0,0.6)'
+             textShadow: '0 1px 2px rgba(255,255,255,0.3)'
            }}>
-          The cipher speaks of Founders and glory. Decode their message, and Rome's gates open.
+          Inspect the foundation's source. The scholar's cipher awaits in scribenotes.
         </p>
 
         <InputCard
@@ -191,19 +164,19 @@ export default function Stage3Page() {
             className="font-spectral px-6 py-2 transition-all"
             style={{ 
               fontSize: 'clamp(13px, 1vw, 15px)',
-              color: '#F5DEB3',
+              color: '#8B4513',
               opacity: 0.8,
               fontWeight: 500,
               letterSpacing: '0.03em',
-              textShadow: '0 1px 2px rgba(0,0,0,0.4)'
+              textShadow: '0 1px 2px rgba(255,255,255,0.3)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.color = '#FFD700';
+              e.currentTarget.style.color = '#654321';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.opacity = '0.8';
-              e.currentTarget.style.color = '#F5DEB3';
+              e.currentTarget.style.color = '#8B4513';
             }}
           >
             ← Return to Landing
