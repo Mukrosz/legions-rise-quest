@@ -46,21 +46,58 @@ export function HintBubble({
     return null;
   }
 
-  const isStage3 = stageNumber === 3;
+  const getStageStyle = () => {
+    switch (stageNumber) {
+      case 1:
+        return {
+          background: 'rgba(200, 220, 240, 0.7)',
+          border: '2px solid rgba(212, 175, 55, 0.5)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+          textColor: '#1a1a2e',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+        };
+      case 2:
+        return {
+          background: 'rgba(255, 230, 200, 0.7)',
+          border: '2px solid rgba(212, 135, 76, 0.5)',
+          boxShadow: '0 8px 32px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 200, 150, 0.2)',
+          textColor: '#3a2a1e',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+        };
+      case 3:
+        return {
+          background: 'rgba(255, 248, 220, 0.7)',
+          border: '2px solid rgba(218, 165, 32, 0.5)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+          textColor: '#654321',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+        };
+      default:
+        return {
+          background: 'rgba(245, 237, 218, 0.7)',
+          border: '2px solid rgba(110, 14, 30, 0.5)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+          textColor: '#121212',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+        };
+    }
+  };
 
-  const bubbleStyle = isStage3 ? {
-    background: 'rgba(255, 248, 220, 0.7)',
+  const stageStyle = getStageStyle();
+
+  const bubbleStyle = {
+    background: stageStyle.background,
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
-    border: '2px solid rgba(218, 165, 32, 0.5)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+    border: stageStyle.border,
+    boxShadow: stageStyle.boxShadow,
     borderRadius: '16px',
-  } : {};
+  };
 
-  const textStyle = isStage3 ? {
-    color: '#654321',
-    textShadow: '0 1px 2px rgba(0,0,0,0.2)',
-  } : {};
+  const textStyle = {
+    color: stageStyle.textColor,
+    textShadow: stageStyle.textShadow,
+  };
 
   return (
     <div className="relative w-full">
@@ -76,34 +113,12 @@ export function HintBubble({
 
       {isVisible && (
         <div 
-          className={`absolute top-full mt-4 left-0 w-full min-w-[320px] max-w-2xl p-6 rounded-lg shadow-2xl z-30 ${
-            isStage3 ? '' : 'bg-parchment border-4 border-obsidian'
-          }`}
-          style={isStage3 ? bubbleStyle : {}}
+          className="absolute top-full mt-4 left-0 w-full min-w-[320px] max-w-2xl p-6 shadow-2xl z-30"
+          style={bubbleStyle}
         >
-          {!isStage3 && (
-            <>
-              {/* Speech bubble tail */}
-              <div 
-                className="absolute -top-4 left-8 w-0 h-0 
-                           border-l-[16px] border-l-transparent
-                           border-r-[16px] border-r-transparent
-                           border-b-[20px] border-b-obsidian"
-              />
-              <div 
-                className="absolute -top-[10px] left-[34px] w-0 h-0 
-                           border-l-[10px] border-l-transparent
-                           border-r-[10px] border-r-transparent
-                           border-b-[14px] border-b-parchment"
-              />
-            </>
-          )}
-          
           <p 
-            className={`font-body text-sm italic leading-relaxed whitespace-normal break-words ${
-              isStage3 ? '' : 'text-obsidian'
-            }`}
-            style={isStage3 ? textStyle : {}}
+            className="font-body text-sm italic leading-relaxed whitespace-normal break-words"
+            style={textStyle}
           >
             {hint}
           </p>
