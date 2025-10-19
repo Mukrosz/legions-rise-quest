@@ -11,8 +11,8 @@ import { HintBubble } from './HintBubble';
 interface InputCardProps {
   onSubmit: (input: string) => Promise<boolean>;
   placeholder?: string;
-  hint1: string;
-  hint2: string;
+  hint1?: string;
+  hint2?: string;
   stageNumber: number;
   savedInput?: string;
   onSuccess?: () => void;
@@ -199,23 +199,29 @@ export function InputCard({
         </button>
       </form>
 
-      {/* Hints */}
-      <div className="mt-8 space-y-4">
-        <HintBubble 
-          hint={hint1} 
-          unlockDelay={hint1UnlockDelay}
-          unlockOnAttempt={hint1UnlockAttempt}
-          currentAttempts={wrongAttempts}
-          stageNumber={stageNumber}
-        />
-        <HintBubble 
-          hint={hint2} 
-          unlockDelay={hint2UnlockDelay}
-          unlockOnAttempt={hint2UnlockAttempt}
-          currentAttempts={wrongAttempts}
-          stageNumber={stageNumber}
-        />
-      </div>
+      {/* Hints - Only render if hints are provided */}
+      {(hint1 || hint2) && (
+        <div className="mt-8 space-y-4">
+          {hint1 && (
+            <HintBubble 
+              hint={hint1} 
+              unlockDelay={hint1UnlockDelay}
+              unlockOnAttempt={hint1UnlockAttempt}
+              currentAttempts={wrongAttempts}
+              stageNumber={stageNumber}
+            />
+          )}
+          {hint2 && (
+            <HintBubble 
+              hint={hint2} 
+              unlockDelay={hint2UnlockDelay}
+              unlockOnAttempt={hint2UnlockAttempt}
+              currentAttempts={wrongAttempts}
+              stageNumber={stageNumber}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
