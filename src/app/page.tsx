@@ -54,7 +54,7 @@ export default function LandingPage() {
       )}
 
       {/* Parchment scroll with title and story */}
-      <main className={`relative ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)]' : 'min-h-screen flex items-center justify-center'} p-4`}>
+      <main className={`relative min-h-[calc(100vh-120px)] flex ${progress.stage > 0 ? 'items-start pt-4' : 'items-center min-h-screen'} justify-center p-4`}>
         <div className="relative z-10 w-full max-w-5xl mx-auto">
           {/* Parchment scroll with actual image - stretched to fit all content */}
           <div 
