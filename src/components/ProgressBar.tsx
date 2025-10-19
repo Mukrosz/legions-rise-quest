@@ -6,23 +6,11 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import { getProgress, getStageName } from '@/lib/progress';
 
 export function ProgressBar() {
-  const pathname = usePathname();
   const progress = getProgress();
   const stages = [0, 1, 2, 3, 4, 5]; // 0 = landing, 1-5 = stages
-  
-  // Detect current stage from pathname
-  const getCurrentStage = (): number => {
-    if (pathname === '/') return 0;
-    if (pathname === '/victory') return 5;
-    const match = pathname.match(/\/stage-(\d+)/);
-    return match ? parseInt(match[1], 10) : 0;
-  };
-  
-  const currentStage = getCurrentStage();
   
   // Convert to Roman numerals
   const toRoman = (num: number): string => {
@@ -44,7 +32,7 @@ export function ProgressBar() {
         {/* Stage markers */}
         {stages.map((stage) => {
           const isComplete = progress.stage >= stage;
-          const isCurrent = currentStage === stage;
+          const isCurrent = progress.stage === stage;
           
           return (
             <div key={stage} className="relative z-10 flex flex-col items-center">
