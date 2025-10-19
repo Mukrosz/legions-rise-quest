@@ -1,50 +1,57 @@
-/**
- * Stage II - Fire at Noon
- * Steganography Challenge - Three Enemies, Three Images, One Truth
- */
-
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { EnemyCard } from '@/components/EnemyCard';
 import { DecryptModal } from '@/components/DecryptModal';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
 import { hashWithPepper, derivePepper } from '@/lib/crypto';
-import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
+import { setProgress, getEnemyDefeats, defeatEnemy, getCollectedFragments } from '@/lib/progress';
 
-// Enemy data
 const ENEMIES = [
   {
+    id: 'beastmaster' as const,
     name: 'Beastmaster of Numidia',
     caption: 'Thunder and iron; the charge decides all.',
     imagePath: '/enemies/beastmaster.png',
+    fragment: 'vi',
+    clue: 'Placeholder for a clue',
   },
   {
+    id: 'tigress' as const,
     name: 'Tigress Unbound',
     caption: 'White fury within a ring of fire.',
     imagePath: '/enemies/tigress.png',
+    fragment: 'rt',
+    clue: 'Placeholder for a clue',
   },
   {
+    id: 'archer' as const,
     name: 'Archer of the Red Dunes',
     caption: 'Eyes and joints hunted from the chariot.',
     imagePath: '/enemies/archer.png',
+    fragment: 'us',
+    clue: 'Placeholder for a clue',
   },
 ];
 
 export default function Stage2Page() {
   const router = useRouter();
   const { isChecking, isAllowed } = useStageGuard(2);
-  const [savedInput] = useState(loadStageInput(2));
-  const [answerInput, setAnswerInput] = useState(savedInput);
+  const [answerInput, setAnswerInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
-  // Modal state
+  const [defeats, setDefeats] = useState(getEnemyDefeats());
+  const [fragments, setFragments] = useState(getCollectedFragments());
   const [selectedEnemy, setSelectedEnemy] = useState<typeof ENEMIES[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setDefeats(getEnemyDefeats());
+    setFragments(getCollectedFragments());
+  }, []);
 
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v2.js');
@@ -58,7 +65,6 @@ export default function Stage2Page() {
       return true;
     }
     
-    saveStageInput(2, input);
     return false;
   };
 
@@ -83,7 +89,6 @@ export default function Stage2Page() {
         setTimeout(() => setShowError(false), 3000);
       }
     } catch (error) {
-      console.error('Submission error:', error);
       setShowError(true);
       setTimeout(() => setShowError(false), 3000);
     } finally {
@@ -96,9 +101,11 @@ export default function Stage2Page() {
     setIsModalOpen(true);
   };
 
-  const handleDecryptSuccess = (plaintext: string) => {
-    setAnswerInput(plaintext);
-    saveStageInput(2, plaintext);
+  const handleDefeatEnemy = (fragment: string) => {
+    if (!selectedEnemy) return;
+    defeatEnemy(selectedEnemy.id);
+    setDefeats(getEnemyDefeats());
+    setFragments(getCollectedFragments());
   };
 
   if (isChecking) {
@@ -122,16 +129,12 @@ export default function Stage2Page() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          // Heat haze effect
           animation: 'heatHaze 8s ease-in-out infinite',
         }}
       >
-        {/* Progress Bar at Top */}
         <ProgressBar />
 
-        {/* Main Content - Centered */}
         <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
-          {/* Glassmorphism Container - Heat Theme */}
           <div
             className="w-full max-w-5xl"
             style={{
@@ -144,7 +147,6 @@ export default function Stage2Page() {
               padding: 'clamp(32px, 5vw, 64px)',
             }}
           >
-            {/* Puzzle Title */}
             <h1 className="font-display text-center mb-6"
                 style={{
                   fontSize: 'clamp(36px, 5vw, 64px)',
@@ -158,7 +160,6 @@ export default function Stage2Page() {
               FIRE AT NOON
             </h1>
 
-            {/* Story Section */}
             <div className="mb-10 text-center">
               <h2 className="font-spectral text-xl md:text-2xl mb-6"
                   style={{
@@ -181,63 +182,81 @@ export default function Stage2Page() {
                      margin: '0 auto',
                    }}>
                 <p>
-                  Kaeso stands shoulder-to-shoulder with his companions, blades high, backs locked. 
-                  Three gates yawn open - the arena's breath held.
+                  Kaeso faces three foes. Each holds a secret written in shadow and cipher. Defeat each, 
+                  claim their word-fragment. Only when all three fall will the path forward emerge.
                 </p>
                 <p>
-                  From the North, thunder and iron: the <strong style={{ color: '#ffb380' }}>Beastmaster of Numidia</strong> atop 
-                  an armored rhinoceros, lance lowered for a killing rush.
+                  <strong style={{ color: '#ffb380' }}>Beastmaster of Numidia</strong> - thunder and iron, 
+                  his riddle guards the first syllable.
                 </p>
                 <p>
-                  From the East, smoke and screams: the <strong style={{ color: '#ffb380' }}>Tigress Unbound</strong>, 
-                  a white fury loosed as the ring of fire tightens.
+                  <strong style={{ color: '#ffb380' }}>Tigress Unbound</strong> - white fury in fire, 
+                  her secret holds the second.
                 </p>
                 <p>
-                  From the West, dust and whistle: the <strong style={{ color: '#ffb380' }}>Archer of the Red Dunes</strong>, 
-                  chariot circling, arrows hunting eyes and joints.
+                  <strong style={{ color: '#ffb380' }}>Archer of the Red Dunes</strong> - eyes and arrows, 
+                  his clue completes the word.
                 </p>
                 <p className="font-spectral italic" style={{ fontWeight: 600, color: '#ffe5cc', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
-                  "Choose the first cut - or the last breath," Kaeso murmurs. The crowd roars. The sand waits.
+                  Solve each riddle. Defeat each enemy. Unite the fragments. Speak the word.
                 </p>
               </div>
             </div>
 
-            {/* Enemy Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               {ENEMIES.map((enemy) => (
                 <EnemyCard
-                  key={enemy.name}
+                  key={enemy.id}
                   name={enemy.name}
                   caption={enemy.caption}
                   imagePath={enemy.imagePath}
                   onClick={() => handleEnemyClick(enemy)}
+                  isDefeated={defeats[enemy.id]}
                 />
               ))}
             </div>
 
-            {/* Player Hint */}
+            {fragments.length > 0 && (
+              <div className="mb-10 text-center">
+                <p className="font-spectral text-lg mb-2"
+                   style={{ color: '#ffcc99', textShadow: '0 2px 4px rgba(0,0,0,0.7)' }}>
+                  Collected Fragments:
+                </p>
+                <p className="font-display text-4xl tracking-widest"
+                   style={{ 
+                     color: '#ffe5cc', 
+                     fontWeight: 900,
+                     textShadow: '0 3px 6px rgba(0,0,0,0.8)',
+                     letterSpacing: '0.2em',
+                   }}>
+                  {fragments.join('')}
+                </p>
+                {fragments.length === 3 && (
+                  <p className="font-spectral text-sm mt-2"
+                     style={{ color: '#e8c8a8', textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>
+                    All fragments obtained. Enter the complete word below.
+                  </p>
+                )}
+              </div>
+            )}
+
             <p className="font-spectral text-center italic text-sm mb-10"
                style={{
                  color: '#e8c8a8',
                  opacity: 0.9,
                  textShadow: '0 1px 3px rgba(0,0,0,0.6)',
                }}>
-              Three gates. Three foes. Three images. The first victory is insight. 
-              What is hidden in one is the key for all.
+              Three gates. Three foes. Three fragments. Defeat all to claim victory.
             </p>
 
-            {/* Answer Input */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="relative mb-12">
                 <input
                   id="stage2-answer"
                   type="text"
                   value={answerInput}
-                  onChange={(e) => {
-                    setAnswerInput(e.target.value);
-                    saveStageInput(2, e.target.value);
-                  }}
-                  placeholder="Enter the decoded word..."
+                  onChange={(e) => setAnswerInput(e.target.value)}
+                  placeholder="Enter the complete word..."
                   className="w-full font-spectral"
                   style={{
                     padding: '16px 20px',
@@ -271,7 +290,6 @@ export default function Stage2Page() {
                 )}
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting || showSuccess || !answerInput.trim()}
@@ -305,7 +323,6 @@ export default function Stage2Page() {
               </button>
             </form>
 
-            {/* Navigation */}
             <div className="text-center mt-8">
               <button
                 onClick={() => router.push('/')}
@@ -334,7 +351,6 @@ export default function Stage2Page() {
         </main>
       </div>
 
-      {/* Decrypt Modal */}
       {selectedEnemy && (
         <DecryptModal
           isOpen={isModalOpen}
@@ -344,11 +360,13 @@ export default function Stage2Page() {
           }}
           enemyName={selectedEnemy.name}
           imagePath={selectedEnemy.imagePath}
-          onDecryptSuccess={handleDecryptSuccess}
+          riddleClue={selectedEnemy.clue}
+          wordFragment={selectedEnemy.fragment}
+          isDefeated={defeats[selectedEnemy.id]}
+          onDefeatEnemy={handleDefeatEnemy}
         />
       )}
 
-      {/* CSS Animation for heat haze */}
       <style jsx>{`
         @keyframes heatHaze {
           0%, 100% {

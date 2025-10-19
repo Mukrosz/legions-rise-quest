@@ -1,8 +1,3 @@
-/**
- * Decrypt Modal Component
- * Shows enemy image with download and decrypt functionality
- */
-
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -38,7 +33,6 @@ export function DecryptModal({
   const modalRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Close on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -57,7 +51,6 @@ export function DecryptModal({
     };
   }, [isOpen, onClose]);
 
-  // Reset state when modal opens
   useEffect(() => {
     if (isOpen) {
       setSelectedFile(null);
@@ -67,7 +60,6 @@ export function DecryptModal({
     }
   }, [isOpen]);
 
-  // Focus trap
   useEffect(() => {
     if (isOpen && modalRef.current) {
       const focusableElements = modalRef.current.querySelectorAll(

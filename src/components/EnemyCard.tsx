@@ -1,8 +1,3 @@
-/**
- * Enemy Card Component
- * Displays enemy portrait with hover effects
- */
-
 'use client';
 
 import React from 'react';
@@ -41,16 +36,14 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
       }}
       aria-label={`View ${name}${isDefeated ? ' (Defeated)' : ''}`}
     >
-      {/* Enemy Portrait */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
         style={{
           backgroundImage: `url('${imagePath}')`,
-          backgroundColor: 'rgba(60, 40, 30, 0.3)', // Fallback if image not loaded
+          backgroundColor: 'rgba(60, 40, 30, 0.3)',
         }}
       />
 
-      {/* Gradient Overlay */}
       <div
         className="absolute inset-0 transition-opacity duration-300"
         style={{
@@ -59,7 +52,6 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         }}
       />
 
-      {/* Caption Overlay */}
       <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
         <h3 className="font-display mb-1"
             style={{
@@ -82,7 +74,6 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         </p>
       </div>
 
-      {/* Hover Indicator */}
       {!isDefeated && (
         <div
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -106,19 +97,16 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         </div>
       )}
 
-      {/* Defeated Overlay - Red X Slash */}
       {isDefeated && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* CSS-based bloody X slash */}
           <div className="relative w-full h-full">
-            {/* Slash 1: Top-left to bottom-right */}
             <div
               className="absolute"
               style={{
                 top: '0',
                 left: '50%',
                 width: '8px',
-                height: '141.4%', // sqrt(2) * 100% for diagonal
+                height: '141.4%',
                 background: 'linear-gradient(180deg, rgba(139,0,0,0.9) 0%, rgba(180,0,0,0.95) 50%, rgba(139,0,0,0.9) 100%)',
                 transform: 'translateX(-50%) rotate(45deg)',
                 transformOrigin: 'center',
@@ -126,7 +114,6 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
                 borderRadius: '2px',
               }}
             />
-            {/* Slash 2: Top-right to bottom-left */}
             <div
               className="absolute"
               style={{
@@ -143,7 +130,6 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
             />
           </div>
           
-          {/* DEFEATED text */}
           <span className="absolute font-display"
                 style={{
                   fontSize: 'clamp(16px, 2vw, 24px)',
