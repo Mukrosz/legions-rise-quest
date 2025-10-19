@@ -49,16 +49,25 @@ export default function Stage3Page() {
   }
 
   return (
-    <div 
-      className="min-h-screen"
-      style={{
-        backgroundImage: 'url("/stage3-bg.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <ProgressBar />
+    <>
+      <style jsx global>{`
+        ::-webkit-scrollbar-thumb {
+          background: #DAA520 !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #B8860B !important;
+        }
+      `}</style>
+      <div 
+        className="min-h-screen"
+        style={{
+          backgroundImage: 'url("/stage3-bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <ProgressBar />
 
       <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
         <div 
@@ -178,5 +187,6 @@ export default function Stage3Page() {
       </div>
       </main>
     </div>
+    </>
   );
 }

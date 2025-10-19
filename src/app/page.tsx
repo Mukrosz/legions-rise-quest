@@ -32,8 +32,17 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-auto">
-      {/* Vintage Colosseum Background Image */}
+    <>
+      <style jsx global>{`
+        ::-webkit-scrollbar-thumb {
+          background: #D4AF37 !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #B8941F !important;
+        }
+      `}</style>
+      <div className="min-h-screen relative overflow-auto">
+        {/* Vintage Colosseum Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -240,6 +249,7 @@ export default function LandingPage() {
         </p>
       </footer>
     </div>
+    </>
   );
 }
 

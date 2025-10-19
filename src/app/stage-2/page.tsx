@@ -122,6 +122,14 @@ export default function Stage2Page() {
 
   return (
     <>
+      <style jsx global>{`
+        ::-webkit-scrollbar-thumb {
+          background: #D4874C !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #B8633A !important;
+        }
+      `}</style>
       <div
         className="min-h-screen"
         style={{

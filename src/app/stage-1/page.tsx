@@ -44,17 +44,26 @@ export default function Stage1Page() {
   };
 
   return (
-    <div 
-      className="min-h-screen"
-      style={{
-        backgroundImage: 'url("/stage1-bg.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      {/* Progress Bar at Top */}
-      <ProgressBar />
+    <>
+      <style jsx global>{`
+        ::-webkit-scrollbar-thumb {
+          background: #0077B6 !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #005F8D !important;
+        }
+      `}</style>
+      <div 
+        className="min-h-screen"
+        style={{
+          backgroundImage: 'url("/stage1-bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Progress Bar at Top */}
+        <ProgressBar />
 
       {/* Main Content - Centered */}
       <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
@@ -208,6 +217,7 @@ export default function Stage1Page() {
       </div>
       </main>
     </div>
+    </>
   );
 }
 
