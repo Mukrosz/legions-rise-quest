@@ -134,7 +134,7 @@ export default function Stage3Page() {
              opacity: 0.9,
              textShadow: '0 2px 4px rgba(0,0,0,0.4)'
            }}>
-          Inspect the foundation's source. The scholar's cipher awaits in scribenotes.
+          Inspect the foundation's source. The scholar's cipher awaits in <span style={{ fontWeight: 700 }}>scribenotes</span>.
         </p>
 
         <InputCard
