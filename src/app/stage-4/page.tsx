@@ -346,8 +346,6 @@ export default function Stage4Page() {
           <InputCard
             onSubmit={validateAnswer}
             placeholder="Enter the word of honor..."
-            hint1="The grid of Polybius speaks in Roman numerals - row and column, ancient and wise."
-            hint2="First decode the numbered pairs, then ROMA's letters shift the truth once more."
             stageNumber={4}
             savedInput={savedInput}
             onSuccess={handleSuccess}
