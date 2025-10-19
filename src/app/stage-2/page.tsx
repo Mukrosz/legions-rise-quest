@@ -182,8 +182,15 @@ export default function Stage2Page() {
                      margin: '0 auto',
                    }}>
                 <p>
-                  Kaeso faces three foes. Each holds a secret written in shadow and cipher. Defeat each, 
-                  claim their word-fragment. Only when all three fall will the path forward emerge.
+                  From captive to champion, Kaeso has risen through blood and blade. Now a renowned gladiator 
+                  whose name echoes through the Colosseum's vaulted halls, he stands at the threshold of his 
+                  final trial - a challenge that whispers promises of freedom.
+                </p>
+                <p>
+                  Back to back with his trusted brothers-in-arms, an elite band forged in the crucible of the 
+                  arena, Kaeso faces three legendary foes. Each adversary guards a secret written in shadow and 
+                  cipher. Defeat each champion, claim their word-fragment. Only when all three fall will the 
+                  gates of liberty swing open.
                 </p>
                 <p className="font-spectral italic mt-4" style={{ fontWeight: 600, color: '#ffe5cc', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                   Solve each riddle. Defeat each enemy. Unite the fragments. Speak the word.
