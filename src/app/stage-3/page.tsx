@@ -97,7 +97,7 @@ export default function Stage3Page() {
           <div className="mb-10 text-center">
             <h2 className="font-spectral text-xl md:text-2xl mb-6" 
                 style={{ 
-                  color: '#B8860B',
+                  color: '#8B4513',
                   fontWeight: 600,
                   fontStyle: 'italic',
                   letterSpacing: '0.02em',
@@ -119,7 +119,8 @@ export default function Stage3Page() {
                 Manumission granted. You are free - but not equal. The path to citizenship 
                 winds through marble halls where the Founders' legacy echoes. An archivist 
                 whispers: "To claim your place, you must know the Glory of Rome. Seek the 
-                Founders' words where brothers gather. There lies the key."
+                Founders' words where brothers gather. Take heed when Senators speak, for 
+                in their words there is wisdom - and perhaps a key. There lies your path."
               </p>
             </div>
           </div>
@@ -164,19 +165,19 @@ export default function Stage3Page() {
             className="font-spectral px-6 py-2 transition-all"
             style={{ 
               fontSize: 'clamp(13px, 1vw, 15px)',
-              color: '#8B4513',
-              opacity: 0.8,
-              fontWeight: 500,
+              color: '#3E2723',
+              opacity: 0.85,
+              fontWeight: 600,
               letterSpacing: '0.03em',
               textShadow: '0 1px 2px rgba(255,255,255,0.3)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.color = '#654321';
+              e.currentTarget.style.color = '#1A0F0A';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.8';
-              e.currentTarget.style.color = '#8B4513';
+              e.currentTarget.style.opacity = '0.85';
+              e.currentTarget.style.color = '#3E2723';
             }}
           >
             ← Return to Landing

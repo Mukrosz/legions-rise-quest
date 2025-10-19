@@ -103,7 +103,7 @@ export function InputCard({
         background: 'rgba(255, 248, 220, 0.3)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        color: '#654321',
+        color: '#3E2723',
         border: '2px solid rgba(218, 165, 32, 0.5)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
