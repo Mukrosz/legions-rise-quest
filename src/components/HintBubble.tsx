@@ -45,7 +45,7 @@ export function HintBubble({
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <button
         onClick={() => setIsVisible(!isVisible)}
         className="px-4 py-2 bg-laurel hover:bg-laurel/80 text-parchment rounded-lg 
@@ -58,9 +58,9 @@ export function HintBubble({
 
       {isVisible && (
         <div 
-          className="absolute top-full mt-4 left-0 right-0 
+          className="absolute top-full mt-4 left-0 w-full min-w-[320px] max-w-2xl
                      bg-parchment border-4 border-obsidian p-6 rounded-lg
-                     shadow-2xl z-30 animate-panel-wipe"
+                     shadow-2xl z-30"
         >
           {/* Speech bubble tail */}
           <div 
@@ -76,7 +76,7 @@ export function HintBubble({
                        border-b-[14px] border-b-parchment"
           />
           
-          <p className="text-obsidian font-body text-sm italic leading-relaxed">
+          <p className="text-obsidian font-body text-sm italic leading-relaxed whitespace-normal break-words">
             {hint}
           </p>
         </div>
