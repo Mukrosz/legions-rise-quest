@@ -1,32 +1,20 @@
-/**
- * Stage III - Citizen's Trial
- * Source Inspection (Base64) + History
- */
+/*
+  HIDDEN CLUE FOR SOURCE INSPECTION:
+  U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=
+  
+  This decodes from Base64 to:
+  "Seek the Founders in the #roles channel of Discord. Read of Remus and Romulus, and learn of their Gloria"
+*/
 
 'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Panel } from '@/components/Panel';
-import { CaptionBox } from '@/components/CaptionBox';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
 import { hashWithPepper } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
-
-/*
-  HIDDEN CLUE FOR SOURCE INSPECTION:
-  The greatest orator of Rome, defender of the Republic, spoke against Catiline.
-  His name is encoded below in the scholar's cipher:
-  
-  Q0lDRVJP
-  
-  This decodes from Base64 to: CICERO
-  
-  Historical context: Marcus Tullius Cicero (106-43 BCE) was Rome's greatest 
-  orator and statesman. He defended the Republic and was known for his Catilinarian Orations.
-*/
 
 export default function Stage3Page() {
   const router = useRouter();
@@ -35,8 +23,6 @@ export default function Stage3Page() {
 
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v3.js');
-    
-    // Use FORVM as pepper for this stage
     const pepper = 'FORVM';
     const hash = await hashWithPepper(input, pepper);
     
@@ -66,117 +52,165 @@ export default function Stage3Page() {
   }
 
   if (!isAllowed) {
+    router.push('/');
     return null;
   }
 
   return (
-    <main className="min-h-screen comic-gutter page-transition">
+    <div 
+      className="min-h-screen"
+      style={{
+        backgroundImage: 'url("/stage3-bg.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <ProgressBar />
 
-      <Panel variant="hero" className="mb-8">
-        <div className="relative min-h-[50vh] flex items-center justify-center">
-          <div 
-            className="absolute inset-0 bg-gradient-to-br from-laurel/30 via-obsidian/70 to-obsidian"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b87333' fill-opacity='0.06'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
-
-          <CaptionBox position="bottom" variant="story">
-            <p className="mb-3">
-              <strong className="text-xl text-bronze">Year Three. The Tabularium.</strong>
-            </p>
-            <p className="mb-3">
-              Manumission granted. You are free - but not equal. The path to citizenship 
-              winds through the Forum, past marble columns and bronze tablets.
-            </p>
-            <p className="mb-3">
-              An archivist, bent over scrolls, catches your eye. "Seeking rights? 
-              Then know those who shaped them." He gestures to the walls where names 
-              are etched, some visible, others hidden where scribes leave notes.
-            </p>
-            <p className="text-bronze italic">
-              The greatest defender of the Republic awaits discovery. Inspect the foundation.
-            </p>
-          </CaptionBox>
-
-          <div className="absolute top-8 right-8 sfx-label opacity-20">
-            CRACK
-          </div>
-        </div>
-      </Panel>
-
-      <Panel variant="content" className="max-w-4xl mx-auto mb-8">
-        <div className="space-y-6">
-          <h1 className="font-display text-3xl md:text-5xl font-black text-burgundy text-center mb-6">
+      <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
+        <div 
+          className="w-full max-w-4xl"
+          style={{
+            background: 'rgba(255, 245, 220, 0.15)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '24px',
+            border: '2px solid rgba(218, 165, 32, 0.5)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+            padding: 'clamp(32px, 5vw, 64px)',
+          }}
+        >
+          <h1 className="font-display text-center mb-8" 
+              style={{
+                fontSize: 'clamp(32px, 4vw, 52px)',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                lineHeight: 1.1,
+                color: '#8B4513',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(218,165,32,0.2)',
+                filter: 'drop-shadow(0 0 20px rgba(255,215,0,0.3))'
+              }}>
             CITIZEN'S TRIAL
           </h1>
 
-          <div className="prose prose-lg max-w-none text-obsidian">
-            <p className="text-center italic mb-8 text-bronze font-semibold text-xl">
-              "Where scribes leave their marks"
-            </p>
-
-            <div className="bg-parchment/50 p-6 border-l-4 border-bronze mb-8">
-              <p className="font-serif text-base mb-4">
-                <strong>Historical Context:</strong>
-              </p>
-              <p className="text-sm mb-3">
-                In 63 BCE, a conspiracy threatened Rome's very existence. One man stood 
-                before the Senate and delivered orations so powerful they saved the Republic.
-              </p>
-              <p className="text-sm mb-3">
-                He was not a general but a lawyer. Not a warrior but a wordsmith. 
-                His weapon was rhetoric; his legacy, eternal.
-              </p>
-              <p className="text-sm text-bronze italic">
-                "O tempora, o mores!" he cried. The times, the customs - Rome at the precipice.
-              </p>
-            </div>
-
-            <div className="bg-obsidian/10 p-6 rounded mb-8 text-center">
-              <p className="text-sm text-obsidian/80 mb-4">
-                The archivist whispers: <em>"Records hidden where scribes leave notes. 
-                Look at the foundation - the very source of this page."</em>
-              </p>
-              <p className="text-xs text-obsidian/60">
-                (Hint: Builders of webpages leave comments. Inspect what lies beneath 
-                the visible structure. A scholar's cipher - six characters - reveals the name.)
-              </p>
-            </div>
-
-            <div className="bg-burgundy/10 p-4 border-2 border-burgundy rounded">
-              <p className="text-sm font-bold text-burgundy mb-2">🔍 For the Curious:</p>
-              <p className="text-xs text-obsidian/70">
-                This stage explicitly requires source inspection. Right-click this page, 
-                select "View Page Source" or "Inspect Element," and search for hidden 
-                comments near the top of the file. A Base64-encoded string awaits decoding.
+          <div className="mb-10 text-center">
+            <h2 className="font-spectral text-xl md:text-2xl mb-6" 
+                style={{ 
+                  color: '#FFD700',
+                  fontWeight: 600,
+                  fontStyle: 'italic',
+                  letterSpacing: '0.02em',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.4)'
+                }}>
+              Year Three. The Forum.
+            </h2>
+            <div className="font-spectral" 
+                 style={{ 
+                   color: '#F5DEB3',
+                   fontSize: 'clamp(15px, 1.1vw, 17px)',
+                   lineHeight: 1.75,
+                   fontWeight: 400,
+                   textShadow: '0 1px 3px rgba(0,0,0,0.5)',
+                   maxWidth: '700px',
+                   margin: '0 auto',
+                 }}>
+              <p>
+                Manumission granted. You are free - but not equal. The path to citizenship 
+                winds through marble halls where the Founders' legacy echoes. An archivist 
+                whispers: "To claim your place, you must know the Gloria of Rome. Seek the 
+                Founders' words where brothers gather. There lies the key."
               </p>
             </div>
           </div>
 
-          <InputCard
-            onSubmit={validateAnswer}
-            placeholder="Enter the orator's name..."
-            hint1="Records hidden where scribes leave notes. Inspect what builders wrote."
-            hint2="Look at the foundation - the very source. A name encoded in scholar's cipher awaits."
-            stageNumber={3}
-            savedInput={savedInput}
-            onSuccess={handleSuccess}
-          />
-        </div>
-      </Panel>
+        <p className="font-spectral text-center italic mb-8" 
+           style={{ 
+             fontSize: 'clamp(15px, 1.1vw, 17px)',
+             fontWeight: 600,
+             color: '#FFD700',
+             textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+           }}>
+          Discover the Gloria that built an empire
+        </p>
 
-      <div className="text-center pb-8">
-        <button
-          onClick={() => router.push('/')}
-          className="px-6 py-2 text-parchment/60 hover:text-parchment
-                   font-body text-sm transition-colors"
-        >
-          ← Return to Landing
-        </button>
+        <div className="mb-8 flex justify-center">
+          <div 
+            className="p-6 text-center"
+            style={{
+              background: 'rgba(255, 248, 220, 0.25)',
+              borderRadius: '16px',
+              border: '2px solid rgba(218, 165, 32, 0.4)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <p className="font-mono tracking-widest" 
+               style={{ 
+                 fontSize: 'clamp(14px, 1.5vw, 18px)',
+                 fontWeight: 600,
+                 color: '#8B4513',
+                 letterSpacing: '0.15em',
+                 textShadow: '0 1px 2px rgba(255,255,255,0.5)',
+                 lineHeight: 1.6,
+                 maxWidth: '600px',
+               }}>
+              U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=
+            </p>
+          </div>
+        </div>
+
+        <p className="font-spectral text-center italic mb-10" 
+           style={{ 
+             fontSize: '14px',
+             color: '#F5DEB3',
+             opacity: 0.9,
+             textShadow: '0 1px 3px rgba(0,0,0,0.6)'
+           }}>
+          The cipher speaks of Founders and glory. Decode their message, and Rome's gates open.
+        </p>
+
+        <InputCard
+          onSubmit={validateAnswer}
+          placeholder="Enter the word of glory..."
+          hint1="The Founders left their mark in sacred spaces. Seek where brothers gather, and the Gloria Aeterna reveals itself."
+          hint2="Remus and Romulus, the twin Founders. Their legacy holds the key. Look to the roles where they are honored."
+          stageNumber={3}
+          savedInput={savedInput}
+          onSuccess={handleSuccess}
+          hint1UnlockDelay={0}
+          hint2UnlockDelay={0}
+          hint1UnlockAttempt={1}
+          hint2UnlockAttempt={2}
+        />
+
+        <div className="text-center mt-8">
+          <button
+            onClick={() => router.push('/')}
+            className="font-spectral px-6 py-2 transition-all"
+            style={{ 
+              fontSize: 'clamp(13px, 1vw, 15px)',
+              color: '#F5DEB3',
+              opacity: 0.8,
+              fontWeight: 500,
+              letterSpacing: '0.03em',
+              textShadow: '0 1px 2px rgba(0,0,0,0.4)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.color = '#FFD700';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.color = '#F5DEB3';
+            }}
+          >
+            ← Return to Landing
+          </button>
+        </div>
       </div>
-    </main>
+      </main>
+    </div>
   );
 }
-
