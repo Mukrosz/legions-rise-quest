@@ -25,20 +25,9 @@ export default function RootLayout({
           id="scribe-cipher"
           dangerouslySetInnerHTML={{
             __html: `
-
-
-================================================
-  THE SCHOLAR'S CIPHER - SCRIBE'S NOTES
-================================================
+Scribe Notes
 
 const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";
-
-Decode this Base64 string to reveal 
-the path to Gloria.
-
-================================================
-
-
             `
           }}
         />
