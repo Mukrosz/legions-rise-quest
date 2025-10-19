@@ -19,20 +19,20 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         aspectRatio: '1 / 1',
         borderRadius: '16px',
         overflow: 'hidden',
-        border: '2px solid rgba(212, 165, 116, 0.5)',
-        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+        border: '2px solid rgba(212, 135, 76, 0.35)',
+        boxShadow: '0 4px 16px rgba(139, 69, 19, 0.4)',
         opacity: isDefeated ? 0.5 : 1,
         filter: isDefeated ? 'grayscale(50%)' : 'none',
       }}
       onMouseEnter={(e) => {
         if (!isDefeated) {
           e.currentTarget.style.transform = 'scale(1.05)';
-          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.4)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 69, 19, 0.5)';
         }
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
-        e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+        e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 69, 19, 0.4)';
       }}
       aria-label={`View ${name}${isDefeated ? ' (Defeated)' : ''}`}
     >
@@ -47,8 +47,17 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
       <div
         className="absolute inset-0 transition-opacity duration-300"
         style={{
+          background: 'linear-gradient(135deg, rgba(204, 102, 51, 0.12), rgba(184, 115, 51, 0.15), rgba(139, 69, 19, 0.12))',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+        }}
+      />
+
+      <div
+        className="absolute inset-0 transition-opacity duration-300"
+        style={{
           background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%)',
-          opacity: 0.9,
+          opacity: 0.7,
         }}
       />
 
