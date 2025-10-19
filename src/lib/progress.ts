@@ -5,10 +5,17 @@
 
 const PROGRESS_KEY = 'roman.ascent.progress';
 const INPUT_KEY_PREFIX = 'roman.ascent.s';
+const ENEMY_DEFEATS_KEY = 'roman.ascent.s2.enemies';
 
 export interface Progress {
   stage: number; // 0 = landing, 1-5 = stages completed
   timestamp: number;
+}
+
+export interface EnemyDefeats {
+  beastmaster: boolean;
+  tigress: boolean;
+  archer: boolean;
 }
 
 /**
@@ -126,5 +133,75 @@ export function getStageName(stage: number): string {
   ];
   
   return names[stage] || 'Unknown';
+}
+
+/**
+ * Get enemy defeats for Stage 2
+ */
+export function getEnemyDefeats(): EnemyDefeats {
+  if (typeof window === 'undefined') {
+    return { beastmaster: false, tigress: false, archer: false };
+  }
+
+  try {
+    const stored = localStorage.getItem(ENEMY_DEFEATS_KEY);
+    if (!stored) {
+      return { beastmaster: false, tigress: false, archer: false };
+    }
+    
+    return JSON.parse(stored) as EnemyDefeats;
+  } catch (e) {
+    return { beastmaster: false, tigress: false, archer: false };
+  }
+}
+
+/**
+ * Mark an enemy as defeated
+ */
+export function defeatEnemy(enemyId: 'beastmaster' | 'tigress' | 'archer'): void {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const defeats = getEnemyDefeats();
+    defeats[enemyId] = true;
+    localStorage.setItem(ENEMY_DEFEATS_KEY, JSON.stringify(defeats));
+  } catch (e) {
+    console.error('Failed to save enemy defeat:', e);
+  }
+}
+
+/**
+ * Check if all enemies are defeated
+ */
+export function areAllEnemiesDefeated(): boolean {
+  const defeats = getEnemyDefeats();
+  return defeats.beastmaster && defeats.tigress && defeats.archer;
+}
+
+/**
+ * Get the collected word fragments
+ */
+export function getCollectedFragments(): string[] {
+  const defeats = getEnemyDefeats();
+  const fragments: string[] = [];
+  
+  if (defeats.beastmaster) fragments.push('vi');
+  if (defeats.tigress) fragments.push('rt');
+  if (defeats.archer) fragments.push('us');
+  
+  return fragments;
+}
+
+/**
+ * Reset enemy defeats (for testing or replay)
+ */
+export function resetEnemyDefeats(): void {
+  if (typeof window === 'undefined') return;
+
+  try {
+    localStorage.removeItem(ENEMY_DEFEATS_KEY);
+  } catch (e) {
+    console.error('Failed to reset enemy defeats:', e);
+  }
 }
 

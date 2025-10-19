@@ -13,7 +13,10 @@ interface DecryptModalProps {
   onClose: () => void;
   enemyName: string;
   imagePath: string;
-  onDecryptSuccess?: (plaintext: string) => void;
+  riddleClue: string;
+  wordFragment: string;
+  isDefeated: boolean;
+  onDefeatEnemy?: (fragment: string) => void;
 }
 
 export function DecryptModal({
@@ -21,7 +24,10 @@ export function DecryptModal({
   onClose,
   enemyName,
   imagePath,
-  onDecryptSuccess,
+  riddleClue,
+  wordFragment,
+  isDefeated,
+  onDefeatEnemy,
 }: DecryptModalProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [passphrase, setPassphrase] = useState('');
@@ -108,29 +114,16 @@ export function DecryptModal({
       const plaintext = await decryptStegoImage(selectedFile, passphrase.trim());
 
       if (plaintext && plaintext.length > 0) {
-        // Success!
         setDecryptResult('success');
         setDecryptedText(plaintext);
 
-        // Auto-fill the main answer input
-        if (onDecryptSuccess) {
-          onDecryptSuccess(plaintext);
-        }
-
-        // Also try to fill by DOM id as backup
-        const answerInput = document.getElementById('stage2-answer') as HTMLInputElement;
-        if (answerInput) {
-          answerInput.value = plaintext;
-          // Trigger change event for React
-          const event = new Event('input', { bubbles: true });
-          answerInput.dispatchEvent(event);
+        if (onDefeatEnemy) {
+          onDefeatEnemy(wordFragment);
         }
       } else {
-        // Failed
         setDecryptResult('error');
       }
     } catch (error) {
-      console.error('Decryption error:', error);
       setDecryptResult('error');
     } finally {
       setIsDecrypting(false);
@@ -218,56 +211,95 @@ export function DecryptModal({
           />
         </div>
 
-        {/* Download Button */}
-        <div className="mb-8 text-center">
-          <button
-            onClick={handleDownload}
-            className="font-display px-6 py-3 transition-all"
-            style={{
-              fontSize: '14px',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              background: 'rgba(212, 165, 116, 0.3)',
-              color: '#ffe5cc',
-              border: '2px solid rgba(212, 165, 116, 0.5)',
-              borderRadius: '12px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(212, 165, 116, 0.4)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(212, 165, 116, 0.3)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            ⬇ DOWNLOAD IMAGE
-          </button>
-        </div>
+        {/* Riddle Clue or Defeated Status */}
+        {isDefeated ? (
+          <div className="mb-8 text-center">
+            <div
+              className="inline-block px-8 py-4"
+              style={{
+                background: 'rgba(139, 0, 0, 0.2)',
+                border: '2px solid rgba(180, 0, 0, 0.5)',
+                borderRadius: '12px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+              }}
+            >
+              <p className="font-display mb-2"
+                 style={{
+                   fontSize: 'clamp(16px, 2vw, 20px)',
+                   fontWeight: 800,
+                   color: '#ff4444',
+                   letterSpacing: '0.12em',
+                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
+                 }}>
+                ⚔ ENEMY DEFEATED ⚔
+              </p>
+              <p className="font-spectral"
+                 style={{
+                   fontSize: 'clamp(14px, 1.2vw, 16px)',
+                   color: '#ffa07a',
+                   fontWeight: 500,
+                 }}>
+                Fragment obtained: "<span style={{ fontWeight: 700, color: '#ffe5cc' }}>{wordFragment}</span>"
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-8">
+            <div
+              className="px-6 py-4"
+              style={{
+                background: 'rgba(212, 165, 116, 0.15)',
+                border: '2px solid rgba(212, 165, 116, 0.4)',
+                borderRadius: '12px',
+                boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.3)',
+              }}
+            >
+              <h3 className="font-display text-center mb-3"
+                  style={{
+                    fontSize: 'clamp(14px, 1.5vw, 18px)',
+                    fontWeight: 700,
+                    color: '#d4a574',
+                    letterSpacing: '0.10em',
+                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                  }}>
+                📜 THE CLUE
+              </h3>
+              <p className="font-spectral text-center"
+                 style={{
+                   fontSize: 'clamp(13px, 1.1vw, 15px)',
+                   color: '#f5d8b8',
+                   lineHeight: 1.6,
+                   fontStyle: 'italic',
+                   textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                 }}>
+                {riddleClue}
+              </p>
+            </div>
+          </div>
+        )}
 
-        {/* Decrypt Panel */}
-        <div
-          className="p-6"
-          style={{
-            background: 'rgba(212, 165, 116, 0.1)',
-            borderRadius: '16px',
-            border: '1px solid rgba(212, 165, 116, 0.3)',
-          }}
-        >
-          <h3
-            className="font-display mb-4 text-center"
+        {/* Decrypt Panel - Only show if not defeated */}
+        {!isDefeated && (
+          <div
+            className="p-6"
             style={{
-              fontSize: 'clamp(16px, 2vw, 20px)',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              color: '#e8c8a8',
-              textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+              background: 'rgba(212, 165, 116, 0.1)',
+              borderRadius: '16px',
+              border: '1px solid rgba(212, 165, 116, 0.3)',
             }}
           >
-            DECRYPT HERE
-          </h3>
+            <h3
+              className="font-display mb-4 text-center"
+              style={{
+                fontSize: 'clamp(16px, 2vw, 20px)',
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                color: '#e8c8a8',
+                textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+              }}
+            >
+              DECRYPT HERE
+            </h3>
 
           {/* File Picker */}
           <div className="mb-4">
@@ -379,22 +411,28 @@ export function DecryptModal({
               }}
             >
               <p
-                className="font-spectral font-bold mb-2"
-                style={{ color: '#aaffaa', fontSize: '14px' }}
+                className="font-spectral font-bold mb-3"
+                style={{ color: '#aaffaa', fontSize: '16px' }}
               >
-                ✓ Decryption Successful
+                ⚔ ENEMY DEFEATED! ⚔
               </p>
               <p
-                className="font-display text-2xl tracking-widest"
-                style={{ color: '#ffe5cc', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}
+                className="font-spectral mb-2"
+                style={{ color: '#e8c8a8', fontSize: '14px' }}
               >
-                {decryptedText}
+                You obtained a fragment of the word:
               </p>
               <p
-                className="font-spectral text-xs mt-2"
-                style={{ color: '#e8c8a8', fontStyle: 'italic' }}
+                className="font-display text-3xl tracking-widest mb-3"
+                style={{ color: '#ffe5cc', textShadow: '0 2px 4px rgba(0,0,0,0.6)', fontWeight: 900 }}
               >
-                This word has been entered into the answer field below.
+                "{wordFragment}"
+              </p>
+              <p
+                className="font-spectral text-xs"
+                style={{ color: '#aaffaa', fontStyle: 'italic' }}
+              >
+                Collect all fragments to advance to Stage 3!
               </p>
             </div>
           )}
@@ -417,6 +455,7 @@ export function DecryptModal({
             </div>
           )}
         </div>
+        )}
       </div>
     </div>
   );

@@ -12,9 +12,10 @@ interface EnemyCardProps {
   caption: string;
   imagePath: string;
   onClick: () => void;
+  isDefeated?: boolean;
 }
 
-export function EnemyCard({ name, caption, imagePath, onClick }: EnemyCardProps) {
+export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = false }: EnemyCardProps) {
   return (
     <button
       onClick={onClick}
@@ -25,16 +26,20 @@ export function EnemyCard({ name, caption, imagePath, onClick }: EnemyCardProps)
         overflow: 'hidden',
         border: '2px solid rgba(212, 165, 116, 0.5)',
         boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+        opacity: isDefeated ? 0.5 : 1,
+        filter: isDefeated ? 'grayscale(50%)' : 'none',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'scale(1.05)';
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.4)';
+        if (!isDefeated) {
+          e.currentTarget.style.transform = 'scale(1.05)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.4)';
+        }
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
         e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
       }}
-      aria-label={`View ${name}`}
+      aria-label={`View ${name}${isDefeated ? ' (Defeated)' : ''}`}
     >
       {/* Enemy Portrait */}
       <div
@@ -78,26 +83,83 @@ export function EnemyCard({ name, caption, imagePath, onClick }: EnemyCardProps)
       </div>
 
       {/* Hover Indicator */}
-      <div
-        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: 'rgba(212, 165, 116, 0.15)',
-          backdropFilter: 'blur(4px)',
-        }}
-      >
-        <span className="font-display px-4 py-2"
+      {!isDefeated && (
+        <div
+          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: 'rgba(212, 165, 116, 0.15)',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          <span className="font-display px-4 py-2"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  letterSpacing: '0.12em',
+                  color: '#ffe5cc',
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  borderRadius: '8px',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.8)',
+                }}>
+            INVESTIGATE
+          </span>
+        </div>
+      )}
+
+      {/* Defeated Overlay - Red X Slash */}
+      {isDefeated && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* CSS-based bloody X slash */}
+          <div className="relative w-full h-full">
+            {/* Slash 1: Top-left to bottom-right */}
+            <div
+              className="absolute"
               style={{
-                fontSize: '14px',
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                color: '#ffe5cc',
-                background: 'rgba(0, 0, 0, 0.7)',
-                borderRadius: '8px',
-                textShadow: '0 2px 4px rgba(0,0,0,0.8)',
-              }}>
-          INVESTIGATE
-        </span>
-      </div>
+                top: '0',
+                left: '50%',
+                width: '8px',
+                height: '141.4%', // sqrt(2) * 100% for diagonal
+                background: 'linear-gradient(180deg, rgba(139,0,0,0.9) 0%, rgba(180,0,0,0.95) 50%, rgba(139,0,0,0.9) 100%)',
+                transform: 'translateX(-50%) rotate(45deg)',
+                transformOrigin: 'center',
+                boxShadow: '0 0 20px rgba(180,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.6)',
+                borderRadius: '2px',
+              }}
+            />
+            {/* Slash 2: Top-right to bottom-left */}
+            <div
+              className="absolute"
+              style={{
+                top: '0',
+                left: '50%',
+                width: '8px',
+                height: '141.4%',
+                background: 'linear-gradient(180deg, rgba(139,0,0,0.9) 0%, rgba(180,0,0,0.95) 50%, rgba(139,0,0,0.9) 100%)',
+                transform: 'translateX(-50%) rotate(-45deg)',
+                transformOrigin: 'center',
+                boxShadow: '0 0 20px rgba(180,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.6)',
+                borderRadius: '2px',
+              }}
+            />
+          </div>
+          
+          {/* DEFEATED text */}
+          <span className="absolute font-display"
+                style={{
+                  fontSize: 'clamp(16px, 2vw, 24px)',
+                  fontWeight: 900,
+                  letterSpacing: '0.15em',
+                  color: '#ff4444',
+                  textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,0,0,0.6)',
+                  background: 'rgba(0,0,0,0.8)',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  border: '2px solid rgba(180,0,0,0.6)',
+                }}>
+            DEFEATED
+          </span>
+        </div>
+      )}
     </button>
   );
 }
