@@ -11,7 +11,7 @@ import { isStageUnlocked } from './progress';
 
 /**
  * Hook to guard a stage page
- * Redirects to /stage-1 if not unlocked
+ * Redirects to landing page if not unlocked
  */
 export function useStageGuard(requiredStage: number) {
   const router = useRouter();
@@ -23,8 +23,7 @@ export function useStageGuard(requiredStage: number) {
       const unlocked = isStageUnlocked(requiredStage);
       
       if (!unlocked) {
-        // Redirect to stage 1
-        router.push('/stage-1');
+        router.push('/');
         setIsAllowed(false);
       } else {
         setIsAllowed(true);

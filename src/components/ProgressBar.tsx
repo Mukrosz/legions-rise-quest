@@ -45,9 +45,20 @@ export function ProgressBar() {
 
         {/* Stage markers */}
         {stages.map((stage) => {
-          const isComplete = progress.stage > stage;
-          const isCurrent = progress.stage === stage;
-          const isLocked = progress.stage < stage - 1;
+          let isComplete = false;
+          let isCurrent = false;
+          let isLocked = false;
+          
+          if (stage === 0) {
+            isComplete = progress.stage > 0;
+            isCurrent = false;
+            isLocked = false;
+          } else {
+            isComplete = progress.stage >= stage;
+            isCurrent = progress.stage + 1 === stage && stage <= 5;
+            isLocked = stage > progress.stage + 1;
+          }
+          
           const isUnlocked = !isLocked;
           
           return (
