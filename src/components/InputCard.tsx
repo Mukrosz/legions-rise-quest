@@ -20,6 +20,7 @@ interface InputCardProps {
   hint2UnlockDelay?: number;
   hint1UnlockAttempt?: number;
   hint2UnlockAttempt?: number;
+  maxWidth?: string;
 }
 
 export function InputCard({
@@ -34,6 +35,7 @@ export function InputCard({
   hint2UnlockDelay = 120000,
   hint1UnlockAttempt = 0,
   hint2UnlockAttempt = 0,
+  maxWidth,
 }: InputCardProps) {
   const [input, setInput] = useState(savedInput);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,9 +74,11 @@ export function InputCard({
     }
   };
 
+  const isStage1 = stageNumber === 1;
+
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="w-full flex flex-col items-center mx-auto" style={{ maxWidth: maxWidth || '48rem' }}>
+      <form onSubmit={handleSubmit} className="space-y-6 w-full" style={{ maxWidth: maxWidth || 'none' }}>
         {/* Input field */}
         <div className="relative mb-12">
           <input
@@ -82,11 +86,21 @@ export function InputCard({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={placeholder}
-            className="w-full px-6 py-4 text-lg font-body
-                     bg-parchment border-4 border-obsidian
-                     focus:border-bronze focus:outline-none
-                     transition-colors duration-200
-                     text-obsidian placeholder-obsidian/40"
+            style={isStage1 ? {
+              width: '100%',
+              padding: '16px 24px',
+              fontSize: '18px',
+              background: 'rgba(200, 220, 240, 0.2)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              color: '#1a1a2e',
+              border: '2px solid rgba(212, 175, 55, 0.4)',
+              borderRadius: '12px',
+              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+              textAlign: 'center',
+              letterSpacing: '0.05em',
+            } : {}}
+            className={isStage1 ? '' : "w-full px-6 py-4 text-lg font-body bg-parchment border-4 border-obsidian focus:border-bronze focus:outline-none transition-colors duration-200 text-obsidian placeholder-obsidian/40"}
             aria-label="Puzzle answer input"
             disabled={isSubmitting || showSuccess}
           />

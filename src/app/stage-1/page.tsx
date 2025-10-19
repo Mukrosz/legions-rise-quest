@@ -66,8 +66,8 @@ export default function Stage1Page() {
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             borderRadius: '24px',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+            border: '2px solid rgba(212, 175, 55, 0.5)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
             padding: 'clamp(32px, 5vw, 64px)',
           }}
         >
@@ -132,26 +132,29 @@ export default function Stage1Page() {
         </p>
 
         {/* Cipher Message */}
-        <div 
-          className="mb-8 p-6 text-center"
-          style={{
-            background: 'rgba(255, 255, 255, 0.25)',
-            borderRadius: '16px',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)'
-          }}
-        >
-          <p className="font-mono tracking-widest" 
-             style={{ 
-               fontSize: 'clamp(20px, 2vw, 28px)',
-               fontWeight: 600,
-               color: '#1a1a2e',
-               letterSpacing: '0.2em',
-               textShadow: '0 1px 2px rgba(255,255,255,0.5)'
-             }}>
-            OLEHUWDV
-          </p>
+        <div className="mb-8 flex justify-center">
+          <div 
+            className="p-6 text-center"
+            style={{
+              background: 'rgba(255, 255, 255, 0.25)',
+              borderRadius: '16px',
+              border: '2px solid rgba(212, 175, 55, 0.4)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <p className="font-mono tracking-widest" 
+               style={{ 
+                 fontSize: 'clamp(20px, 2vw, 28px)',
+                 fontWeight: 600,
+                 color: '#1a1a2e',
+                 letterSpacing: '0.2em',
+                 textShadow: '0 1px 2px rgba(255,255,255,0.5)'
+               }}>
+              OLEHUWDV
+            </p>
+          </div>
         </div>
 
         {/* Instructions */}
@@ -180,6 +183,7 @@ export default function Stage1Page() {
           hint2UnlockDelay={0}
           hint1UnlockAttempt={1}
           hint2UnlockAttempt={2}
+          maxWidth="400px"
         />
 
         {/* Navigation */}
