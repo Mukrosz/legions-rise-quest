@@ -157,7 +157,7 @@ export default function Stage2Page() {
                   textShadow: '0 3px 6px rgba(0,0,0,0.6), 0 6px 12px rgba(139,69,19,0.4), 0 0 30px rgba(255,140,0,0.3)',
                   filter: 'drop-shadow(0 0 24px rgba(255,165,0,0.5))',
                 }}>
-              FIRE AT NOON
+              BLOOD OF THE ARENA
             </h1>
 
             <div className="mb-10 text-center">
