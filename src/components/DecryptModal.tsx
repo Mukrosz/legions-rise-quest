@@ -209,6 +209,8 @@ export function DecryptModal({
               className="inline-block px-8 py-4"
               style={{
                 background: 'rgba(139, 0, 0, 0.2)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '2px solid rgba(180, 0, 0, 0.5)',
                 borderRadius: '12px',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
@@ -240,6 +242,8 @@ export function DecryptModal({
               className="px-6 py-4"
               style={{
                 background: 'rgba(212, 165, 116, 0.15)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '2px solid rgba(212, 165, 116, 0.4)',
                 borderRadius: '12px',
                 boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.3)',
@@ -275,6 +279,8 @@ export function DecryptModal({
             className="p-6"
             style={{
               background: 'rgba(212, 165, 116, 0.1)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               borderRadius: '16px',
               border: '1px solid rgba(212, 165, 116, 0.3)',
             }}
@@ -393,6 +399,8 @@ export function DecryptModal({
               className="mt-6 p-4 text-center"
               style={{
                 background: 'rgba(100, 150, 100, 0.2)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '2px solid rgba(100, 200, 100, 0.4)',
                 borderRadius: '12px',
               }}
@@ -429,6 +437,8 @@ export function DecryptModal({
               className="mt-6 p-4 text-center"
               style={{
                 background: 'rgba(150, 50, 50, 0.2)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '2px solid rgba(200, 80, 80, 0.4)',
                 borderRadius: '12px',
               }}
