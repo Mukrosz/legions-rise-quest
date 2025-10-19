@@ -1,13 +1,5 @@
 'use client';
 
-/*
-  The scribe's ancient notes, encoded in the scholar's cipher:
-  
-  const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";
-  
-  Decode this Base64 string to reveal the path to Gloria.
-*/
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
@@ -66,6 +58,26 @@ export default function Stage3Page() {
         backgroundAttachment: 'fixed'
       }}
     >
+      {/* ============================================================
+          The scribe's ancient notes, encoded in the scholar's cipher
+          ============================================================ */}
+      <script
+        type="text/plain"
+        id="scribe-cipher"
+        dangerouslySetInnerHTML={{
+          __html: `
+// ============================================
+// The Scholar's Cipher - Scribe's Notes
+// ============================================
+
+const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";
+
+// Decode this Base64 string to reveal the path to Gloria
+// ============================================
+          `.trim()
+        }}
+      />
+      
       <ProgressBar />
 
       <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
