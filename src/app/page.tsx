@@ -8,6 +8,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { getProgress, resetProgress } from '@/lib/progress';
+import { ProgressBar } from '@/components/ProgressBar';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -39,8 +40,15 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
       </div>
 
+      {/* Progress Bar - Only show if user has made progress */}
+      {progress.stage > 0 && (
+        <div className="relative z-20">
+          <ProgressBar />
+        </div>
+      )}
+
       {/* Parchment scroll with title and story */}
-      <div className="relative flex flex-col justify-center items-center min-h-screen py-8">
+      <div className={`relative flex flex-col justify-center items-center ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)]' : 'min-h-screen'} py-8`}>
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
           {/* Parchment scroll with actual image - stretched to fit all content */}
           <div 
