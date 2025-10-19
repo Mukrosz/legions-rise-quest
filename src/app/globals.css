@@ -71,12 +71,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-bronze);
+  background: #2e7d32;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-burgundy);
+  background: #1b5e20;
 }
 
 /* Reduce motion */

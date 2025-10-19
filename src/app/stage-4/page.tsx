@@ -125,7 +125,7 @@ export default function Stage4Page() {
                  }}>
               <p>
                 Citizenship secured, Kaeso stands before the Senate's great doors. Yet entry demands more 
-                than legal status - it requires demonstrating the virtue that built Rome itself: HONOS.
+                than legal status - it requires demonstrating the virtue that built Rome itself.
               </p>
               <p>
                 A senior senator presents a test: a tablet bearing Roman numerals in mysterious pairs. 
@@ -245,7 +245,13 @@ export default function Stage4Page() {
             </button>
 
             {showGrid && (
-              <div className="mt-6 overflow-x-auto">
+              <div className="mt-6 overflow-x-auto"
+                   style={{
+                     border: '2px solid rgba(76, 175, 80, 0.5)',
+                     borderRadius: '12px',
+                     padding: '16px',
+                     background: 'rgba(46, 111, 64, 0.1)',
+                   }}>
                 <table className="mx-auto"
                        style={{
                          border: '2px solid rgba(76, 175, 80, 0.5)',
@@ -322,14 +328,9 @@ export default function Stage4Page() {
                style={{ color: '#dcedc8', lineHeight: 1.7 }}>
               <strong style={{ color: '#c5e1a5' }}>Step 1:</strong> Decode the Roman numeral pairs using the Polybius grid to get an intermediate word.
             </p>
-            <p className="font-spectral text-sm mb-3"
+            <p className="font-spectral text-sm"
                style={{ color: '#dcedc8', lineHeight: 1.7 }}>
               <strong style={{ color: '#c5e1a5' }}>Step 2:</strong> Apply Vigenère cipher to that word using the keyword <strong style={{ color: '#f1f8e9' }}>"ROMA"</strong>.
-            </p>
-            <p className="font-spectral text-xs italic"
-               style={{ color: '#dcedc8', opacity: 0.85, lineHeight: 1.6 }}>
-              The Polybius pairs decode to letters. Shift each letter using the Vigenère table with keyword ROMA. 
-              The result is a Latin word meaning honor and integrity.
             </p>
           </div>
 

@@ -76,7 +76,8 @@ export function InputCard({
 
   const isStage1 = stageNumber === 1;
   const isStage3 = stageNumber === 3;
-  const hasCustomStyling = isStage1 || isStage3;
+  const isStage4 = stageNumber === 4;
+  const hasCustomStyling = isStage1 || isStage3 || isStage4;
 
   const getInputStyle = () => {
     if (isStage1) {
@@ -105,6 +106,22 @@ export function InputCard({
         WebkitBackdropFilter: 'blur(12px)',
         color: '#3E2723',
         border: '2px solid rgba(218, 165, 32, 0.5)',
+        borderRadius: '12px',
+        boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center',
+        letterSpacing: '0.05em',
+      };
+    }
+    if (stageNumber === 4) {
+      return {
+        width: '100%',
+        padding: '16px 24px',
+        fontSize: '18px',
+        background: 'rgba(139, 195, 74, 0.2)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        color: '#1b5e20',
+        border: '2px solid rgba(76, 175, 80, 0.4)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
         textAlign: 'center',
