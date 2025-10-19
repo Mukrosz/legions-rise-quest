@@ -130,7 +130,7 @@ export default function Stage3Page() {
              fontSize: 'clamp(15px, 1.1vw, 17px)',
              fontWeight: 600,
              color: '#8B4513',
-             textShadow: '0 2px 4px rgba(255,255,255,0.5)'
+             textShadow: '0 2px 4px rgba(0,0,0,0.4)'
            }}>
           Seek the ancient cipher where scribes left their marks
         </p>
@@ -140,7 +140,7 @@ export default function Stage3Page() {
              fontSize: '14px',
              color: '#654321',
              opacity: 0.9,
-             textShadow: '0 1px 2px rgba(255,255,255,0.3)'
+             textShadow: '0 2px 4px rgba(0,0,0,0.4)'
            }}>
           Inspect the foundation's source. The scholar's cipher awaits in scribenotes.
         </p>
@@ -169,7 +169,7 @@ export default function Stage3Page() {
               opacity: 0.85,
               fontWeight: 600,
               letterSpacing: '0.03em',
-              textShadow: '0 1px 2px rgba(255,255,255,0.3)'
+              textShadow: '0 2px 4px rgba(0,0,0,0.4)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
