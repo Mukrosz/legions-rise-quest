@@ -77,8 +77,8 @@ export function InputCard({
   const isStage1 = stageNumber === 1;
 
   return (
-    <div className="w-full flex flex-col items-center mx-auto" style={{ maxWidth: maxWidth || '48rem' }}>
-      <form onSubmit={handleSubmit} className="space-y-6 w-full" style={{ maxWidth: maxWidth || 'none' }}>
+    <div className="w-full flex flex-col items-center mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-6 w-full" style={{ maxWidth: maxWidth || '100%' }}>
         {/* Input field */}
         <div className="relative mb-12">
           <input

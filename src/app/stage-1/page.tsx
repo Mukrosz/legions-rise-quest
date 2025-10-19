@@ -97,25 +97,22 @@ export default function Stage1Page() {
                 }}>
               Day Seven. The Caravan.
             </h2>
-            <div className="font-spectral space-y-4" 
+            <div className="font-spectral" 
                  style={{ 
                    color: '#d4e8f0',
                    fontSize: 'clamp(15px, 1.1vw, 17px)',
-                   lineHeight: 1.7,
+                   lineHeight: 1.75,
                    fontWeight: 400,
-                   textShadow: '0 1px 3px rgba(0,0,0,0.5)'
+                   textShadow: '0 1px 3px rgba(0,0,0,0.5)',
+                   maxWidth: '700px',
+                   margin: '0 auto',
                  }}>
               <p>
                 You march in chains through dust and heat. Behind you, Dardania burns. 
-                Ahead - Rome's markets, where men become property. Yet not all is lost.
-              </p>
-              <p>
+                Ahead - Rome's markets, where men become property. Yet not all is lost. 
                 A fellow captive, once a scribe, whispers in the night. He scratches 
                 symbols on wax - an old cipher of Caesar's legions. "Remember this," he says. 
-                "Knowledge is the first key to freedom."
-              </p>
-              <p className="font-spectral italic" style={{ fontWeight: 500, color: '#f0f8ff', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
-                The message is shifted. The truth awaits the wise.
+                "Knowledge is the first key to freedom." The message is shifted. The truth awaits the wise.
               </p>
             </div>
           </div>
@@ -123,12 +120,12 @@ export default function Stage1Page() {
         {/* Subtitle */}
         <p className="font-spectral text-center italic mb-8" 
            style={{ 
-             fontSize: 'clamp(16px, 1.3vw, 20px)',
-             fontWeight: 500,
-             color: '#b8d4e6',
-             textShadow: '0 2px 4px rgba(0,0,0,0.4)'
+             fontSize: 'clamp(15px, 1.1vw, 17px)',
+             fontWeight: 600,
+             color: '#e8f4f8',
+             textShadow: '0 2px 4px rgba(0,0,0,0.8)'
            }}>
-          "Decode the scribe's whisper"
+          Decode the scribe's whisper
         </p>
 
         {/* Cipher Message */}
@@ -157,19 +154,6 @@ export default function Stage1Page() {
           </div>
         </div>
 
-        {/* Instructions */}
-        <p className="font-spectral text-center mb-8" 
-           style={{ 
-             fontSize: 'clamp(14px, 1vw, 16px)',
-             color: '#c8e0f0',
-             lineHeight: 1.6,
-             fontWeight: 400,
-             textShadow: '0 1px 3px rgba(0,0,0,0.4)'
-           }}>
-          The scribe used Caesar's method. Each letter shifted by a fixed count. 
-          What word brings freedom?
-        </p>
-
         {/* Input Card - Contains built-in hints */}
         <InputCard
           onSubmit={validateAnswer}
@@ -183,7 +167,6 @@ export default function Stage1Page() {
           hint2UnlockDelay={0}
           hint1UnlockAttempt={1}
           hint2UnlockAttempt={2}
-          maxWidth="700px"
         />
 
         {/* Navigation */}
