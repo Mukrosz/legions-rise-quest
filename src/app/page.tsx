@@ -5,14 +5,20 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getProgress, resetProgress } from '@/lib/progress';
 import { ProgressBar } from '@/components/ProgressBar';
 
 export default function LandingPage() {
   const router = useRouter();
-  const progress = getProgress();
+  const [progress, setProgress] = useState({ stage: 0, timestamp: 0 });
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setProgress(getProgress());
+    setIsClient(true);
+  }, []);
 
   const handleBegin = () => {
     router.push('/stage-1');
@@ -41,14 +47,14 @@ export default function LandingPage() {
       </div>
 
       {/* Progress Bar - Only show if user has made progress */}
-      {progress.stage > 0 && (
+      {isClient && progress.stage > 0 && (
         <div className="relative z-20">
           <ProgressBar />
         </div>
       )}
 
       {/* Parchment scroll with title and story */}
-      <main className={`relative flex ${progress.stage > 0 ? 'items-start' : 'items-center'} justify-center ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)] pt-4' : 'min-h-screen'} p-4`}>
+      <main className={`relative ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)]' : 'min-h-screen flex items-center justify-center'} p-4`}>
         <div className="relative z-10 w-full max-w-5xl mx-auto">
           {/* Parchment scroll with actual image - stretched to fit all content */}
           <div 
