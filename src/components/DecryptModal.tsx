@@ -127,7 +127,7 @@ export function DecryptModal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{
         background: 'rgba(0, 0, 0, 0.85)',
-        backdropFilter: 'blur(8px)',
+        backdropFilter: 'blur(3px)',
       }}
       onClick={onClose}
       role="dialog"
@@ -138,38 +138,36 @@ export function DecryptModal({
         ref={modalRef}
         className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto"
         style={{
-          background: 'rgba(30, 20, 15, 0.95)',
+          background: 'rgba(25, 10, 10, 0.95)',
           borderRadius: '24px',
-          border: '2px solid rgba(212, 165, 116, 0.4)',
+          border: '2px solid rgba(180, 50, 50, 0.5)',
           boxShadow: '0 12px 48px rgba(0, 0, 0, 0.6)',
           padding: 'clamp(24px, 4vw, 40px)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center transition-all"
           style={{
-            background: 'rgba(212, 165, 116, 0.2)',
+            background: 'rgba(180, 50, 50, 0.3)',
             borderRadius: '50%',
-            color: '#d4a574',
+            color: '#ff9988',
             fontSize: '24px',
             fontWeight: 'bold',
-            border: '1px solid rgba(212, 165, 116, 0.3)',
+            border: '1px solid rgba(180, 50, 50, 0.5)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(212, 165, 116, 0.3)';
+            e.currentTarget.style.background = 'rgba(180, 50, 50, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(212, 165, 116, 0.2)';
+            e.currentTarget.style.background = 'rgba(180, 50, 50, 0.3)';
           }}
           aria-label="Close modal"
         >
           ×
         </button>
 
-        {/* Enemy Name */}
         <h2
           id="modal-title"
           className="font-display text-center mb-6"
@@ -177,14 +175,13 @@ export function DecryptModal({
             fontSize: 'clamp(24px, 3vw, 36px)',
             fontWeight: 800,
             letterSpacing: '0.08em',
-            color: '#d4a574',
+            color: '#ff9988',
             textShadow: '0 2px 4px rgba(0,0,0,0.6)',
           }}
         >
           {enemyName}
         </h2>
 
-        {/* Enemy Image */}
         <div
           className="mb-6 mx-auto"
           style={{
@@ -192,7 +189,7 @@ export function DecryptModal({
             aspectRatio: '1 / 1',
             borderRadius: '16px',
             overflow: 'hidden',
-            border: '2px solid rgba(212, 165, 116, 0.4)',
+            border: '2px solid rgba(180, 50, 50, 0.5)',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
           }}
         >
@@ -240,8 +237,8 @@ export function DecryptModal({
             <div
               className="px-6 py-4"
               style={{
-                background: 'rgba(212, 165, 116, 0.15)',
-                border: '2px solid rgba(212, 165, 116, 0.4)',
+                background: 'rgba(150, 40, 40, 0.2)',
+                border: '2px solid rgba(180, 50, 50, 0.5)',
                 borderRadius: '12px',
                 boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.3)',
               }}
@@ -250,7 +247,7 @@ export function DecryptModal({
                   style={{
                     fontSize: 'clamp(14px, 1.5vw, 18px)',
                     fontWeight: 700,
-                    color: '#d4a574',
+                    color: '#ff9988',
                     letterSpacing: '0.10em',
                     textShadow: '0 1px 2px rgba(0,0,0,0.5)',
                   }}>
@@ -259,7 +256,7 @@ export function DecryptModal({
               <p className="font-spectral text-center"
                  style={{
                    fontSize: 'clamp(13px, 1.1vw, 15px)',
-                   color: '#f5d8b8',
+                   color: '#ffccbb',
                    lineHeight: 1.6,
                    fontStyle: 'italic',
                    textShadow: '0 1px 2px rgba(0,0,0,0.6)',
@@ -275,9 +272,9 @@ export function DecryptModal({
           <div
             className="p-6"
             style={{
-              background: 'rgba(212, 165, 116, 0.1)',
+              background: 'rgba(150, 40, 40, 0.15)',
               borderRadius: '16px',
-              border: '1px solid rgba(212, 165, 116, 0.3)',
+              border: '1px solid rgba(180, 50, 50, 0.4)',
             }}
           >
             <h3
@@ -286,19 +283,18 @@ export function DecryptModal({
                 fontSize: 'clamp(16px, 2vw, 20px)',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
-                color: '#e8c8a8',
+                color: '#ffaa99',
                 textShadow: '0 1px 2px rgba(0,0,0,0.5)',
               }}
             >
               DECRYPT HERE
             </h3>
 
-          {/* File Picker */}
           <div className="mb-4">
             <label
               htmlFor="file-input"
               className="block font-spectral text-sm mb-2"
-              style={{ color: '#f5d8b8', fontWeight: 500 }}
+              style={{ color: '#ffccbb', fontWeight: 500 }}
             >
               Select Image File:
             </label>
@@ -312,27 +308,26 @@ export function DecryptModal({
               style={{
                 padding: '10px',
                 background: 'rgba(0, 0, 0, 0.3)',
-                color: '#f5d8b8',
-                border: '1px solid rgba(212, 165, 116, 0.4)',
+                color: '#ffccbb',
+                border: '1px solid rgba(180, 50, 50, 0.5)',
                 borderRadius: '8px',
               }}
             />
             {selectedFile && (
               <p
                 className="font-spectral text-xs mt-2"
-                style={{ color: '#d4a574', fontStyle: 'italic' }}
+                style={{ color: '#ff9988', fontStyle: 'italic' }}
               >
                 ✓ {selectedFile.name}
               </p>
             )}
           </div>
 
-          {/* Passphrase Input */}
           <div className="mb-4">
             <label
               htmlFor="passphrase-input"
               className="block font-spectral text-sm mb-2"
-              style={{ color: '#f5d8b8', fontWeight: 500 }}
+              style={{ color: '#ffccbb', fontWeight: 500 }}
             >
               Passphrase (from Stage I):
             </label>
@@ -348,7 +343,7 @@ export function DecryptModal({
                 fontSize: '16px',
                 background: 'rgba(0, 0, 0, 0.3)',
                 color: '#ffe5cc',
-                border: '1px solid rgba(212, 165, 116, 0.4)',
+                border: '1px solid rgba(180, 50, 50, 0.5)',
                 borderRadius: '8px',
               }}
               onKeyDown={(e) => {
@@ -359,7 +354,6 @@ export function DecryptModal({
             />
           </div>
 
-          {/* Decrypt Button */}
           <button
             onClick={handleDecrypt}
             disabled={isDecrypting || !selectedFile || !passphrase.trim()}
@@ -369,10 +363,10 @@ export function DecryptModal({
               fontWeight: 700,
               letterSpacing: '0.12em',
               background: isDecrypting || !selectedFile || !passphrase.trim() 
-                ? 'rgba(100, 70, 50, 0.5)' 
-                : 'rgba(212, 165, 116, 0.6)',
+                ? 'rgba(80, 30, 30, 0.5)' 
+                : 'rgba(180, 50, 50, 0.7)',
               color: '#ffe5cc',
-              border: '2px solid rgba(212, 165, 116, 0.6)',
+              border: '2px solid rgba(180, 50, 50, 0.8)',
               borderRadius: '12px',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
               cursor: isDecrypting || !selectedFile || !passphrase.trim() ? 'not-allowed' : 'pointer',
@@ -380,19 +374,18 @@ export function DecryptModal({
             }}
             onMouseEnter={(e) => {
               if (!isDecrypting && selectedFile && passphrase.trim()) {
-                e.currentTarget.style.background = 'rgba(212, 165, 116, 0.7)';
+                e.currentTarget.style.background = 'rgba(200, 60, 60, 0.8)';
               }
             }}
             onMouseLeave={(e) => {
               if (!isDecrypting && selectedFile && passphrase.trim()) {
-                e.currentTarget.style.background = 'rgba(212, 165, 116, 0.6)';
+                e.currentTarget.style.background = 'rgba(180, 50, 50, 0.7)';
               }
             }}
           >
             {isDecrypting ? 'DECRYPTING...' : '🔓 REVEAL'}
           </button>
 
-          {/* Result Display */}
           {decryptResult === 'success' && (
             <div
               className="mt-6 p-4 text-center"
@@ -410,7 +403,7 @@ export function DecryptModal({
               </p>
               <p
                 className="font-spectral mb-2"
-                style={{ color: '#e8c8a8', fontSize: '14px' }}
+                style={{ color: '#ffccbb', fontSize: '14px' }}
               >
                 You obtained a fragment of the word:
               </p>
