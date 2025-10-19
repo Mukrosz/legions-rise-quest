@@ -1,5 +1,4 @@
-// Validation logic for stage progression
-const _0x2f8a = ["4590b22d9202337b98f08261196bbbf3c574cab4c9f65b0a5d237f73bce7b449"];
+const _0x2f8a = ["df07883bc0dbc6c49598afe09681881099d89a7ee772281c0f8f67f2eb852a7b"];
 const _0x6d4c = ["3c5d7e9f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5f7a9b1c3d5e7f9a1b3c5d"];
 const _0x8b1e = ["9e1f3a5b7c9d1e3f5a7b9c1d3e5f7a9b1c3d5e7f9a1b3c5d7e9f1a3b5c7d9e1f"];
 
@@ -10,6 +9,3 @@ export function v(_0xf7) {
   }
   return false;
 }
-
-export const hint1 = "The arena map holds secrets. Look beyond what eyes can see—pixels whisper.";
-export const hint2 = "Three ranks converge. The wooden sword's true name is your passage.";
