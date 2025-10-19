@@ -55,19 +55,19 @@ export default function LandingPage() {
 
       {/* Parchment scroll with title and story */}
       <main className={`relative min-h-[calc(100vh-120px)] flex ${progress.stage > 0 ? 'items-start pt-4' : 'items-center min-h-screen'} justify-center p-4`}>
-        <div className="relative z-10 w-full max-w-5xl mx-auto">
-          {/* Parchment scroll with actual image - stretched to fit all content */}
-          <div 
-            className="relative w-full flex flex-col"
-            style={{
-              backgroundImage: 'url("/parchment-scroll.png")',
-              backgroundSize: '100% 100%', // Stretch to fit container
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))',
-              padding: 'clamp(80px, 15vw, 280px) clamp(30px, 8vw, 130px) clamp(60px, 10vw, 160px) clamp(30px, 8vw, 130px)',
-            }}
-          >
+        <div 
+          className="relative z-10 w-full max-w-4xl"
+          style={{
+            background: 'rgba(255, 235, 200, 0.15)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '24px',
+            border: '2px solid rgba(212, 175, 55, 0.5)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 100, 0.2)',
+            padding: 'clamp(32px, 5vw, 64px)',
+          }}
+        >
+          <div className="relative w-full flex flex-col">
             {/* Content */}
             <div className="relative flex-1">
               {/* Title */}
@@ -80,9 +80,9 @@ export default function LandingPage() {
                       letterSpacing: '0.075em',
                       lineHeight: 1.04,
                       marginBottom: '0.25em',
-                      color: '#5a4630',
-                      textShadow: '0 1px 0 rgba(255,255,255,0.65), 0 -1px 0 rgba(0,0,0,0.28), 0 2px 2px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.14)',
-                      mixBlendMode: 'multiply'
+                      color: '#1a1a2e',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(212,175,55,0.2)',
+                      filter: 'drop-shadow(0 0 20px rgba(255,215,0,0.3))'
                     }}>
                   THE ASCENT
                 </h1>
@@ -93,8 +93,7 @@ export default function LandingPage() {
                      fontSize: 'clamp(16px, 1.8vw, 22px)',
                      fontWeight: 500,
                      lineHeight: 1.25,
-                     color: '#2b1e14',
-                     opacity: 0.95,
+                     color: '#3a2a1e',
                      marginTop: '-0.3em',
                      marginBottom: '0.6em'
                    }}>
@@ -107,7 +106,7 @@ export default function LandingPage() {
                     height: '1px', 
                     width: '110px', 
                     maxWidth: '110px',
-                    background: 'rgba(0,0,0,0.18)' 
+                    background: 'rgba(212, 175, 55, 0.4)' 
                   }} />
                   <span className="font-spectral" 
                         style={{ 
@@ -116,8 +115,7 @@ export default function LandingPage() {
                           letterSpacing: '0.28em',
                           fontVariant: 'small-caps',
                           padding: '0 0.6em',
-                          color: '#2b1e14',
-                          opacity: 0.9
+                          color: '#3a2a1e'
                         }}>
                     🌿 SPQR 🌿
                   </span>
@@ -125,7 +123,7 @@ export default function LandingPage() {
                     height: '1px', 
                     width: '110px',
                     maxWidth: '110px',
-                    background: 'rgba(0,0,0,0.18)' 
+                    background: 'rgba(212, 175, 55, 0.4)' 
                   }} />
                 </div>
               </div>
@@ -139,7 +137,8 @@ export default function LandingPage() {
                      fontWeight: 400,
                      lineHeight: 1.7,
                      maxWidth: '60ch',
-                     color: '#3a2a1e'
+                     color: '#3a2a1e',
+                     textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                    }}>
                   From the mountain tribes of <span style={{ fontWeight: 600 }}>Dardania</span>, he descended - 
                   a warrior of proud lineage. The legions came. Chains replaced his sword. 
@@ -155,9 +154,8 @@ export default function LandingPage() {
                       letterSpacing: '0.16em',
                       lineHeight: 1.1,
                       margin: '1.1em 0 0.35em',
-                      color: '#5a4630',
-                      textShadow: '0 1px 0 rgba(255,255,255,0.65), 0 -1px 0 rgba(0,0,0,0.28), 0 2px 2px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.14)',
-                      mixBlendMode: 'multiply'
+                      color: '#1a1a2e',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(212,175,55,0.2)'
                     }}>
                   <span style={{ opacity: 0.75 }}>⚔ </span>
                   FIVE TRIALS AWAIT
@@ -170,9 +168,9 @@ export default function LandingPage() {
                      fontSize: 'clamp(12px, 1.1vw, 15px)',
                      fontWeight: 500,
                      letterSpacing: '0.06em',
-                     opacity: 0.85,
-                     color: '#2b1e14',
-                     marginTop: '.8em'
+                     color: '#3a2a1e',
+                     marginTop: '.8em',
+                     textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                    }}>
                   Decipher the secrets. Ascend from captive to consul.
                   <br/>
