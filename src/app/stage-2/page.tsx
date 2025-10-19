@@ -149,7 +149,7 @@ export default function Stage2Page() {
           >
             <h1 className="font-display text-center mb-6"
                 style={{
-                  fontSize: 'clamp(36px, 5vw, 64px)',
+                  fontSize: 'clamp(32px, 4vw, 52px)',
                   fontWeight: 900,
                   letterSpacing: '0.12em',
                   lineHeight: 1.05,
