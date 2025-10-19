@@ -185,18 +185,56 @@ export default function Stage2Page() {
                   Kaeso faces three foes. Each holds a secret written in shadow and cipher. Defeat each, 
                   claim their word-fragment. Only when all three fall will the path forward emerge.
                 </p>
-                <p>
-                  <strong style={{ color: '#ffb380' }}>Beastmaster of Numidia</strong> - thunder and iron, 
-                  his riddle guards the first syllable.
-                </p>
-                <p>
-                  <strong style={{ color: '#ffb380' }}>Tigress Unbound</strong> - white fury in fire, 
-                  her secret holds the second.
-                </p>
-                <p>
-                  <strong style={{ color: '#ffb380' }}>Archer of the Red Dunes</strong> - eyes and arrows, 
-                  his clue completes the word.
-                </p>
+              </div>
+            </div>
+
+            <div className="mb-10 flex justify-center">
+              <div
+                className="px-8 py-6"
+                style={{
+                  background: 'rgba(212, 165, 116, 0.15)',
+                  backdropFilter: 'blur(15px)',
+                  WebkitBackdropFilter: 'blur(15px)',
+                  border: '2px solid rgba(212, 165, 116, 0.4)',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                  maxWidth: '700px',
+                }}
+              >
+                <div className="font-spectral space-y-3"
+                     style={{
+                       color: '#f5d8b8',
+                       fontSize: 'clamp(15px, 1.1vw, 17px)',
+                       lineHeight: 1.75,
+                       fontWeight: 400,
+                       textShadow: '0 2px 4px rgba(0,0,0,0.7)',
+                       textAlign: 'left',
+                     }}>
+                  <p>
+                    <strong style={{ color: '#ffb380' }}>Beastmaster of Numidia</strong> - thunder and iron, 
+                    his riddle guards the first syllable.
+                  </p>
+                  <p>
+                    <strong style={{ color: '#ffb380' }}>Tigress Unbound</strong> - white fury in fire, 
+                    her secret holds the second.
+                  </p>
+                  <p>
+                    <strong style={{ color: '#ffb380' }}>Archer of the Red Dunes</strong> - eyes and arrows, 
+                    his clue completes the word.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-10 text-center">
+              <div className="font-spectral"
+                   style={{
+                     color: '#f5d8b8',
+                     fontSize: 'clamp(15px, 1.1vw, 17px)',
+                     lineHeight: 1.75,
+                     fontWeight: 400,
+                     textShadow: '0 2px 4px rgba(0,0,0,0.7)',
+                   }}>
                 <p className="font-spectral italic" style={{ fontWeight: 600, color: '#ffe5cc', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                   Solve each riddle. Defeat each enemy. Unite the fragments. Speak the word.
                 </p>
