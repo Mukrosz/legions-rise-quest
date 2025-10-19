@@ -154,6 +154,17 @@ export default function Stage1Page() {
           </div>
         </div>
 
+        {/* Instructions */}
+        <p className="font-spectral text-center italic mb-10" 
+           style={{ 
+             fontSize: '14px',
+             color: '#c8e0f0',
+             opacity: 0.9,
+             textShadow: '0 1px 3px rgba(0,0,0,0.6)'
+           }}>
+          The cipher holds a single word. Decipher it, and the path opens.
+        </p>
+
         {/* Input Card - Contains built-in hints */}
         <InputCard
           onSubmit={validateAnswer}
