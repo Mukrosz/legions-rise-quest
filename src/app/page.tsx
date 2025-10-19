@@ -26,7 +26,7 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="min-h-screen relative overflow-auto">
+    <div className="min-h-screen relative overflow-auto">
       {/* Vintage Colosseum Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
@@ -48,8 +48,8 @@ export default function LandingPage() {
       )}
 
       {/* Parchment scroll with title and story */}
-      <div className={`relative flex flex-col justify-center items-center ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)]' : 'min-h-screen'} py-8`}>
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
+      <main className={`relative flex items-center justify-center ${progress.stage > 0 ? 'min-h-[calc(100vh-120px)]' : 'min-h-screen'} p-4`}>
+        <div className="relative z-10 w-full max-w-5xl mx-auto">
           {/* Parchment scroll with actual image - stretched to fit all content */}
           <div 
             className="relative w-full flex flex-col"
@@ -204,25 +204,13 @@ export default function LandingPage() {
                   {progress.stage > 0 ? 'CONTINUE ASCENT' : 'BEGIN ASCENT'}
                 </button>
 
+                {/* Reset Button (only for users with progress) */}
                 {progress.stage > 0 && (
-                  <div className="bg-gradient-to-br from-amber-100 to-amber-200 p-4 border-4 border-amber-900 shadow-xl" style={{ marginTop: '1.5em', borderRadius: '8px' }}>
-                    <p className="text-amber-900 font-spectral text-lg mb-2"
-                       style={{ 
-                         letterSpacing: '0.06em',
-                         fontWeight: 600
-                       }}>
-                      Progress: Stage {progress.stage} of 5
-                    </p>
-                    <div className="w-full bg-amber-900/30 h-3 rounded-full border-2 border-amber-900 overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-burgundy via-bronze to-laurel transition-all duration-500"
-                        style={{ width: `${(progress.stage / 5) * 100}%` }}
-                      />
-                    </div>
+                  <div className="text-center" style={{ marginTop: '1.5em' }}>
                     <button
                       onClick={handleReset}
-                      className="mt-3 px-4 py-1 text-burgundy hover:text-amber-50 hover:bg-burgundy
-                               border-2 border-burgundy font-spectral text-xs transition-all rounded"
+                      className="px-4 py-2 text-burgundy hover:text-amber-50 hover:bg-burgundy
+                               border-2 border-burgundy font-spectral text-sm transition-all rounded"
                       style={{ fontWeight: 500 }}
                     >
                       ⚠️ Start Over (Hard Reset)
@@ -233,7 +221,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       {/* Attribution */}
       <footer className="relative py-4 text-center z-10">
@@ -247,7 +235,7 @@ export default function LandingPage() {
           A Puzzle Odyssey Through Ancient Rome
         </p>
       </footer>
-    </main>
+    </div>
   );
 }
 
