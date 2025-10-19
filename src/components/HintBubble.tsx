@@ -49,7 +49,7 @@ export function HintBubble({
   const isStage3 = stageNumber === 3;
 
   const bubbleStyle = isStage3 ? {
-    background: 'rgba(255, 248, 220, 0.9)',
+    background: 'rgba(255, 248, 220, 0.7)',
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
     border: '2px solid rgba(218, 165, 32, 0.5)',
