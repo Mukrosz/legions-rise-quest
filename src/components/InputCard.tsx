@@ -189,12 +189,14 @@ export function InputCard({
           unlockDelay={hint1UnlockDelay}
           unlockOnAttempt={hint1UnlockAttempt}
           currentAttempts={wrongAttempts}
+          stageNumber={stageNumber}
         />
         <HintBubble 
           hint={hint2} 
           unlockDelay={hint2UnlockDelay}
           unlockOnAttempt={hint2UnlockAttempt}
           currentAttempts={wrongAttempts}
+          stageNumber={stageNumber}
         />
       </div>
     </div>
