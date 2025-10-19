@@ -1,14 +1,7 @@
-/**
- * Stage IV - Web of Influence
- * Polybius Square + Vigenère Cipher (two-step decode)
- */
-
 'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Panel } from '@/components/Panel';
-import { CaptionBox } from '@/components/CaptionBox';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
@@ -61,7 +54,6 @@ export default function Stage4Page() {
     return null;
   }
 
-  // Polybius grid (I/J merged)
   const polybiusGrid = [
     ['A', 'B', 'C', 'D', 'E'],
     ['F', 'G', 'H', 'I/J', 'K'],
@@ -70,160 +62,323 @@ export default function Stage4Page() {
     ['V', 'W', 'X', 'Y', 'Z'],
   ];
 
+  const romanNumerals = ['I', 'II', 'III', 'IV', 'V'];
+
   return (
-    <main className="min-h-screen comic-gutter page-transition">
+    <div
+      className="min-h-screen"
+      style={{
+        backgroundImage: 'url("/stage4-bg.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <ProgressBar />
 
-      <Panel variant="hero" className="mb-8">
-        <div className="relative min-h-[50vh] flex items-center justify-center">
-          <div 
-            className="absolute inset-0 bg-gradient-to-br from-bronze/30 via-obsidian/80 to-obsidian"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h50v50H0V0zm50 50h50v50H50V50z' fill='%23b87333' fill-opacity='0.04'/%3E%3C/svg%3E")`,
-            }}
-          />
-
-          <CaptionBox position="bottom" variant="narrator">
-            <p className="mb-3">
-              <strong className="text-xl text-bronze">Year Five. The Patron's Atrium.</strong>
-            </p>
-            <p className="mb-3">
-              Citizenship secured, you now navigate Rome's true arena - influence. 
-              Your patron, a senator of old blood, tests your cunning with coded messages.
-            </p>
-            <p className="mb-3">
-              A courier delivers a mosaic fragment. Numbers hide in its corners - pairs 
-              that reference an ancient Greek grid. Decode them, but beware: a second 
-              veil awaits, woven with a keyword from Rome's founding motto.
-            </p>
-            <p className="text-bronze italic">
-              Two ciphers, one truth. The Senate's own acronym shall be your reward.
-            </p>
-          </CaptionBox>
-
-          <div className="absolute top-8 left-8 sfx-label opacity-20">
-            WHISPER
-          </div>
-        </div>
-      </Panel>
-
-      <Panel variant="content" className="max-w-4xl mx-auto mb-8">
-        <div className="space-y-6">
-          <h1 className="font-display text-3xl md:text-5xl font-black text-burgundy text-center mb-6">
+      <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
+        <div
+          className="w-full max-w-5xl"
+          style={{
+            background: 'linear-gradient(135deg, rgba(46, 111, 64, 0.12), rgba(60, 130, 76, 0.15), rgba(34, 90, 55, 0.12))',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '24px',
+            border: '2px solid rgba(76, 175, 80, 0.35)',
+            boxShadow: '0 8px 32px rgba(34, 90, 55, 0.4), inset 0 1px 0 rgba(139, 195, 74, 0.2)',
+            padding: 'clamp(32px, 5vw, 64px)',
+          }}
+        >
+          <h1 className="font-display text-center mb-6"
+              style={{
+                fontSize: 'clamp(32px, 4vw, 52px)',
+                fontWeight: 900,
+                letterSpacing: '0.12em',
+                lineHeight: 1.05,
+                color: '#2e7d32',
+                textShadow: '0 3px 6px rgba(0,0,0,0.6), 0 6px 12px rgba(34,90,55,0.4), 0 0 30px rgba(76,175,80,0.3)',
+                filter: 'drop-shadow(0 0 24px rgba(139,195,74,0.5))',
+              }}>
             WEB OF INFLUENCE
           </h1>
 
-          <div className="prose prose-lg max-w-none text-obsidian">
-            <p className="text-center italic mb-8 text-bronze font-semibold text-xl">
-              "Navigate the double cipher"
-            </p>
-
-            {/* Mosaic with embedded Polybius coordinates */}
-            <div className="bg-bronze/20 border-4 border-obsidian p-8 mb-8">
-              <p className="text-center font-display text-2xl mb-6">MOSAIC MESSAGE</p>
-              
-              <div className="grid grid-cols-4 gap-2 max-w-sm mx-auto mb-6">
-                <div className="bg-burgundy/40 p-3 text-center font-bold text-parchment">34</div>
-                <div className="bg-laurel/40 p-3 text-center font-bold text-parchment">31</div>
-                <div className="bg-bronze/40 p-3 text-center font-bold text-parchment">42</div>
-                <div className="bg-burgundy/40 p-3 text-center font-bold text-parchment">15</div>
-              </div>
-
-              <p className="text-sm text-center text-obsidian/70 mb-4">
-                The numbers speak in Polybius pairs (row, column). Decipher them using 
-                the ancient 5×5 grid below.
+          <div className="mb-10 text-center">
+            <h2 className="font-spectral text-xl md:text-2xl mb-6"
+                style={{
+                  color: '#c5e1a5',
+                  fontWeight: 600,
+                  fontStyle: 'italic',
+                  letterSpacing: '0.03em',
+                  textShadow: '0 2px 6px rgba(0,0,0,0.7)',
+                }}>
+              Year Five. The Senate's Threshold. Where honor is the true currency.
+            </h2>
+            <div className="font-spectral space-y-4"
+                 style={{
+                   color: '#dcedc8',
+                   fontSize: 'clamp(15px, 1.1vw, 17px)',
+                   lineHeight: 1.75,
+                   fontWeight: 400,
+                   textShadow: '0 2px 4px rgba(0,0,0,0.7)',
+                   maxWidth: '700px',
+                   margin: '0 auto',
+                 }}>
+              <p>
+                Citizenship secured, Kaeso stands before the Senate's great doors. Yet entry demands more 
+                than legal status - it requires demonstrating the virtue that built Rome itself: HONOS.
               </p>
-
-              <button
-                onClick={() => setShowGrid(!showGrid)}
-                className="mx-auto block px-4 py-2 bg-obsidian text-parchment text-sm
-                         hover:bg-obsidian/80 transition-colors rounded"
-              >
-                {showGrid ? 'Hide' : 'Show'} Polybius Grid
-              </button>
-
-              {showGrid && (
-                <div className="mt-6 overflow-x-auto">
-                  <table className="mx-auto border-2 border-obsidian">
-                    <thead>
-                      <tr>
-                        <th className="p-2 border border-obsidian bg-parchment/50"></th>
-                        {[1, 2, 3, 4, 5].map(col => (
-                          <th key={col} className="p-2 border border-obsidian bg-parchment/50 font-bold">
-                            {col}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {polybiusGrid.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                          <th className="p-2 border border-obsidian bg-parchment/50 font-bold">
-                            {rowIndex + 1}
-                          </th>
-                          {row.map((letter, colIndex) => (
-                            <td key={colIndex} className="p-2 border border-obsidian text-center bg-parchment">
-                              {letter}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <p className="text-xs text-center mt-2 text-obsidian/60">
-                    Note: I and J share position 2,4
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Vigenère hint */}
-            <div className="bg-obsidian/10 p-6 rounded mb-8">
-              <p className="text-sm mb-3">
-                <strong>Step 1:</strong> Decode the Polybius pairs to get an intermediate word.
+              <p>
+                A senior senator presents a test: a tablet bearing Roman numerals in mysterious pairs. 
+                These numbers reference an ancient Greek grid used by scholars and spies alike. Decode 
+                the pairs to reveal letters, then apply a second cipher using Rome's founding motto as key.
               </p>
-              <p className="text-sm mb-3">
-                <strong>Step 2:</strong> Apply Vigenère cipher to that word using the keyword <strong>"ROMA"</strong>.
-              </p>
-              <p className="text-xs text-obsidian/60 italic">
-                (Hint: The Polybius pairs above decode to letters that form a Latin acronym. 
-                Then shift each letter using the Vigenère table with keyword ROMA. 
-                The result is Rome's most famous initialism.)
-              </p>
-            </div>
-
-            <div className="bg-burgundy/10 p-4 border-2 border-burgundy rounded">
-              <p className="text-sm font-bold text-burgundy mb-2">Historical Note:</p>
-              <p className="text-xs text-obsidian/70">
-                SPQR: <em>Senatus Populusque Romanus</em> - "The Senate and People of Rome." 
-                This acronym appeared on military standards, public buildings, and coins 
-                throughout Roman history.
+              <p className="font-spectral italic mt-4" style={{ fontWeight: 600, color: '#f1f8e9', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                Master the double cipher. Speak the word of honor. Prove yourself worthy of the Senate.
               </p>
             </div>
           </div>
 
+          <div className="mb-10"
+               style={{
+                 background: 'rgba(46, 111, 64, 0.2)',
+                 backdropFilter: 'blur(12px)',
+                 WebkitBackdropFilter: 'blur(12px)',
+                 border: '2px solid rgba(76, 175, 80, 0.4)',
+                 borderRadius: '16px',
+                 padding: 'clamp(24px, 4vw, 40px)',
+                 boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.3)',
+               }}>
+            <p className="font-display text-center mb-6"
+               style={{
+                 fontSize: 'clamp(18px, 2vw, 24px)',
+                 fontWeight: 700,
+                 letterSpacing: '0.08em',
+                 color: '#c5e1a5',
+                 textShadow: '0 2px 4px rgba(0,0,0,0.7)',
+               }}>
+              THE SENATOR'S TABLET
+            </p>
+
+            <div className="grid grid-cols-5 gap-3 max-w-2xl mx-auto mb-6">
+              <div style={{
+                background: 'rgba(76, 175, 80, 0.3)',
+                padding: '16px',
+                textAlign: 'center',
+                fontWeight: 700,
+                color: '#f1f8e9',
+                borderRadius: '8px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+              }}>
+                <div style={{ fontSize: 'clamp(16px, 1.5vw, 20px)' }}>IV, I</div>
+              </div>
+              <div style={{
+                background: 'rgba(46, 111, 64, 0.3)',
+                padding: '16px',
+                textAlign: 'center',
+                fontWeight: 700,
+                color: '#f1f8e9',
+                borderRadius: '8px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+              }}>
+                <div style={{ fontSize: 'clamp(16px, 1.5vw, 20px)' }}>I, I</div>
+              </div>
+              <div style={{
+                background: 'rgba(76, 175, 80, 0.3)',
+                padding: '16px',
+                textAlign: 'center',
+                fontWeight: 700,
+                color: '#f1f8e9',
+                borderRadius: '8px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+              }}>
+                <div style={{ fontSize: 'clamp(16px, 1.5vw, 20px)' }}>I, II</div>
+              </div>
+              <div style={{
+                background: 'rgba(46, 111, 64, 0.3)',
+                padding: '16px',
+                textAlign: 'center',
+                fontWeight: 700,
+                color: '#f1f8e9',
+                borderRadius: '8px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+              }}>
+                <div style={{ fontSize: 'clamp(16px, 1.5vw, 20px)' }}>III, IV</div>
+              </div>
+              <div style={{
+                background: 'rgba(76, 175, 80, 0.3)',
+                padding: '16px',
+                textAlign: 'center',
+                fontWeight: 700,
+                color: '#f1f8e9',
+                borderRadius: '8px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+              }}>
+                <div style={{ fontSize: 'clamp(16px, 1.5vw, 20px)' }}>I, II</div>
+              </div>
+            </div>
+
+            <p className="font-spectral text-sm text-center mb-4"
+               style={{ color: '#dcedc8', opacity: 0.9 }}>
+              These Roman numeral pairs reference rows and columns in the Polybius grid below.
+            </p>
+
+            <button
+              onClick={() => setShowGrid(!showGrid)}
+              className="mx-auto block px-6 py-3 transition-all font-spectral"
+              style={{
+                background: 'rgba(76, 175, 80, 0.4)',
+                color: '#f1f8e9',
+                borderRadius: '12px',
+                border: '2px solid rgba(139, 195, 74, 0.5)',
+                fontSize: '14px',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(76, 175, 80, 0.6)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(76, 175, 80, 0.4)';
+              }}
+            >
+              {showGrid ? '🔒 Hide' : '🔓 Show'} Polybius Grid
+            </button>
+
+            {showGrid && (
+              <div className="mt-6 overflow-x-auto">
+                <table className="mx-auto"
+                       style={{
+                         border: '2px solid rgba(76, 175, 80, 0.5)',
+                         borderRadius: '8px',
+                         overflow: 'hidden',
+                       }}>
+                  <thead>
+                    <tr>
+                      <th style={{
+                        padding: '12px',
+                        border: '1px solid rgba(76, 175, 80, 0.3)',
+                        background: 'rgba(46, 111, 64, 0.3)',
+                        color: '#f1f8e9',
+                      }}></th>
+                      {romanNumerals.map(numeral => (
+                        <th key={numeral} style={{
+                          padding: '12px',
+                          border: '1px solid rgba(76, 175, 80, 0.3)',
+                          background: 'rgba(46, 111, 64, 0.3)',
+                          color: '#c5e1a5',
+                          fontWeight: 700,
+                        }}>
+                          {numeral}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {polybiusGrid.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        <th style={{
+                          padding: '12px',
+                          border: '1px solid rgba(76, 175, 80, 0.3)',
+                          background: 'rgba(46, 111, 64, 0.3)',
+                          color: '#c5e1a5',
+                          fontWeight: 700,
+                        }}>
+                          {romanNumerals[rowIndex]}
+                        </th>
+                        {row.map((letter, colIndex) => (
+                          <td key={colIndex} style={{
+                            padding: '12px',
+                            border: '1px solid rgba(76, 175, 80, 0.3)',
+                            textAlign: 'center',
+                            background: 'rgba(139, 195, 74, 0.2)',
+                            color: '#f1f8e9',
+                            fontWeight: 600,
+                          }}>
+                            {letter}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="font-spectral text-xs text-center mt-3"
+                   style={{ color: '#dcedc8', opacity: 0.8 }}>
+                  Note: I and J share position (II, IV)
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-10"
+               style={{
+                 background: 'rgba(46, 111, 64, 0.15)',
+                 backdropFilter: 'blur(12px)',
+                 WebkitBackdropFilter: 'blur(12px)',
+                 border: '2px solid rgba(76, 175, 80, 0.3)',
+                 borderRadius: '16px',
+                 padding: 'clamp(20px, 3vw, 32px)',
+               }}>
+            <p className="font-spectral text-sm mb-3"
+               style={{ color: '#dcedc8', lineHeight: 1.7 }}>
+              <strong style={{ color: '#c5e1a5' }}>Step 1:</strong> Decode the Roman numeral pairs using the Polybius grid to get an intermediate word.
+            </p>
+            <p className="font-spectral text-sm mb-3"
+               style={{ color: '#dcedc8', lineHeight: 1.7 }}>
+              <strong style={{ color: '#c5e1a5' }}>Step 2:</strong> Apply Vigenère cipher to that word using the keyword <strong style={{ color: '#f1f8e9' }}>"ROMA"</strong>.
+            </p>
+            <p className="font-spectral text-xs italic"
+               style={{ color: '#dcedc8', opacity: 0.85, lineHeight: 1.6 }}>
+              The Polybius pairs decode to letters. Shift each letter using the Vigenère table with keyword ROMA. 
+              The result is a Latin word meaning honor and integrity.
+            </p>
+          </div>
+
+          <p className="font-spectral text-center italic text-sm mb-10"
+             style={{
+               color: '#dcedc8',
+               opacity: 0.9,
+               textShadow: '0 1px 3px rgba(0,0,0,0.6)',
+             }}>
+            Two ciphers guard the path. Master both to prove your worth.
+          </p>
+
           <InputCard
             onSubmit={validateAnswer}
-            placeholder="Enter the final decoded acronym..."
-            hint1="The grid of Polybius awaits. Numbers hide in mosaic corners - five by five."
-            hint2="First decode the squares, then a keyword from history veils the truth once more."
+            placeholder="Enter the word of honor..."
+            hint1="The grid of Polybius speaks in Roman numerals - row and column, ancient and wise."
+            hint2="First decode the numbered pairs, then ROMA's letters shift the truth once more."
             stageNumber={4}
             savedInput={savedInput}
             onSuccess={handleSuccess}
           />
-        </div>
-      </Panel>
 
-      <div className="text-center pb-8">
-        <button
-          onClick={() => router.push('/')}
-          className="px-6 py-2 text-parchment/60 hover:text-parchment
-                   font-body text-sm transition-colors"
-        >
-          ← Return to Landing
-        </button>
-      </div>
-    </main>
+          <div className="text-center mt-8">
+            <button
+              onClick={() => router.push('/')}
+              className="font-spectral px-6 py-2 transition-all"
+              style={{
+                fontSize: 'clamp(13px, 1vw, 15px)',
+                color: '#c5e1a5',
+                opacity: 0.85,
+                fontWeight: 600,
+                letterSpacing: '0.03em',
+                textShadow: '0 2px 4px rgba(0,0,0,0.4)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.color = '#f1f8e9';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '0.85';
+                e.currentTarget.style.color = '#c5e1a5';
+              }}
+            >
+              ← Return to Landing
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
 

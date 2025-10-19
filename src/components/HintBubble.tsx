@@ -72,6 +72,14 @@ export function HintBubble({
           textColor: '#654321',
           textShadow: '0 1px 2px rgba(0,0,0,0.2)',
         };
+      case 4:
+        return {
+          background: 'rgba(139, 195, 74, 0.7)',
+          border: '2px solid rgba(76, 175, 80, 0.5)',
+          boxShadow: '0 8px 32px rgba(34, 90, 55, 0.4), inset 0 1px 0 rgba(139, 195, 74, 0.2)',
+          textColor: '#1b5e20',
+          textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+        };
       default:
         return {
           background: 'rgba(245, 237, 218, 0.7)',
