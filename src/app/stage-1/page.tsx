@@ -183,7 +183,7 @@ export default function Stage1Page() {
           hint2UnlockDelay={0}
           hint1UnlockAttempt={1}
           hint2UnlockAttempt={2}
-          maxWidth="400px"
+          maxWidth="700px"
         />
 
         {/* Navigation */}
