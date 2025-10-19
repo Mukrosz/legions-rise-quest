@@ -19,20 +19,20 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         aspectRatio: '1 / 1',
         borderRadius: '16px',
         overflow: 'hidden',
-        border: '2px solid rgba(212, 135, 76, 0.35)',
-        boxShadow: '0 4px 16px rgba(139, 69, 19, 0.4)',
+        border: '2px solid rgba(180, 0, 0, 0.5)',
+        boxShadow: '0 4px 16px rgba(139, 0, 0, 0.5)',
         opacity: isDefeated ? 0.5 : 1,
         filter: isDefeated ? 'grayscale(50%)' : 'none',
       }}
       onMouseEnter={(e) => {
         if (!isDefeated) {
           e.currentTarget.style.transform = 'scale(1.05)';
-          e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 69, 19, 0.5)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(180, 0, 0, 0.7)';
         }
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
-        e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 69, 19, 0.4)';
+        e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 0, 0, 0.5)';
       }}
       aria-label={`View ${name}${isDefeated ? ' (Defeated)' : ''}`}
     >
@@ -40,14 +40,14 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
         style={{
           backgroundImage: `url('${imagePath}')`,
-          backgroundColor: 'rgba(60, 40, 30, 0.3)',
+          backgroundColor: 'rgba(60, 20, 20, 0.3)',
         }}
       />
 
       <div
         className="absolute inset-0 transition-opacity duration-300"
         style={{
-          background: 'linear-gradient(135deg, rgba(204, 102, 51, 0.12), rgba(184, 115, 51, 0.15), rgba(139, 69, 19, 0.12))',
+          background: 'linear-gradient(135deg, rgba(180, 0, 0, 0.15), rgba(220, 20, 60, 0.18), rgba(139, 0, 0, 0.15))',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
         }}
@@ -67,14 +67,14 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
               fontSize: 'clamp(16px, 2vw, 20px)',
               fontWeight: 800,
               letterSpacing: '0.06em',
-              color: '#d4a574',
+              color: '#ff6b6b',
               textShadow: '0 2px 4px rgba(0,0,0,0.8)',
             }}>
           {name}
         </h3>
         <p className="font-spectral text-sm"
            style={{
-             color: '#f5d8b8',
+             color: '#ffcccc',
              fontStyle: 'italic',
              fontWeight: 400,
              textShadow: '0 1px 3px rgba(0,0,0,0.9)',
@@ -87,7 +87,7 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         <div
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: 'rgba(212, 165, 116, 0.15)',
+            background: 'rgba(180, 0, 0, 0.2)',
             backdropFilter: 'blur(4px)',
           }}
         >
@@ -96,7 +96,7 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
                   fontSize: '14px',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
-                  color: '#ffe5cc',
+                  color: '#ffcccc',
                   background: 'rgba(0, 0, 0, 0.7)',
                   borderRadius: '8px',
                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
