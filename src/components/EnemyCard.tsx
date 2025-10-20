@@ -48,8 +48,8 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         className="absolute inset-0 transition-opacity duration-300"
         style={{
           background: 'linear-gradient(135deg, rgba(180, 0, 0, 0.15), rgba(220, 20, 60, 0.18), rgba(139, 0, 0, 0.15))',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
         }}
       />
 
