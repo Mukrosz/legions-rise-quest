@@ -13,7 +13,6 @@ const COPY = {
   subheader: 'By mandate of the Founders, the Senate speaks through the Legatus.',
   storyline: 'In the hush of the Curia\'s inner chamber, Kaeso is summoned before the Legatus. No enemy missive lies on the table - only a worn tablet engraved with a Senatorial maxim. The Legatus explains that this is the oath by which Rome keeps herself upright: a verse spoken in councils before war, hiding Rome\'s one condition for command. Many can recite the words; few can read what they require.',
   legatusLine: 'Strength wins cheers; order wins Rome. Read the maxim as the Senate reads it - head and tail - and bring me the word that crowns strength.',
-  explanation: 'Kaeso studies the four-line motto. The Senate\'s method is simple but exacting: take the first letters of each line (the acrostic), then the last letters of each line (the telestich), and join them. Only those who know to read a decree\'s caput et cauda can reveal Rome\'s true charge.',
   successBanner: 'IMPERIUM CONFIRMED',
   successSubtext: 'Law crowns strength.',
 };
@@ -71,10 +70,10 @@ export default function Stage5Page() {
     <>
       <style jsx global>{`
         ::-webkit-scrollbar-thumb {
-          background: #8B4513 !important;
+          background: #6A3A8A !important;
         }
         ::-webkit-scrollbar-thumb:hover {
-          background: #654321 !important;
+          background: #4B286D !important;
         }
       `}</style>
       <div
@@ -92,12 +91,12 @@ export default function Stage5Page() {
           <div
             className="w-full max-w-5xl"
             style={{
-              background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.12), rgba(160, 82, 45, 0.15), rgba(101, 67, 33, 0.12))',
+              background: 'linear-gradient(135deg, rgba(75, 40, 109, 0.12), rgba(106, 58, 138, 0.15), rgba(58, 27, 82, 0.12))',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
               borderRadius: '24px',
-              border: '2px solid rgba(139, 69, 19, 0.35)',
-              boxShadow: '0 8px 32px rgba(101, 67, 33, 0.4), inset 0 1px 0 rgba(210, 180, 140, 0.2)',
+              border: '2px solid rgba(106, 58, 138, 0.35)',
+              boxShadow: '0 8px 32px rgba(58, 27, 82, 0.4), inset 0 1px 0 rgba(147, 112, 219, 0.2)',
               padding: 'clamp(32px, 5vw, 64px)',
             }}
           >
@@ -107,9 +106,9 @@ export default function Stage5Page() {
                   fontWeight: 900,
                   letterSpacing: '0.12em',
                   lineHeight: 1.05,
-                  color: '#D2691E',
-                  textShadow: '0 3px 6px rgba(0,0,0,0.6), 0 6px 12px rgba(139,69,19,0.4), 0 0 30px rgba(210,105,30,0.3)',
-                  filter: 'drop-shadow(0 0 24px rgba(210,180,140,0.5))',
+                  color: '#9370DB',
+                  textShadow: '0 3px 6px rgba(0,0,0,0.6), 0 6px 12px rgba(106,58,138,0.4), 0 0 30px rgba(147,112,219,0.3)',
+                  filter: 'drop-shadow(0 0 24px rgba(147,112,219,0.5))',
                 }}>
               VOX SENATUS
             </h1>
@@ -151,9 +150,9 @@ export default function Stage5Page() {
 
             <div className="mb-8"
                  style={{
-                   background: 'rgba(101, 67, 33, 0.25)',
+                   background: 'rgba(75, 40, 109, 0.25)',
                    borderRadius: '16px',
-                   border: '2px solid rgba(139, 69, 19, 0.4)',
+                   border: '2px solid rgba(106, 58, 138, 0.4)',
                    padding: 'clamp(32px, 4vw, 48px)',
                  }}>
               <div className="text-center mb-6">
@@ -180,10 +179,10 @@ export default function Stage5Page() {
 
               <div className="font-spectral text-center"
                    style={{
-                     background: 'rgba(245, 222, 179, 0.1)',
+                     background: 'rgba(147, 112, 219, 0.1)',
                      borderRadius: '12px',
                      padding: 'clamp(24px, 3vw, 40px)',
-                     border: '1px solid rgba(139, 69, 19, 0.3)',
+                     border: '1px solid rgba(106, 58, 138, 0.3)',
                    }}>
                 {DECREE_LINES.map((line, idx) => (
                   <p key={idx}
@@ -202,17 +201,6 @@ export default function Stage5Page() {
                   </p>
                 ))}
               </div>
-
-              <p className="font-spectral text-center text-sm mt-6"
-                 style={{
-                   color: '#DEB887',
-                   lineHeight: 1.7,
-                   opacity: 0.9,
-                   maxWidth: '700px',
-                   margin: '24px auto 0',
-                 }}>
-                {COPY.explanation}
-              </p>
             </div>
 
             {!showSuccess && (
@@ -227,11 +215,11 @@ export default function Stage5Page() {
                     style={{
                       padding: '16px 24px',
                       fontSize: '18px',
-                      background: 'rgba(139, 69, 19, 0.2)',
+                      background: 'rgba(106, 58, 138, 0.2)',
                       backdropFilter: 'blur(12px)',
                       WebkitBackdropFilter: 'blur(12px)',
                       color: '#F5DEB3',
-                      border: '2px solid rgba(139, 69, 19, 0.4)',
+                      border: '2px solid rgba(106, 58, 138, 0.4)',
                       borderRadius: '12px',
                       boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
                       textAlign: 'center',
@@ -241,24 +229,24 @@ export default function Stage5Page() {
                   
                   <button
                     type="submit"
-                    className="font-display px-8 py-3 transition-all"
+                    className="font-display w-full max-w-md px-8 py-3 transition-all"
                     style={{
                       fontSize: 'clamp(14px, 1.2vw, 16px)',
                       fontWeight: 700,
                       letterSpacing: '0.08em',
-                      background: '#8B4513',
+                      background: '#8B2F2B',
                       color: '#F5DEB3',
-                      border: '2px solid #654321',
+                      border: '2px solid #6C2421',
                       borderRadius: '12px',
                       boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
                       cursor: 'pointer',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = '#A0522D';
+                      e.currentTarget.style.background = '#A03834';
                       e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.5)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = '#8B4513';
+                      e.currentTarget.style.background = '#8B2F2B';
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
                     }}
                   >
@@ -284,9 +272,9 @@ export default function Stage5Page() {
             {showSuccess && (
               <div className="mb-8 text-center"
                    style={{
-                     background: 'rgba(212, 175, 55, 0.2)',
+                     background: 'rgba(147, 112, 219, 0.2)',
                      borderRadius: '16px',
-                     border: '2px solid rgba(212, 175, 55, 0.5)',
+                     border: '2px solid rgba(147, 112, 219, 0.5)',
                      padding: '32px',
                    }}>
                 <p className="font-display mb-4"
@@ -365,21 +353,21 @@ export default function Stage5Page() {
                   style={{
                     fontSize: 'clamp(13px, 1vw, 15px)',
                     fontWeight: 600,
-                    background: !hasAttempted ? 'rgba(101, 67, 33, 0.3)' : 'rgba(139, 69, 19, 0.4)',
-                    color: !hasAttempted ? '#8B7355' : '#F5DEB3',
-                    border: '2px solid rgba(139, 69, 19, 0.5)',
+                    background: !hasAttempted ? 'rgba(75, 40, 109, 0.3)' : 'rgba(106, 58, 138, 0.4)',
+                    color: !hasAttempted ? '#8B7388' : '#F5DEB3',
+                    border: '2px solid rgba(106, 58, 138, 0.5)',
                     borderRadius: '12px',
                     cursor: !hasAttempted ? 'not-allowed' : 'pointer',
                     opacity: !hasAttempted ? 0.5 : 1,
                   }}
                   onMouseEnter={(e) => {
                     if (hasAttempted) {
-                      e.currentTarget.style.background = 'rgba(139, 69, 19, 0.6)';
+                      e.currentTarget.style.background = 'rgba(106, 58, 138, 0.6)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (hasAttempted) {
-                      e.currentTarget.style.background = 'rgba(139, 69, 19, 0.4)';
+                      e.currentTarget.style.background = 'rgba(106, 58, 138, 0.4)';
                     }
                   }}
                 >
@@ -427,9 +415,9 @@ export default function Stage5Page() {
             <div
               onClick={(e) => e.stopPropagation()}
               style={{
-                background: 'rgba(101, 67, 33, 0.95)',
+                background: 'rgba(75, 40, 109, 0.95)',
                 borderRadius: '16px',
-                border: '2px solid rgba(139, 69, 19, 0.5)',
+                border: '2px solid rgba(106, 58, 138, 0.5)',
                 padding: '32px',
                 maxWidth: '600px',
                 width: '100%',
@@ -479,16 +467,16 @@ export default function Stage5Page() {
                 style={{
                   fontSize: 'clamp(13px, 1vw, 15px)',
                   fontWeight: 600,
-                  background: 'rgba(139, 69, 19, 0.6)',
+                  background: 'rgba(106, 58, 138, 0.6)',
                   color: '#F5DEB3',
-                  border: '2px solid rgba(139, 69, 19, 0.8)',
+                  border: '2px solid rgba(106, 58, 138, 0.8)',
                   borderRadius: '12px',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(139, 69, 19, 0.8)';
+                  e.currentTarget.style.background = 'rgba(106, 58, 138, 0.8)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(139, 69, 19, 0.6)';
+                  e.currentTarget.style.background = 'rgba(106, 58, 138, 0.6)';
                 }}
               >
                 Close
