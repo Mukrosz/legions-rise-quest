@@ -40,12 +40,19 @@ export function ProgressBar() {
     <>
       <style jsx>{`
         @keyframes sunRays {
+          0% { 
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          100% { 
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+        
+        @keyframes sunGlow {
           0%, 100% { 
-            transform: rotate(0deg); 
             opacity: 0.6; 
           }
           50% { 
-            transform: rotate(180deg); 
             opacity: 0.9; 
           }
         }
@@ -99,26 +106,25 @@ export function ProgressBar() {
                   <div 
                     className="absolute pointer-events-none"
                     style={{
-                      width: '80px',
-                      height: '80px',
+                      width: '96px',
+                      height: '96px',
                       left: '50%',
                       top: '50%',
                       transform: 'translate(-50%, -50%)',
                       background: 'radial-gradient(circle, rgba(255,215,0,0.4) 0%, rgba(255,215,0,0.2) 40%, transparent 70%)',
-                      animation: 'sunRays 3s ease-in-out infinite',
+                      animation: 'sunGlow 3s ease-in-out infinite',
                     }}
                   />
                   
-                  {/* Sun rays using pseudo-elements approach */}
+                  {/* Sun rays container - rotates continuously */}
                   <div 
                     className="absolute pointer-events-none"
                     style={{
-                      width: '64px',
-                      height: '64px',
+                      width: '72px',
+                      height: '72px',
                       left: '50%',
                       top: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      animation: 'sunRays 6s linear infinite',
+                      animation: 'sunRays 8s linear infinite',
                     }}
                   >
                     {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
@@ -127,12 +133,12 @@ export function ProgressBar() {
                         style={{
                           position: 'absolute',
                           width: '3px',
-                          height: '32px',
+                          height: '36px',
                           left: '50%',
                           top: '50%',
-                          background: 'linear-gradient(to bottom, rgba(255,215,0,0.6), transparent)',
-                          transformOrigin: 'center 0',
-                          transform: `translate(-50%, -16px) rotate(${angle}deg)`,
+                          background: 'linear-gradient(to bottom, rgba(255,215,0,0.7), rgba(255,215,0,0.3) 60%, transparent)',
+                          transformOrigin: '50% 0',
+                          transform: `translate(-50%, 0) rotate(${angle}deg)`,
                           filter: 'blur(1px)',
                         }}
                       />

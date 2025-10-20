@@ -199,7 +199,7 @@ export default function VictoryPage() {
                         minWidth: '24px',
                       }}>①</span>
                       <div>
-                        <strong style={{ color: '#FFD700' }}>Compile all five answers</strong> (no spaces):
+                        <strong style={{ color: '#FFD700' }}>Compile all five answers:</strong>
                         <div style={{ 
                           color: '#FFD700', 
                           fontFamily: 'monospace', 
