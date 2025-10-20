@@ -206,8 +206,8 @@ export default function Stage5Page() {
             <InputCard
               onSubmit={validateAnswer}
               placeholder="Enter the word that crowns strength..."
-              hint1="Ancient scribes valued what frames a text—not just what fills it. Boundaries hold secrets."
-              hint2="Where each line begins and where it ends—these are not accidents. Trace the edges from top to bottom, then unite them."
+              hint1="The Senate favors verses that hide a double acrostic. Do not search the belly of the lines - look to their borders, where a verse swears in and takes its leave."
+              hint2="In Rome, procession matters: let the heads take their ranks first from top to bottom, and only then let the tails fall in behind to speak with one voice."
               stageNumber={5}
               savedInput={savedInput}
               onSuccess={handleSuccess}
