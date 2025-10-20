@@ -126,26 +126,26 @@ export default function Stage5Page() {
               </h2>
               <p className="font-spectral mb-4"
                  style={{
-                   color: '#DEB887',
-                   fontSize: 'clamp(14px, 1vw, 16px)',
-                   lineHeight: 1.7,
+                   color: '#d4e8f0',
+                   fontSize: 'clamp(15px, 1.1vw, 17px)',
+                   lineHeight: 1.75,
                    fontWeight: 400,
-                   textShadow: '0 2px 4px rgba(0,0,0,0.7)',
-                   maxWidth: '800px',
+                   textShadow: '0 1px 3px rgba(0,0,0,0.5)',
+                   maxWidth: '700px',
                    margin: '0 auto 16px',
                  }}>
                 {COPY.storyline}
               </p>
-              <p className="font-spectral italic"
+              <p className="font-spectral text-center italic"
                  style={{
-                   color: '#D4AF37',
-                   fontSize: 'clamp(13px, 0.95vw, 15px)',
+                   fontSize: 'clamp(15px, 1.1vw, 17px)',
                    fontWeight: 600,
+                   color: '#e8f4f8',
                    textShadow: '0 2px 4px rgba(0,0,0,0.8)',
                    maxWidth: '700px',
                    margin: '0 auto',
                  }}>
-                "{COPY.legatusLine}"
+                {COPY.legatusLine}
               </p>
             </div>
 
@@ -162,7 +162,7 @@ export default function Stage5Page() {
                      fontSize: 'clamp(18px, 2vw, 24px)',
                      fontWeight: 700,
                      letterSpacing: '0.08em',
-                     color: '#D4AF37',
+                     color: '#F5DEB3',
                      textShadow: '0 2px 4px rgba(0,0,0,0.7)',
                      marginBottom: '8px',
                    }}>
