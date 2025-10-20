@@ -8,7 +8,7 @@ const INPUT_KEY_PREFIX = 'roman.ascent.s';
 const ENEMY_DEFEATS_KEY = 'roman.ascent.s2.enemies';
 
 export interface Progress {
-  stage: number; // 0 = landing, 1-5 = stages completed
+  stage: number; // 0 = landing, 1-5 = stages, 6 = victory
   timestamp: number;
 }
 
@@ -116,7 +116,7 @@ export function resetProgress(): void {
  */
 export function getCompletionPercentage(): number {
   const progress = getProgress();
-  return Math.round((progress.stage / 5) * 100);
+  return Math.round((progress.stage / 6) * 100);
 }
 
 /**
@@ -130,6 +130,7 @@ export function getStageName(stage: number): string {
     "Citizen's Trial",
     'Web of Influence',
     'Vox Senatus',
+    'Laurels of Triumph',
   ];
   
   return names[stage] || 'Unknown';

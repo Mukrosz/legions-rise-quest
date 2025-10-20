@@ -1,124 +1,219 @@
-/**
- * Victory Page - Journey Complete
- * Shown after completing all five stages
- */
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Panel } from '@/components/Panel';
-import { getProgress } from '@/lib/progress';
+import { ProgressBar } from '@/components/ProgressBar';
+import { getProgress, setProgress } from '@/lib/progress';
 
 export default function VictoryPage() {
   const router = useRouter();
-  const [progress, setProgress] = useState({ stage: 0, timestamp: 0 });
+  const [pageProgress, setPageProgress] = useState({ stage: 0, timestamp: 0 });
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     const p = getProgress();
-    setProgress(p);
+    setPageProgress(p);
+    setIsClient(true);
     
-    // Redirect if not completed
     if (p.stage < 5) {
       router.push('/');
+    } else {
+      setProgress(6);
     }
   }, [router]);
 
-  if (progress.stage < 5) {
+  if (pageProgress.stage < 5) {
     return null;
   }
 
-  const completionDate = new Date(progress.timestamp).toLocaleDateString('en-US', {
+  const completionDate = new Date(pageProgress.timestamp).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4 page-transition">
-      <Panel variant="hero" className="w-full max-w-4xl relative overflow-hidden">
-        <div className="relative min-h-[80vh] flex flex-col items-center justify-center p-8">
-          {/* Background gradient */}
+    <>
+      <style jsx global>{`
+        ::-webkit-scrollbar-thumb {
+          background: #D4AF37 !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #B8941F !important;
+        }
+        
+        @keyframes sunRays {
+          0%, 100% { transform: rotate(0deg); opacity: 0.6; }
+          50% { transform: rotate(180deg); opacity: 0.9; }
+        }
+      `}</style>
+      
+      <div 
+        className="min-h-screen relative overflow-auto"
+        style={{
+          backgroundImage: 'url("/final-bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
+        
+        {isClient && pageProgress.stage >= 5 && (
+          <div className="relative z-20">
+            <ProgressBar />
+          </div>
+        )}
+
+        <main className="relative min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
           <div 
-            className="absolute inset-0 bg-gradient-to-b from-laurel/30 via-bronze/20 to-obsidian"
+            className="w-full max-w-4xl"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 50L50 100L0 50z' fill='%23b87333' fill-opacity='0.06'/%3E%3C/svg%3E")`,
+              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(218, 165, 32, 0.2), rgba(184, 134, 11, 0.15))',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              borderRadius: '24px',
+              border: '3px solid rgba(212, 175, 55, 0.6)',
+              boxShadow: '0 8px 32px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 215, 100, 0.3), 0 0 60px rgba(212, 175, 55, 0.3)',
+              padding: 'clamp(32px, 5vw, 64px)',
             }}
-          />
+          >
+            <div className="text-center space-y-8">
+              <div className="text-8xl mb-6">🏛️</div>
 
-          {/* Laurel wreaths */}
-          <div className="absolute top-8 left-8 text-8xl animate-laurel-glow">🌿</div>
-          <div className="absolute top-8 right-8 text-8xl animate-laurel-glow transform scale-x-[-1]">🌿</div>
+              <h1 className="font-display"
+                  style={{
+                    fontSize: 'clamp(36px, 5vw, 64px)',
+                    fontWeight: 900,
+                    letterSpacing: '0.08em',
+                    lineHeight: 1.1,
+                    color: '#FFD700',
+                    textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 0 40px rgba(255,215,0,0.6)',
+                    filter: 'drop-shadow(0 0 30px rgba(255,215,0,0.5))',
+                    marginBottom: '24px',
+                  }}>
+                LAURELS OF TRIUMPH
+              </h1>
 
-          {/* Content */}
-          <div className="relative z-10 text-center space-y-8">
-            <div className="text-9xl mb-8 animate-bounce">🏛️</div>
+              <h2 className="font-spectral text-xl md:text-2xl mb-8"
+                  style={{
+                    color: '#F5DEB3',
+                    fontWeight: 600,
+                    fontStyle: 'italic',
+                    letterSpacing: '0.02em',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                  }}>
+                The Ascent Complete. From Dardanian Tribe to Roman Senate.
+              </h2>
 
-            <h1 className="font-display text-5xl md:text-7xl font-black text-bronze mb-4 tracking-wide">
-              SENATOR ACHIEVIUM
-            </h1>
-
-            <div className="max-w-2xl mx-auto space-y-6 text-parchment">
-              <p className="text-xl md:text-2xl font-display">
-                From chains to the Curia. From captive to consul.
-              </p>
-
-              <div className="bg-parchment/20 border-4 border-bronze p-8 backdrop-blur-sm">
-                <p className="font-serif text-base md:text-lg mb-4 text-parchment/90">
-                  <strong>SENATUS POPULUSQUE ROMANUS</strong>
+              <div className="font-spectral space-y-6 mb-10"
+                   style={{
+                     color: '#F5DEB3',
+                     fontSize: 'clamp(15px, 1.1vw, 18px)',
+                     lineHeight: 1.75,
+                     fontWeight: 400,
+                     textShadow: '0 1px 3px rgba(0,0,0,0.5)',
+                     maxWidth: '700px',
+                     margin: '0 auto 40px',
+                   }}>
+                <p>
+                  Let the Senate record: <strong style={{ color: '#FFD700' }}>KAESO DARDANUS</strong>, 
+                  once bound in chains, has risen. Through five trials - cipher, combat, citizenship, 
+                  cunning, and command - he proved what Rome demands: not merely strength, but the 
+                  wisdom to wield it.
                 </p>
-                <p className="text-sm md:text-base text-parchment/80">
-                  Let it be recorded that <strong>KAESO DARDANUS</strong>, once 
-                  enslaved, has ascended through wit, cunning, and unyielding resolve 
-                  to claim a seat among Rome's nobility.
+                <p>
+                  From the dust of captivity to the marble halls of power, the journey was arduous. 
+                  Yet despite all odds, against every enemy, through every riddle, Kaeso endured. 
+                  The oath is fulfilled. The ascent is complete.
                 </p>
-                <p className="text-sm md:text-base text-parchment/80 mt-4">
-                  Five trials conquered. Five ciphers decoded. One legacy forged.
-                </p>
-                <p className="text-bronze font-display text-lg mt-6 italic">
-                  Gloria et Honor
+                <p style={{ 
+                  fontSize: 'clamp(16px, 1.2vw, 20px)', 
+                  fontWeight: 600, 
+                  color: '#FFD700',
+                  fontStyle: 'italic',
+                  marginTop: '32px',
+                }}>
+                  "Fortuna Fortes Adiuvat" - Fortune Favors the Bold
                 </p>
               </div>
 
-              <div className="text-sm text-parchment/60 space-y-2">
-                <p>Journey completed: {completionDate}</p>
-                <p>Stages mastered: 5/5</p>
+              <div style={{
+                background: 'rgba(212, 175, 55, 0.2)',
+                border: '2px solid rgba(212, 175, 55, 0.5)',
+                borderRadius: '16px',
+                padding: 'clamp(24px, 4vw, 40px)',
+                marginBottom: '32px',
+              }}>
+                <p className="font-display mb-4"
+                   style={{
+                     fontSize: 'clamp(20px, 2.5vw, 28px)',
+                     fontWeight: 800,
+                     letterSpacing: '0.1em',
+                     color: '#FFD700',
+                   }}>
+                  CLAIM YOUR VICTORY
+                </p>
+                <div className="font-spectral space-y-4"
+                     style={{
+                       color: '#F5DEB3',
+                       fontSize: 'clamp(14px, 1vw, 16px)',
+                       lineHeight: 1.7,
+                       textAlign: 'left',
+                     }}>
+                  <p>
+                    <strong style={{ color: '#FFD700' }}>To receive official recognition:</strong>
+                  </p>
+                  <ol style={{ paddingLeft: '24px', marginTop: '16px' }}>
+                    <li style={{ marginBottom: '12px' }}>
+                      Compile all five answers (no spaces): 
+                      <br/>
+                      <span style={{ color: '#FFD700', fontFamily: 'monospace', fontSize: '0.95em' }}>
+                        Stage1 + Stage2 + Stage3 + Stage4 + Stage5
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '12px' }}>
+                      Take a screenshot of this completion page
+                    </li>
+                    <li style={{ marginBottom: '12px' }}>
+                      Email both to: 
+                      <a href="mailto:charlie@legion.cc" 
+                         style={{ 
+                           color: '#FFD700', 
+                           fontWeight: 700, 
+                           textDecoration: 'underline',
+                           marginLeft: '8px',
+                         }}>
+                        charlie@legion.cc
+                      </a>
+                    </li>
+                  </ol>
+                  <p style={{ 
+                    marginTop: '24px', 
+                    fontSize: '0.9em', 
+                    fontStyle: 'italic', 
+                    opacity: 0.9,
+                  }}>
+                    Your achievement will be recorded in the Legion's archives.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              <button
-                onClick={() => router.push('/')}
-                className="px-8 py-4 bg-bronze hover:bg-bronze/80
-                         text-parchment font-display text-xl font-bold
-                         border-4 border-obsidian
-                         transition-all duration-200
-                         transform hover:scale-[1.05]"
-              >
-                Return to Landing
-              </button>
-            </div>
-
-            {/* Share section */}
-            <div className="mt-16 pt-8 border-t-2 border-parchment/20">
-              <p className="text-sm text-parchment/60 mb-4">
-                Share your achievement:
-              </p>
-              <div className="flex gap-4 justify-center text-3xl">
-                <span className="cursor-pointer hover:scale-110 transition-transform" title="Twitter">🐦</span>
-                <span className="cursor-pointer hover:scale-110 transition-transform" title="Facebook">📘</span>
-                <span className="cursor-pointer hover:scale-110 transition-transform" title="LinkedIn">💼</span>
+              <div className="text-sm space-y-2"
+                   style={{
+                     color: '#D4AF37',
+                     fontFamily: 'Spectral',
+                   }}>
+                <p>Journey completed: <strong>{completionDate}</strong></p>
+                <p>Stages conquered: <strong>5/5</strong></p>
+                <p style={{ color: '#FFD700', fontSize: '1.1em', marginTop: '8px' }}>
+                  ⚔️ SENATOR ACHIEVIUM ⚔️
+                </p>
               </div>
             </div>
           </div>
-
-          {/* Bottom laurels */}
-          <div className="absolute bottom-8 left-8 text-8xl animate-laurel-glow transform rotate-180">🌿</div>
-          <div className="absolute bottom-8 right-8 text-8xl animate-laurel-glow transform scale-x-[-1] rotate-180">🌿</div>
-        </div>
-      </Panel>
-    </main>
+        </main>
+      </div>
+    </>
   );
 }
-
