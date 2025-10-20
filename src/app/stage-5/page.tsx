@@ -114,6 +114,16 @@ export default function Stage5Page() {
             </h1>
 
             <div className="mb-8 text-center">
+              <h2 className="font-spectral text-xl md:text-2xl mb-6"
+                  style={{
+                    color: '#DDA0DD',
+                    fontWeight: 600,
+                    fontStyle: 'italic',
+                    letterSpacing: '0.02em',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                  }}>
+                Year Ten. Curia Julia.
+              </h2>
               <p className="font-spectral italic mb-6"
                  style={{
                    color: '#F5DEB3',
@@ -177,7 +187,7 @@ export default function Stage5Page() {
                 </p>
               </div>
 
-              <div className="font-spectral text-center"
+              <div className="font-spectral"
                    style={{
                      background: 'rgba(147, 112, 219, 0.1)',
                      borderRadius: '12px',
@@ -196,6 +206,8 @@ export default function Stage5Page() {
                        fontFamily: 'monospace',
                        userSelect: 'text',
                        cursor: 'text',
+                       textAlign: 'justify',
+                       textAlignLast: 'justify',
                      }}>
                     {line}
                   </p>
@@ -204,53 +216,60 @@ export default function Stage5Page() {
             </div>
 
             {!showSuccess && (
-              <form onSubmit={handleSubmit} className="mb-6">
-                <div className="flex flex-col items-center gap-4">
-                  <input
-                    type="text"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Enter the word that crowns strength..."
-                    className="w-full max-w-md font-spectral"
-                    style={{
-                      padding: '16px 24px',
-                      fontSize: '18px',
-                      background: 'rgba(106, 58, 138, 0.2)',
-                      backdropFilter: 'blur(12px)',
-                      WebkitBackdropFilter: 'blur(12px)',
-                      color: '#F5DEB3',
-                      border: '2px solid rgba(106, 58, 138, 0.4)',
-                      borderRadius: '12px',
-                      boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-                      textAlign: 'center',
-                      letterSpacing: '0.05em',
-                    }}
-                  />
+              <form onSubmit={handleSubmit} className="mb-6 w-full max-w-2xl mx-auto">
+                <div className="space-y-6 w-full">
+                  <div className="relative mb-12">
+                    <input
+                      type="text"
+                      value={userInput}
+                      onChange={(e) => setUserInput(e.target.value)}
+                      placeholder="Enter the word that crowns strength..."
+                      className="w-full font-spectral"
+                      style={{
+                        padding: '16px 24px',
+                        fontSize: '18px',
+                        background: 'rgba(106, 58, 138, 0.2)',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)',
+                        color: '#F5DEB3',
+                        border: '2px solid rgba(106, 58, 138, 0.4)',
+                        borderRadius: '12px',
+                        boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+                        textAlign: 'center',
+                        letterSpacing: '0.05em',
+                      }}
+                    />
+                  </div>
                   
                   <button
                     type="submit"
-                    className="font-display w-full max-w-md px-8 py-3 transition-all"
+                    disabled={!userInput.trim()}
+                    className="w-full font-display relative overflow-hidden transition-all duration-300 uppercase"
                     style={{
-                      fontSize: 'clamp(14px, 1.2vw, 16px)',
+                      fontSize: 'clamp(14px, 1.4vw, 18px)',
                       fontWeight: 700,
-                      letterSpacing: '0.08em',
-                      background: '#8B2F2B',
-                      color: '#F5DEB3',
-                      border: '2px solid #6C2421',
-                      borderRadius: '12px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-                      cursor: 'pointer',
+                      letterSpacing: '0.16em',
+                      padding: 'clamp(12px, 1.5vw, 16px) clamp(20px, 2.5vw, 30px)',
+                      borderRadius: '10px',
+                      background: '#8a2f2b',
+                      color: '#fff',
+                      border: '2px solid #6c2421',
+                      boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+                      cursor: !userInput.trim() ? 'not-allowed' : 'pointer',
+                      opacity: !userInput.trim() ? 0.5 : 1,
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = '#A03834';
-                      e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.5)';
+                      if (userInput.trim()) {
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.35)';
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = '#8B2F2B';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.25)';
                     }}
                   >
-                    Submit Command
+                    SUBMIT
                   </button>
                 </div>
               </form>
