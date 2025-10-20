@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProgressBar } from '@/components/ProgressBar';
+import { InputCard } from '@/components/InputCard';
 import { useStageGuard } from '@/lib/guard';
-import { setProgress } from '@/lib/progress';
+import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
 const _0xbg5 = '/stage5-bg.png';
 const _0xans = 'imperium';
@@ -27,30 +28,24 @@ const DECREE_LINES = [
 export default function Stage5Page() {
   const router = useRouter();
   const { isChecking, isAllowed } = useStageGuard(5);
-  const [userInput, setUserInput] = useState('');
-  const [showError, setShowError] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showHintModal, setShowHintModal] = useState(false);
-  const [hasAttempted, setHasAttempted] = useState(false);
+  const [savedInput] = useState(loadStageInput(5));
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setHasAttempted(true);
-    
-    const normalized = userInput.toLowerCase().trim();
+  const validateAnswer = async (input: string): Promise<boolean> => {
+    const normalized = input.toLowerCase().trim();
     
     if (normalized === _0xans) {
-      setShowSuccess(true);
-      setShowError(false);
       setProgress(5);
+      return true;
     } else {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 2000);
+      saveStageInput(5, input);
+      return false;
     }
   };
 
-  const handleProceed = () => {
-    router.push('/victory');
+  const handleSuccess = () => {
+    setTimeout(() => {
+      router.push('/victory');
+    }, 1500);
   };
 
   if (isChecking) {
@@ -208,187 +203,21 @@ export default function Stage5Page() {
               </div>
             </div>
 
-            {!showSuccess && (
-              <form onSubmit={handleSubmit} className="mb-6">
-                <div className="space-y-6">
-                  <div className="relative mb-12">
-                    <input
-                      type="text"
-                      value={userInput}
-                      onChange={(e) => setUserInput(e.target.value)}
-                      placeholder="Enter the word that crowns strength..."
-                      className="w-full font-spectral"
-                      style={{
-                        padding: '16px 24px',
-                        fontSize: '18px',
-                        background: 'rgba(106, 58, 138, 0.2)',
-                        backdropFilter: 'blur(12px)',
-                        WebkitBackdropFilter: 'blur(12px)',
-                        color: '#F5DEB3',
-                        border: '2px solid rgba(106, 58, 138, 0.4)',
-                        borderRadius: '12px',
-                        boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-                        textAlign: 'center',
-                        letterSpacing: '0.05em',
-                      }}
-                    />
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={!userInput.trim()}
-                    className="w-full font-display relative overflow-hidden transition-all duration-300 uppercase"
-                    style={{
-                      fontSize: 'clamp(14px, 1.4vw, 18px)',
-                      fontWeight: 700,
-                      letterSpacing: '0.16em',
-                      padding: 'clamp(12px, 1.5vw, 16px) clamp(20px, 2.5vw, 30px)',
-                      borderRadius: '10px',
-                      background: '#8a2f2b',
-                      color: '#fff',
-                      border: '2px solid #6c2421',
-                      boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
-                      cursor: !userInput.trim() ? 'not-allowed' : 'pointer',
-                      opacity: !userInput.trim() ? 0.5 : 1,
-                    }}
-                    onMouseEnter={(e) => {
-                      if (userInput.trim()) {
-                        e.currentTarget.style.transform = 'translateY(-1px)';
-                        e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.35)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.25)';
-                    }}
-                  >
-                    SUBMIT
-                  </button>
-                </div>
-              </form>
-            )}
+            <InputCard
+              onSubmit={validateAnswer}
+              placeholder="Enter the word that crowns strength..."
+              hint1="Ancient scribes valued what frames a text—not just what fills it. Boundaries hold secrets."
+              hint2="Where each line begins and where it ends—these are not accidents. Trace the edges from top to bottom, then unite them."
+              stageNumber={5}
+              savedInput={savedInput}
+              onSuccess={handleSuccess}
+              hint1UnlockDelay={0}
+              hint2UnlockDelay={0}
+              hint1UnlockAttempt={1}
+              hint2UnlockAttempt={2}
+            />
 
-            {showError && (
-              <div className="mb-6 text-center">
-                <p className="font-spectral text-lg"
-                   style={{
-                     color: '#FF6B6B',
-                     fontWeight: 600,
-                     textShadow: '0 2px 4px rgba(0,0,0,0.8)',
-                   }}>
-                  The word eludes you. Read head and tail once more.
-                </p>
-              </div>
-            )}
-
-            {showSuccess && (
-              <div className="mb-8 text-center"
-                   style={{
-                     background: 'rgba(147, 112, 219, 0.2)',
-                     borderRadius: '16px',
-                     border: '2px solid rgba(147, 112, 219, 0.5)',
-                     padding: '32px',
-                   }}>
-                <p className="font-display mb-4"
-                   style={{
-                     fontSize: 'clamp(24px, 3vw, 36px)',
-                     fontWeight: 900,
-                     letterSpacing: '0.12em',
-                     color: '#D4AF37',
-                     textShadow: '0 3px 6px rgba(0,0,0,0.8)',
-                   }}>
-                  {COPY.successBanner}
-                </p>
-                <p className="font-spectral mb-6"
-                   style={{
-                     fontSize: 'clamp(14px, 1.2vw, 18px)',
-                     color: '#F5DEB3',
-                     fontStyle: 'italic',
-                     textShadow: '0 2px 4px rgba(0,0,0,0.6)',
-                   }}>
-                  "{COPY.successSubtext}"
-                </p>
-                <p className="font-display mb-6"
-                   style={{
-                     fontSize: 'clamp(32px, 4vw, 48px)',
-                     fontWeight: 900,
-                     letterSpacing: '0.3em',
-                     color: '#FFD700',
-                     textShadow: '0 4px 8px rgba(0,0,0,0.9)',
-                   }}>
-                  I M P E R I U M
-                </p>
-                <p className="font-spectral mb-8"
-                   style={{
-                     fontSize: 'clamp(13px, 1vw, 15px)',
-                     color: '#DEB887',
-                     lineHeight: 1.7,
-                     maxWidth: '600px',
-                     margin: '0 auto 32px',
-                   }}>
-                  The Legatus rises. This is the proof the founders demanded: not brute cunning, but a mind that binds power to law. The standards are raised, the order is issued, and the campaign turns in Rome's favor.
-                </p>
-                <button
-                  onClick={handleProceed}
-                  className="font-display px-8 py-3 transition-all"
-                  style={{
-                    fontSize: 'clamp(14px, 1.2vw, 16px)',
-                    fontWeight: 700,
-                    letterSpacing: '0.08em',
-                    background: '#8B4513',
-                    color: '#F5DEB3',
-                    border: '2px solid #654321',
-                    borderRadius: '12px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#A0522D';
-                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#8B4513';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
-                  }}
-                >
-                  Proceed to Coronation
-                </button>
-              </div>
-            )}
-
-            {!showSuccess && (
-              <div className="flex justify-center mb-6">
-                <button
-                  onClick={() => setShowHintModal(true)}
-                  disabled={!hasAttempted}
-                  className="font-spectral px-6 py-2 transition-all"
-                  style={{
-                    fontSize: 'clamp(13px, 1vw, 15px)',
-                    fontWeight: 600,
-                    background: !hasAttempted ? 'rgba(75, 40, 109, 0.3)' : 'rgba(106, 58, 138, 0.4)',
-                    color: !hasAttempted ? '#8B7388' : '#F5DEB3',
-                    border: '2px solid rgba(106, 58, 138, 0.5)',
-                    borderRadius: '12px',
-                    cursor: !hasAttempted ? 'not-allowed' : 'pointer',
-                    opacity: !hasAttempted ? 0.5 : 1,
-                  }}
-                  onMouseEnter={(e) => {
-                    if (hasAttempted) {
-                      e.currentTarget.style.background = 'rgba(106, 58, 138, 0.6)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (hasAttempted) {
-                      e.currentTarget.style.background = 'rgba(106, 58, 138, 0.4)';
-                    }
-                  }}
-                >
-                  Consult the Legatus
-                </button>
-              </div>
-            )}
-
-            <div className="text-center">
+            <div className="text-center mt-8">
               <button
                 onClick={() => router.push('/')}
                 className="font-spectral px-6 py-2 transition-all"
@@ -414,88 +243,6 @@ export default function Stage5Page() {
             </div>
           </div>
         </main>
-
-        {showHintModal && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{
-              background: 'rgba(0, 0, 0, 0.8)',
-              backdropFilter: 'blur(8px)',
-            }}
-            onClick={() => setShowHintModal(false)}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                background: 'rgba(75, 40, 109, 0.95)',
-                borderRadius: '16px',
-                border: '2px solid rgba(106, 58, 138, 0.5)',
-                padding: '32px',
-                maxWidth: '600px',
-                width: '100%',
-              }}
-            >
-              <h3 className="font-display text-center mb-6"
-                  style={{
-                    fontSize: 'clamp(20px, 2.5vw, 28px)',
-                    fontWeight: 800,
-                    color: '#D4AF37',
-                    letterSpacing: '0.1em',
-                  }}>
-                Counsel of the Legatus
-              </h3>
-              <div className="space-y-4 mb-8">
-                <p className="font-spectral"
-                   style={{
-                     color: '#F5DEB3',
-                     fontSize: 'clamp(13px, 1vw, 15px)',
-                     lineHeight: 1.6,
-                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-                   }}>
-                  1. The Senate reads decrees by their caput et cauda - head and tail.
-                </p>
-                <p className="font-spectral"
-                   style={{
-                     color: '#F5DEB3',
-                     fontSize: 'clamp(13px, 1vw, 15px)',
-                     lineHeight: 1.6,
-                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-                   }}>
-                  2. The head is what begins; the tail is what ends. Read both from top to bottom.
-                </p>
-                <p className="font-spectral"
-                   style={{
-                     color: '#F5DEB3',
-                     fontSize: 'clamp(13px, 1vw, 15px)',
-                     lineHeight: 1.6,
-                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-                   }}>
-                  3. Unite head and tail to reveal the word that binds power to law.
-                </p>
-              </div>
-              <button
-                onClick={() => setShowHintModal(false)}
-                className="font-spectral w-full px-6 py-2 transition-all"
-                style={{
-                  fontSize: 'clamp(13px, 1vw, 15px)',
-                  fontWeight: 600,
-                  background: 'rgba(106, 58, 138, 0.6)',
-                  color: '#F5DEB3',
-                  border: '2px solid rgba(106, 58, 138, 0.8)',
-                  borderRadius: '12px',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(106, 58, 138, 0.8)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(106, 58, 138, 0.6)';
-                }}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );
