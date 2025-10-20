@@ -12,6 +12,7 @@ interface DecryptModalProps {
   wordFragment: string;
   isDefeated: boolean;
   onDefeatEnemy?: (fragment: string) => void;
+  description: string;
 }
 
 export function DecryptModal({
@@ -23,6 +24,7 @@ export function DecryptModal({
   wordFragment,
   isDefeated,
   onDefeatEnemy,
+  description,
 }: DecryptModalProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [passphrase, setPassphrase] = useState('');
@@ -200,6 +202,32 @@ export function DecryptModal({
             alt={enemyName}
             className="w-full h-full object-cover"
           />
+        </div>
+
+        {/* Enemy Description */}
+        <div
+          className="mb-6 px-6 py-4"
+          style={{
+            background: 'rgba(180, 0, 0, 0.15)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '2px solid rgba(180, 0, 0, 0.4)',
+            borderRadius: '12px',
+            boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <p
+            className="font-spectral text-center"
+            style={{
+              fontSize: 'clamp(13px, 1.1vw, 15px)',
+              color: '#ffcccc',
+              lineHeight: 1.7,
+              fontWeight: 400,
+              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+            }}
+          >
+            {description}
+          </p>
         </div>
 
         {/* Riddle Clue or Defeated Status */}
