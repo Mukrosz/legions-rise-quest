@@ -11,17 +11,18 @@ const _0xans = 'imperium';
 
 const COPY = {
   subheader: 'By mandate of the Founders, the Senate speaks through the Legatus.',
-  storyline: 'In private audience, the Legatus presents an intercepted enemy decree that his scribes cannot crack. If Kaeso extracts the hidden command within the lines, Rome secures victory and his path to coronation opens.',
-  legatusLine: 'An enemy decree lies before us. My scribes hear fine words—bring me the command within, and Rome moves.',
+  storyline: 'In the hush of the Curia\'s inner chamber, Kaeso is summoned before the Legatus. No enemy missive lies on the table - only a worn tablet engraved with a Senatorial maxim. The Legatus explains that this is the oath by which Rome keeps herself upright: a verse spoken in councils before war, hiding Rome\'s one condition for command. Many can recite the words; few can read what they require.',
+  legatusLine: 'Strength wins cheers; order wins Rome. Read the maxim as the Senate reads it - head and tail - and bring me the word that crowns strength.',
+  explanation: 'Kaeso studies the four-line motto. The Senate\'s method is simple but exacting: take the first letters of each line (the acrostic), then the last letters of each line (the telestich), and join them. Only those who know to read a decree\'s caput et cauda can reveal Rome\'s true charge.',
   successBanner: 'IMPERIUM CONFIRMED',
   successSubtext: 'Law crowns strength.',
 };
 
 const DECREE_LINES = [
-  'IN LEGIBUS VIRTUS STAT SEQUITUR HONOR',
-  'MODERATIO CIVES DUCAT CONSILII',
-  'PROBITAS DOMET FASTUS ROMANO RITU',
-  'EQUITAS MERITA TOLLAT AD SUMMUM',
+  'IN LEGIBUS VIRTUS STAT  SEQUITUR HONOR',
+  'MODERATIO CIVES  DUCAT  CONSILII     ',
+  'PROBITAS DOMET FASTUS  ROMANO RITU  ',
+  'EQUITAS  MERITA TOLLAT AD SUMMUM    ',
 ];
 
 export default function Stage5Page() {
@@ -165,7 +166,7 @@ export default function Stage5Page() {
                      textShadow: '0 2px 4px rgba(0,0,0,0.7)',
                      marginBottom: '8px',
                    }}>
-                  THE ENEMY DECREE
+                  SENATORIAL MAXIM
                 </p>
                 <p className="font-spectral text-xs"
                    style={{
@@ -173,7 +174,7 @@ export default function Stage5Page() {
                      fontStyle: 'italic',
                      opacity: 0.8,
                    }}>
-                  Intercepted parchment • Origin unknown
+                  Carved tablet • Spoken in councils before war
                 </p>
               </div>
 
@@ -202,13 +203,15 @@ export default function Stage5Page() {
                 ))}
               </div>
 
-              <p className="font-spectral text-center text-xs mt-4"
+              <p className="font-spectral text-center text-sm mt-6"
                  style={{
-                   color: '#D2B48C',
-                   fontStyle: 'italic',
-                   opacity: 0.7,
+                   color: '#DEB887',
+                   lineHeight: 1.7,
+                   opacity: 0.9,
+                   maxWidth: '700px',
+                   margin: '24px auto 0',
                  }}>
-                The command lies hidden in the structure itself
+                {COPY.explanation}
               </p>
             </div>
 
@@ -219,7 +222,7 @@ export default function Stage5Page() {
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Extract the hidden command..."
+                    placeholder="Enter the word that crowns strength..."
                     className="w-full max-w-md font-spectral"
                     style={{
                       padding: '16px 24px',
@@ -273,7 +276,7 @@ export default function Stage5Page() {
                      fontWeight: 600,
                      textShadow: '0 2px 4px rgba(0,0,0,0.8)',
                    }}>
-                  Incorrect. The command remains hidden.
+                  The word eludes you. Read head and tail once more.
                 </p>
               </div>
             )}
@@ -305,7 +308,7 @@ export default function Stage5Page() {
                    }}>
                   "{COPY.successSubtext}"
                 </p>
-                <p className="font-display mb-8"
+                <p className="font-display mb-6"
                    style={{
                      fontSize: 'clamp(32px, 4vw, 48px)',
                      fontWeight: 900,
@@ -314,6 +317,16 @@ export default function Stage5Page() {
                      textShadow: '0 4px 8px rgba(0,0,0,0.9)',
                    }}>
                   I M P E R I U M
+                </p>
+                <p className="font-spectral mb-8"
+                   style={{
+                     fontSize: 'clamp(13px, 1vw, 15px)',
+                     color: '#DEB887',
+                     lineHeight: 1.7,
+                     maxWidth: '600px',
+                     margin: '0 auto 32px',
+                   }}>
+                  The Legatus rises. This is the proof the founders demanded: not brute cunning, but a mind that binds power to law. The standards are raised, the order is issued, and the campaign turns in Rome's favor.
                 </p>
                 <button
                   onClick={handleProceed}
@@ -439,7 +452,7 @@ export default function Stage5Page() {
                      lineHeight: 1.6,
                      textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                    }}>
-                  1. Ancient scribes hid commands in the structure of texts, not merely the words.
+                  1. The Senate reads decrees by their caput et cauda - head and tail.
                 </p>
                 <p className="font-spectral"
                    style={{
@@ -448,7 +461,7 @@ export default function Stage5Page() {
                      lineHeight: 1.6,
                      textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                    }}>
-                  2. Read what begins each line, then read what ends each line.
+                  2. The head is what begins; the tail is what ends. Read both from top to bottom.
                 </p>
                 <p className="font-spectral"
                    style={{
@@ -457,7 +470,7 @@ export default function Stage5Page() {
                      lineHeight: 1.6,
                      textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                    }}>
-                  3. Join both readings to form a single word of command.
+                  3. Unite head and tail to reveal the word that binds power to law.
                 </p>
               </div>
               <button
