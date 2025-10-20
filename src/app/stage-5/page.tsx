@@ -116,7 +116,7 @@ export default function Stage5Page() {
             <div className="mb-8 text-center">
               <h2 className="font-spectral text-xl md:text-2xl mb-6"
                   style={{
-                    color: '#DDA0DD',
+                    color: '#F5DEB3',
                     fontWeight: 600,
                     fontStyle: 'italic',
                     letterSpacing: '0.02em',
