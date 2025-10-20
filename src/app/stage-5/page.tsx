@@ -18,10 +18,10 @@ const COPY = {
 };
 
 const DECREE_LINES = [
-  'IN LEGIBUS VIRTUS STAT  SEQUITUR HONOR',
-  'MODERATIO CIVES  DUCAT  CONSILII     ',
-  'PROBITAS DOMET FASTUS  ROMANO RITU  ',
-  'EQUITAS  MERITA TOLLAT AD SUMMUM    ',
+  'IN LEGIBUS VIRTUS STAT SEQUITUR HONOR',
+  'MODERATIO CIVES DUCAT CONSILII',
+  'PROBITAS DOMET FASTUS ROMANO RITU',
+  'EQUITAS MERITA TOLLAT AD SUMMUM',
 ];
 
 export default function Stage5Page() {
@@ -187,20 +187,21 @@ export default function Stage5Page() {
                 </p>
               </div>
 
-              <div className="font-spectral"
+              <div className="font-spectral mx-auto"
                    style={{
                      background: 'rgba(147, 112, 219, 0.1)',
                      borderRadius: '12px',
                      padding: 'clamp(24px, 3vw, 40px)',
                      border: '1px solid rgba(106, 58, 138, 0.3)',
+                     maxWidth: '600px',
                    }}>
                 {DECREE_LINES.map((line, idx) => (
                   <p key={idx}
                      style={{
-                       fontSize: 'clamp(14px, 1.1vw, 18px)',
+                       fontSize: 'clamp(15px, 1.2vw, 18px)',
                        fontWeight: 500,
-                       letterSpacing: '0.05em',
-                       lineHeight: 2,
+                       letterSpacing: '0.08em',
+                       lineHeight: 2.2,
                        color: '#F5DEB3',
                        textShadow: '0 1px 3px rgba(0,0,0,0.6)',
                        fontFamily: 'monospace',
@@ -208,6 +209,7 @@ export default function Stage5Page() {
                        cursor: 'text',
                        textAlign: 'justify',
                        textAlignLast: 'justify',
+                       marginBottom: idx === DECREE_LINES.length - 1 ? 0 : '0.5em',
                      }}>
                     {line}
                   </p>
