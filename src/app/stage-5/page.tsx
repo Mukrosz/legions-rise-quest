@@ -1,127 +1,52 @@
-/**
- * Stage V - Vox Senatus (Voice of the Senate)
- * Interactive mosaic labyrinth puzzle - trace the lawful path
- */
-
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
 import { setProgress } from '@/lib/progress';
 
-// Configurables
-const BACKGROUND_PNG_PATH = '/stage5-bg.png';
-const EXPECTED_PATH = [1, 2, 3, 5, 7, 10, 13, 17, 21, 26];
-const ANSWER_WORD = 'IMPERIUM';
+const _0xbg5 = '/stage5-bg.png';
+const _0xans = 'imperium';
 
 const COPY = {
-  intro: 'Within the Legatus\' chamber, beneath standards blessed by Remus and Romulus, Kaeso kneels. Power is granted in Rome by law and lineage. Prove you can wield it.',
-  legatus: 'By mandate of the Founders, I set your final trial. Find the single lawful path; Rome crowns those who master order.',
-  objective: 'Traverse from Porta to Apex on the mosaic. Let order guide your march; the stones will speak the word of dominion.',
-  wrongNode: 'Ambitio te fallit.',
-  regression: 'Where order falters, Rome withholds.',
-  resetCTA: 'Reform the March',
+  subheader: 'By mandate of the Founders, the Senate speaks through the Legatus.',
+  storyline: 'In private audience, the Legatus presents an intercepted enemy decree that his scribes cannot crack. If Kaeso extracts the hidden command within the lines, Rome secures victory and his path to coronation opens.',
+  legatusLine: 'An enemy decree lies before us. My scribes hear fine words—bring me the command within, and Rome moves.',
   successBanner: 'IMPERIUM CONFIRMED',
   successSubtext: 'Law crowns strength.',
 };
 
-const HINTS = [
-  'Order, not speed. Read the numerals as a magistrate would.',
-  'True steps do not squander rank; their measure holds, then rises.',
-  'A just march reveals letters only at journey\'s end.',
-];
-
-const NODES = [
-  { id: 1, numeral: 'I', x: 10, y: 90, isPorta: true },
-  { id: 2, numeral: 'II', x: 20, y: 80 },
-  { id: 3, numeral: 'III', x: 30, y: 75 },
-  { id: 4, numeral: 'II', x: 25, y: 70 },
-  { id: 5, numeral: 'V', x: 40, y: 70 },
-  { id: 6, numeral: 'IV', x: 35, y: 65 },
-  { id: 7, numeral: 'VII', x: 50, y: 65 },
-  { id: 8, numeral: 'VI', x: 45, y: 60 },
-  { id: 9, numeral: 'VIII', x: 55, y: 58 },
-  { id: 10, numeral: 'X', x: 60, y: 55 },
-  { id: 11, numeral: 'IX', x: 58, y: 50 },
-  { id: 12, numeral: 'XI', x: 65, y: 48 },
-  { id: 13, numeral: 'XIII', x: 70, y: 45 },
-  { id: 14, numeral: 'XII', x: 68, y: 40 },
-  { id: 15, numeral: 'XV', x: 75, y: 38 },
-  { id: 16, numeral: 'XIV', x: 72, y: 35 },
-  { id: 17, numeral: 'XVII', x: 78, y: 30 },
-  { id: 18, numeral: 'XVI', x: 76, y: 25 },
-  { id: 19, numeral: 'XIX', x: 82, y: 23 },
-  { id: 20, numeral: 'XVIII', x: 80, y: 20 },
-  { id: 21, numeral: 'XXI', x: 85, y: 15 },
-  { id: 22, numeral: 'XX', x: 83, y: 12 },
-  { id: 23, numeral: 'XXIII', x: 88, y: 10 },
-  { id: 24, numeral: 'XXII', x: 86, y: 8 },
-  { id: 25, numeral: 'XXV', x: 90, y: 5 },
-  { id: 26, numeral: 'XXVI', x: 50, y: 50, isApex: true },
+const DECREE_LINES = [
+  'IN LEGIBUS VIRTUS STAT SEQUITUR HONOR',
+  'MODERATIO CIVES DUCAT CONSILII',
+  'PROBITAS DOMET FASTUS ROMANO RITU',
+  'EQUITAS MERITA TOLLAT AD SUMMUM',
 ];
 
 export default function Stage5Page() {
   const router = useRouter();
   const { isChecking, isAllowed } = useStageGuard(5);
-  const [clickedPath, setClickedPath] = useState<number[]>([]);
+  const [userInput, setUserInput] = useState('');
   const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
-  const [revealedWord, setRevealedWord] = useState('');
   const [showHintModal, setShowHintModal] = useState(false);
   const [hasAttempted, setHasAttempted] = useState(false);
-  const [lastClickTime, setLastClickTime] = useState(0);
-  const [rapidClickCount, setRapidClickCount] = useState(0);
 
-  const handleNodeClick = (nodeId: number) => {
-    const now = Date.now();
-    
-    if (now - lastClickTime < 200) {
-      setRapidClickCount(prev => prev + 1);
-      if (rapidClickCount >= 5) {
-        setErrorMessage(COPY.regression);
-        setShowError(true);
-        handleReset();
-        setRapidClickCount(0);
-        return;
-      }
-    } else {
-      setRapidClickCount(0);
-    }
-    
-    setLastClickTime(now);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     setHasAttempted(true);
     
-    const newPath = [...clickedPath, nodeId];
-    setClickedPath(newPath);
+    const normalized = userInput.toLowerCase().trim();
     
-    const expectedSoFar = EXPECTED_PATH.slice(0, newPath.length);
-    
-    if (JSON.stringify(newPath) !== JSON.stringify(expectedSoFar)) {
-      setErrorMessage(COPY.wrongNode);
-      setShowError(true);
-      setTimeout(() => {
-        handleReset();
-      }, 1500);
-      return;
-    }
-    
-    if (newPath.length === EXPECTED_PATH.length) {
-      const letters = ANSWER_WORD.split('');
-      setRevealedWord(letters.join(' '));
+    if (normalized === _0xans) {
       setShowSuccess(true);
+      setShowError(false);
       setProgress(5);
+    } else {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 2000);
     }
-  };
-
-  const handleReset = () => {
-    setClickedPath([]);
-    setShowError(false);
-    setErrorMessage('');
-    setShowSuccess(false);
-    setRevealedWord('');
   };
 
   const handleProceed = () => {
@@ -154,7 +79,7 @@ export default function Stage5Page() {
       <div
         className="min-h-screen"
         style={{
-          backgroundImage: `url("${BACKGROUND_PNG_PATH}")`,
+          backgroundImage: `url("${_0xbg5}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -164,7 +89,7 @@ export default function Stage5Page() {
 
         <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
           <div
-            className="w-full max-w-6xl"
+            className="w-full max-w-5xl"
             style={{
               background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.12), rgba(160, 82, 45, 0.15), rgba(101, 67, 33, 0.12))',
               backdropFilter: 'blur(20px)',
@@ -189,6 +114,15 @@ export default function Stage5Page() {
             </h1>
 
             <div className="mb-8 text-center">
+              <p className="font-spectral italic mb-6"
+                 style={{
+                   color: '#F5DEB3',
+                   fontSize: 'clamp(13px, 0.95vw, 15px)',
+                   fontWeight: 600,
+                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
+                 }}>
+                {COPY.subheader}
+              </p>
               <p className="font-spectral mb-4"
                  style={{
                    color: '#DEB887',
@@ -199,102 +133,137 @@ export default function Stage5Page() {
                    maxWidth: '800px',
                    margin: '0 auto 16px',
                  }}>
-                {COPY.intro}
+                {COPY.storyline}
               </p>
-              <p className="font-spectral italic mb-4"
+              <p className="font-spectral italic"
                  style={{
-                   color: '#F5DEB3',
+                   color: '#D4AF37',
                    fontSize: 'clamp(13px, 0.95vw, 15px)',
                    fontWeight: 600,
                    textShadow: '0 2px 4px rgba(0,0,0,0.8)',
-                 }}>
-                "{COPY.legatus}"
-              </p>
-              <p className="font-spectral"
-                 style={{
-                   color: '#D2B48C',
-                   fontSize: 'clamp(13px, 0.95vw, 15px)',
-                   lineHeight: 1.6,
-                   textShadow: '0 1px 3px rgba(0,0,0,0.6)',
                    maxWidth: '700px',
                    margin: '0 auto',
                  }}>
-                {COPY.objective}
+                "{COPY.legatusLine}"
               </p>
             </div>
 
-            <div className="mb-8 flex justify-center items-center"
+            <div className="mb-8"
                  style={{
-                   minHeight: '400px',
-                   background: 'rgba(101, 67, 33, 0.2)',
+                   background: 'rgba(101, 67, 33, 0.25)',
                    borderRadius: '16px',
                    border: '2px solid rgba(139, 69, 19, 0.4)',
-                   padding: '32px',
+                   padding: 'clamp(32px, 4vw, 48px)',
                  }}>
-              <svg viewBox="0 0 100 100" style={{ width: '100%', maxWidth: '600px', height: 'auto' }}>
-                <defs>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
+              <div className="text-center mb-6">
+                <p className="font-display"
+                   style={{
+                     fontSize: 'clamp(18px, 2vw, 24px)',
+                     fontWeight: 700,
+                     letterSpacing: '0.08em',
+                     color: '#D4AF37',
+                     textShadow: '0 2px 4px rgba(0,0,0,0.7)',
+                     marginBottom: '8px',
+                   }}>
+                  THE ENEMY DECREE
+                </p>
+                <p className="font-spectral text-xs"
+                   style={{
+                     color: '#D2B48C',
+                     fontStyle: 'italic',
+                     opacity: 0.8,
+                   }}>
+                  Intercepted parchment • Origin unknown
+                </p>
+              </div>
 
-                {clickedPath.length > 1 && clickedPath.map((nodeId, idx) => {
-                  if (idx === 0) return null;
-                  const fromNode = NODES.find(n => n.id === clickedPath[idx - 1]);
-                  const toNode = NODES.find(n => n.id === nodeId);
-                  if (!fromNode || !toNode) return null;
-                  return (
-                    <line
-                      key={`line-${idx}`}
-                      x1={fromNode.x}
-                      y1={fromNode.y}
-                      x2={toNode.x}
-                      y2={toNode.y}
-                      stroke="#D4AF37"
-                      strokeWidth="0.5"
-                      strokeOpacity="0.8"
-                    />
-                  );
-                })}
+              <div className="font-spectral text-center"
+                   style={{
+                     background: 'rgba(245, 222, 179, 0.1)',
+                     borderRadius: '12px',
+                     padding: 'clamp(24px, 3vw, 40px)',
+                     border: '1px solid rgba(139, 69, 19, 0.3)',
+                   }}>
+                {DECREE_LINES.map((line, idx) => (
+                  <p key={idx}
+                     style={{
+                       fontSize: 'clamp(14px, 1.1vw, 18px)',
+                       fontWeight: 500,
+                       letterSpacing: '0.05em',
+                       lineHeight: 2,
+                       color: '#F5DEB3',
+                       textShadow: '0 1px 3px rgba(0,0,0,0.6)',
+                       fontFamily: 'monospace',
+                       userSelect: 'text',
+                       cursor: 'text',
+                     }}>
+                    {line}
+                  </p>
+                ))}
+              </div>
 
-                {NODES.map((node) => {
-                  const isClicked = clickedPath.includes(node.id);
-                  const isPorta = node.isPorta;
-                  const isApex = node.isApex;
-                  
-                  return (
-                    <g key={node.id}>
-                      <circle
-                        cx={node.x}
-                        cy={node.y}
-                        r={isPorta || isApex ? 3 : 2}
-                        fill={isClicked ? '#D4AF37' : isPorta ? '#4CAF50' : isApex ? '#8B4513' : '#8B7355'}
-                        stroke={isPorta || isApex ? '#FFD700' : '#654321'}
-                        strokeWidth="0.3"
-                        onClick={() => !showSuccess && handleNodeClick(node.id)}
-                        style={{ cursor: showSuccess ? 'default' : 'pointer' }}
-                        filter={isPorta || isApex ? 'url(#glow)' : undefined}
-                      />
-                      <text
-                        x={node.x}
-                        y={node.y - 3}
-                        textAnchor="middle"
-                        fill="#F5DEB3"
-                        fontSize="2.5"
-                        fontWeight="600"
-                        style={{ pointerEvents: 'none', userSelect: 'none' }}
-                      >
-                        {isPorta ? 'Porta' : isApex ? 'Apex' : node.numeral}
-                      </text>
-                    </g>
-                  );
-                })}
-              </svg>
+              <p className="font-spectral text-center text-xs mt-4"
+                 style={{
+                   color: '#D2B48C',
+                   fontStyle: 'italic',
+                   opacity: 0.7,
+                 }}>
+                The command lies hidden in the structure itself
+              </p>
             </div>
+
+            {!showSuccess && (
+              <form onSubmit={handleSubmit} className="mb-6">
+                <div className="flex flex-col items-center gap-4">
+                  <input
+                    type="text"
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="Extract the hidden command..."
+                    className="w-full max-w-md font-spectral"
+                    style={{
+                      padding: '16px 24px',
+                      fontSize: '18px',
+                      background: 'rgba(139, 69, 19, 0.2)',
+                      backdropFilter: 'blur(12px)',
+                      WebkitBackdropFilter: 'blur(12px)',
+                      color: '#F5DEB3',
+                      border: '2px solid rgba(139, 69, 19, 0.4)',
+                      borderRadius: '12px',
+                      boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
+                      textAlign: 'center',
+                      letterSpacing: '0.05em',
+                    }}
+                  />
+                  
+                  <button
+                    type="submit"
+                    className="font-display px-8 py-3 transition-all"
+                    style={{
+                      fontSize: 'clamp(14px, 1.2vw, 16px)',
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      background: '#8B4513',
+                      color: '#F5DEB3',
+                      border: '2px solid #654321',
+                      borderRadius: '12px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                      cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#A0522D';
+                      e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#8B4513';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
+                    }}
+                  >
+                    Submit Command
+                  </button>
+                </div>
+              </form>
+            )}
 
             {showError && (
               <div className="mb-6 text-center">
@@ -304,7 +273,7 @@ export default function Stage5Page() {
                      fontWeight: 600,
                      textShadow: '0 2px 4px rgba(0,0,0,0.8)',
                    }}>
-                  {errorMessage}
+                  Incorrect. The command remains hidden.
                 </p>
               </div>
             )}
@@ -344,7 +313,7 @@ export default function Stage5Page() {
                      color: '#FFD700',
                      textShadow: '0 4px 8px rgba(0,0,0,0.9)',
                    }}>
-                  {revealedWord}
+                  I M P E R I U M
                 </p>
                 <button
                   onClick={handleProceed}
@@ -375,35 +344,7 @@ export default function Stage5Page() {
             )}
 
             {!showSuccess && (
-              <div className="flex justify-center gap-4 mb-6">
-                <button
-                  onClick={handleReset}
-                  disabled={clickedPath.length === 0}
-                  className="font-spectral px-6 py-2 transition-all"
-                  style={{
-                    fontSize: 'clamp(13px, 1vw, 15px)',
-                    fontWeight: 600,
-                    background: clickedPath.length === 0 ? 'rgba(101, 67, 33, 0.3)' : 'rgba(139, 69, 19, 0.4)',
-                    color: clickedPath.length === 0 ? '#8B7355' : '#F5DEB3',
-                    border: '2px solid rgba(139, 69, 19, 0.5)',
-                    borderRadius: '12px',
-                    cursor: clickedPath.length === 0 ? 'not-allowed' : 'pointer',
-                    opacity: clickedPath.length === 0 ? 0.5 : 1,
-                  }}
-                  onMouseEnter={(e) => {
-                    if (clickedPath.length > 0) {
-                      e.currentTarget.style.background = 'rgba(139, 69, 19, 0.6)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (clickedPath.length > 0) {
-                      e.currentTarget.style.background = 'rgba(139, 69, 19, 0.4)';
-                    }
-                  }}
-                >
-                  {COPY.resetCTA}
-                </button>
-                
+              <div className="flex justify-center mb-6">
                 <button
                   onClick={() => setShowHintModal(true)}
                   disabled={!hasAttempted}
@@ -491,17 +432,33 @@ export default function Stage5Page() {
                 Counsel of the Legatus
               </h3>
               <div className="space-y-4 mb-8">
-                {HINTS.map((hint, idx) => (
-                  <p key={idx} className="font-spectral"
-                     style={{
-                       color: '#F5DEB3',
-                       fontSize: 'clamp(13px, 1vw, 15px)',
-                       lineHeight: 1.6,
-                       textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-                     }}>
-                    {idx + 1}. {hint}
-                  </p>
-                ))}
+                <p className="font-spectral"
+                   style={{
+                     color: '#F5DEB3',
+                     fontSize: 'clamp(13px, 1vw, 15px)',
+                     lineHeight: 1.6,
+                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                   }}>
+                  1. Ancient scribes hid commands in the structure of texts, not merely the words.
+                </p>
+                <p className="font-spectral"
+                   style={{
+                     color: '#F5DEB3',
+                     fontSize: 'clamp(13px, 1vw, 15px)',
+                     lineHeight: 1.6,
+                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                   }}>
+                  2. Read what begins each line, then read what ends each line.
+                </p>
+                <p className="font-spectral"
+                   style={{
+                     color: '#F5DEB3',
+                     fontSize: 'clamp(13px, 1vw, 15px)',
+                     lineHeight: 1.6,
+                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                   }}>
+                  3. Join both readings to form a single word of command.
+                </p>
               </div>
               <button
                 onClick={() => setShowHintModal(false)}
