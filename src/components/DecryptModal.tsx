@@ -230,7 +230,7 @@ export function DecryptModal({
           </p>
         </div>
 
-        {/* Riddle Clue or Defeated Status */}
+        {/* Battle Plan or Defeated Status */}
         {isDefeated ? (
           <div className="mb-8 text-center">
             <div
@@ -285,7 +285,7 @@ export function DecryptModal({
                     letterSpacing: '0.10em',
                     textShadow: '0 1px 2px rgba(0,0,0,0.5)',
                   }}>
-                📜 THE CLUE
+                ⚔ BATTLE PLAN
               </h3>
               <p className="font-spectral text-center"
                  style={{
@@ -297,6 +297,104 @@ export function DecryptModal({
                  }}>
                 {riddleClue}
               </p>
+              
+              {/* Requisites Section */}
+              <div className="mt-5 pt-4 border-t border-red-900/30">
+                <p className="font-spectral text-center mb-4"
+                   style={{
+                     fontSize: 'clamp(13px, 1.1vw, 15px)',
+                     color: '#ffa07a',
+                     lineHeight: 1.7,
+                     fontWeight: 500,
+                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                   }}>
+                  To bring down this foe, you must secure two requisites: an encrypted image and a spoken key - one won by favor, the other by wit.
+                </p>
+                
+                <div className="space-y-3">
+                  {/* Image Bullet Point */}
+                  <div 
+                    className="px-4 py-3"
+                    style={{
+                      background: 'rgba(139, 0, 0, 0.15)',
+                      borderLeft: '3px solid rgba(255, 107, 107, 0.6)',
+                      borderRadius: '8px',
+                    }}
+                  >
+                    <div className="flex items-start">
+                      <span style={{
+                        color: '#ff6b6b',
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        marginRight: '12px',
+                        marginTop: '2px',
+                      }}>⚡</span>
+                      <div>
+                        <p className="font-display"
+                           style={{
+                             fontSize: 'clamp(13px, 1.1vw, 15px)',
+                             fontWeight: 700,
+                             color: '#ff6b6b',
+                             letterSpacing: '0.06em',
+                             marginBottom: '4px',
+                           }}>
+                          Image
+                        </p>
+                        <p className="font-spectral"
+                           style={{
+                             fontSize: 'clamp(12px, 1vw, 14px)',
+                             color: '#ffcccc',
+                             lineHeight: 1.6,
+                             textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                           }}>
+                          Petition a Senator in Legion's discord for the image required to engage this enemy.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Passphrase Bullet Point */}
+                  <div 
+                    className="px-4 py-3"
+                    style={{
+                      background: 'rgba(139, 0, 0, 0.15)',
+                      borderLeft: '3px solid rgba(255, 107, 107, 0.6)',
+                      borderRadius: '8px',
+                    }}
+                  >
+                    <div className="flex items-start">
+                      <span style={{
+                        color: '#ff6b6b',
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        marginRight: '12px',
+                        marginTop: '2px',
+                      }}>🗝️</span>
+                      <div>
+                        <p className="font-display"
+                           style={{
+                             fontSize: 'clamp(13px, 1.1vw, 15px)',
+                             fontWeight: 700,
+                             color: '#ff6b6b',
+                             letterSpacing: '0.06em',
+                             marginBottom: '4px',
+                           }}>
+                          Passphrase
+                        </p>
+                        <p className="font-spectral"
+                           style={{
+                             fontSize: 'clamp(12px, 1vw, 14px)',
+                             color: '#ffcccc',
+                             lineHeight: 1.6,
+                             textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                           }}>
+                          Consult the Legion Whitepaper (<a href="#" style={{ color: '#ff6b6b', textDecoration: 'underline', fontWeight: 600 }}>link</a>). At ____, heed the heading and claim what opens beyond it - its first breath will arm your tongue.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
