@@ -193,7 +193,7 @@ export default function Stage5Page() {
                      borderRadius: '12px',
                      padding: 'clamp(24px, 3vw, 40px)',
                      border: '1px solid rgba(106, 58, 138, 0.3)',
-                     maxWidth: '600px',
+                     maxWidth: '480px',
                    }}>
                 {DECREE_LINES.map((line, idx) => (
                   <p key={idx}
@@ -218,8 +218,8 @@ export default function Stage5Page() {
             </div>
 
             {!showSuccess && (
-              <form onSubmit={handleSubmit} className="mb-6 w-full max-w-2xl mx-auto">
-                <div className="space-y-6 w-full">
+              <form onSubmit={handleSubmit} className="mb-6">
+                <div className="space-y-6">
                   <div className="relative mb-12">
                     <input
                       type="text"
