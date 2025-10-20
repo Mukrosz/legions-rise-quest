@@ -122,17 +122,8 @@ export default function Stage5Page() {
                     letterSpacing: '0.02em',
                     textShadow: '0 2px 4px rgba(0,0,0,0.4)',
                   }}>
-                Year Ten. Curia Julia.
+                Year Ten. Curia Julia. {COPY.subheader}
               </h2>
-              <p className="font-spectral italic mb-6"
-                 style={{
-                   color: '#F5DEB3',
-                   fontSize: 'clamp(13px, 0.95vw, 15px)',
-                   fontWeight: 600,
-                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
-                 }}>
-                {COPY.subheader}
-              </p>
               <p className="font-spectral mb-4"
                  style={{
                    color: '#DEB887',
