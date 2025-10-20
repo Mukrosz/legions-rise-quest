@@ -95,53 +95,49 @@ export function ProgressBar() {
               {/* Glowing sun rays for victory stage */}
               {isVictory && (
                 <>
+                  {/* Radial glow backdrop */}
                   <div 
-                    className="absolute w-20 h-20 md:w-28 md:h-28 pointer-events-none"
+                    className="absolute pointer-events-none"
                     style={{
-                      background: 'radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)',
-                      animation: 'sunRays 4s ease-in-out infinite',
+                      width: '80px',
+                      height: '80px',
+                      left: '50%',
+                      top: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      background: 'radial-gradient(circle, rgba(255,215,0,0.4) 0%, rgba(255,215,0,0.2) 40%, transparent 70%)',
+                      animation: 'sunRays 3s ease-in-out infinite',
                     }}
                   />
+                  
+                  {/* Sun rays using pseudo-elements approach */}
                   <div 
-                    className="absolute w-16 h-16 md:w-24 md:h-24 pointer-events-none"
+                    className="absolute pointer-events-none"
                     style={{
-                      background: `
-                        conic-gradient(
-                          from 0deg,
-                          transparent 0deg,
-                          rgba(255,215,0,0.4) 10deg,
-                          transparent 20deg,
-                          transparent 40deg,
-                          rgba(255,215,0,0.4) 50deg,
-                          transparent 60deg,
-                          transparent 80deg,
-                          rgba(255,215,0,0.4) 90deg,
-                          transparent 100deg,
-                          transparent 120deg,
-                          rgba(255,215,0,0.4) 130deg,
-                          transparent 140deg,
-                          transparent 160deg,
-                          rgba(255,215,0,0.4) 170deg,
-                          transparent 180deg,
-                          transparent 200deg,
-                          rgba(255,215,0,0.4) 210deg,
-                          transparent 220deg,
-                          transparent 240deg,
-                          rgba(255,215,0,0.4) 250deg,
-                          transparent 260deg,
-                          transparent 280deg,
-                          rgba(255,215,0,0.4) 290deg,
-                          transparent 300deg,
-                          transparent 320deg,
-                          rgba(255,215,0,0.4) 330deg,
-                          transparent 340deg,
-                          transparent 360deg
-                        )
-                      `,
-                      animation: 'sunRays 8s linear infinite',
-                      filter: 'blur(2px)',
+                      width: '64px',
+                      height: '64px',
+                      left: '50%',
+                      top: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      animation: 'sunRays 6s linear infinite',
                     }}
-                  />
+                  >
+                    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                      <div
+                        key={angle}
+                        style={{
+                          position: 'absolute',
+                          width: '3px',
+                          height: '32px',
+                          left: '50%',
+                          top: '50%',
+                          background: 'linear-gradient(to bottom, rgba(255,215,0,0.6), transparent)',
+                          transformOrigin: 'center 0',
+                          transform: `translate(-50%, -16px) rotate(${angle}deg)`,
+                          filter: 'blur(1px)',
+                        }}
+                      />
+                    ))}
+                  </div>
                 </>
               )}
               

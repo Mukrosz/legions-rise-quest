@@ -31,6 +31,14 @@ export default function VictoryPage() {
     month: 'long',
     day: 'numeric',
   });
+  
+  const completionTime = new Date(pageProgress.timestamp).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short',
+    timeZone: 'UTC',
+  });
 
   return (
     <>
@@ -83,7 +91,7 @@ export default function VictoryPage() {
 
               <h1 className="font-display"
                   style={{
-                    fontSize: 'clamp(36px, 5vw, 64px)',
+                    fontSize: 'clamp(32px, 4vw, 52px)',
                     fontWeight: 900,
                     letterSpacing: '0.08em',
                     lineHeight: 1.1,
@@ -145,54 +153,120 @@ export default function VictoryPage() {
                 padding: 'clamp(24px, 4vw, 40px)',
                 marginBottom: '32px',
               }}>
-                <p className="font-display mb-4"
+                <p className="font-display mb-6"
                    style={{
                      fontSize: 'clamp(20px, 2.5vw, 28px)',
                      fontWeight: 800,
                      letterSpacing: '0.1em',
                      color: '#FFD700',
+                     textShadow: '0 2px 4px rgba(0,0,0,0.6)',
                    }}>
                   CLAIM YOUR VICTORY
                 </p>
-                <div className="font-spectral space-y-4"
+                <div className="font-spectral"
                      style={{
                        color: '#F5DEB3',
                        fontSize: 'clamp(14px, 1vw, 16px)',
                        lineHeight: 1.7,
                        textAlign: 'left',
                      }}>
-                  <p>
-                    <strong style={{ color: '#FFD700' }}>To receive official recognition:</strong>
-                  </p>
-                  <ol style={{ paddingLeft: '24px', marginTop: '16px' }}>
-                    <li style={{ marginBottom: '12px' }}>
-                      Compile all five answers (no spaces): 
-                      <br/>
-                      <span style={{ color: '#FFD700', fontFamily: 'monospace', fontSize: '0.95em' }}>
-                        Stage1 + Stage2 + Stage3 + Stage4 + Stage5
-                      </span>
-                    </li>
-                    <li style={{ marginBottom: '12px' }}>
-                      Take a screenshot of this completion page
-                    </li>
-                    <li style={{ marginBottom: '12px' }}>
-                      Email both to: 
-                      <a href="mailto:charlie@legion.cc" 
-                         style={{ 
-                           color: '#FFD700', 
-                           fontWeight: 700, 
-                           textDecoration: 'underline',
-                           marginLeft: '8px',
-                         }}>
-                        charlie@legion.cc
-                      </a>
-                    </li>
-                  </ol>
                   <p style={{ 
-                    marginTop: '24px', 
+                    marginBottom: '20px',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                  }}>
+                    <strong style={{ color: '#FFD700', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
+                      To receive official recognition:
+                    </strong>
+                  </p>
+                  
+                  <div style={{ 
+                    background: 'rgba(0, 0, 0, 0.15)',
+                    borderRadius: '12px',
+                    padding: '20px 24px',
+                    marginBottom: '20px',
+                  }}>
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      marginBottom: '16px',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                    }}>
+                      <span style={{ 
+                        color: '#FFD700',
+                        fontWeight: 700,
+                        fontSize: '1.2em',
+                        marginRight: '12px',
+                        minWidth: '24px',
+                      }}>①</span>
+                      <div>
+                        <strong style={{ color: '#FFD700' }}>Compile all five answers</strong> (no spaces):
+                        <div style={{ 
+                          color: '#FFD700', 
+                          fontFamily: 'monospace', 
+                          fontSize: '0.95em',
+                          marginTop: '8px',
+                          padding: '8px 12px',
+                          background: 'rgba(212, 175, 55, 0.1)',
+                          borderRadius: '6px',
+                          border: '1px solid rgba(212, 175, 55, 0.3)',
+                        }}>
+                          Stage1+Stage2+Stage3+Stage4+Stage5
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      marginBottom: '16px',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                    }}>
+                      <span style={{ 
+                        color: '#FFD700',
+                        fontWeight: 700,
+                        fontSize: '1.2em',
+                        marginRight: '12px',
+                        minWidth: '24px',
+                      }}>②</span>
+                      <div>
+                        <strong style={{ color: '#FFD700' }}>Take a screenshot</strong> of this completion page
+                      </div>
+                    </div>
+                    
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                    }}>
+                      <span style={{ 
+                        color: '#FFD700',
+                        fontWeight: 700,
+                        fontSize: '1.2em',
+                        marginRight: '12px',
+                        minWidth: '24px',
+                      }}>③</span>
+                      <div>
+                        <strong style={{ color: '#FFD700' }}>Email both</strong> to:{' '}
+                        <a href="mailto:charlie@legion.cc" 
+                           style={{ 
+                             color: '#FFD700', 
+                             fontWeight: 700, 
+                             textDecoration: 'underline',
+                             textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+                           }}>
+                          charlie@legion.cc
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p style={{ 
+                    marginTop: '16px', 
                     fontSize: '0.9em', 
                     fontStyle: 'italic', 
                     opacity: 0.9,
+                    textAlign: 'center',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.6)',
                   }}>
                     Your achievement will be recorded in the Legion's archives.
                   </p>
@@ -204,7 +278,7 @@ export default function VictoryPage() {
                      color: '#D4AF37',
                      fontFamily: 'Spectral',
                    }}>
-                <p>Journey completed: <strong>{completionDate}</strong></p>
+                <p>Journey completed: <strong>{completionDate} at {completionTime}</strong></p>
                 <p>Stages conquered: <strong>5/5</strong></p>
                 <p style={{ color: '#FFD700', fontSize: '1.1em', marginTop: '8px' }}>
                   ⚔️ SENATOR ACHIEVIUM ⚔️
