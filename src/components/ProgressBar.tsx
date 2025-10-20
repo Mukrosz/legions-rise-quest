@@ -17,7 +17,7 @@ export function ProgressBar() {
   // Convert to Roman numerals
   const toRoman = (num: number): string => {
     if (num === 0) return '🏛️';
-    if (num === 6) return '👑';
+    if (num === 6) return '🌿';
     const romanNumerals = ['I', 'II', 'III', 'IV', 'V'];
     return romanNumerals[num - 1] || num.toString();
   };
