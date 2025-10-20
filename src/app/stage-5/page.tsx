@@ -193,7 +193,7 @@ export default function Stage5Page() {
                      borderRadius: '12px',
                      padding: 'clamp(24px, 3vw, 40px)',
                      border: '1px solid rgba(106, 58, 138, 0.3)',
-                     maxWidth: '480px',
+                     maxWidth: '540px',
                    }}>
                 {DECREE_LINES.map((line, idx) => (
                   <p key={idx}
