@@ -24,7 +24,7 @@ export default function RootLayout({
           type="text/plain"
           id="scribe-cipher"
           dangerouslySetInnerHTML={{
-            __html: `const scribenotes = "U2VlayB0aGUgRm91bmRlcnMgaW4gdGhlICNyb2xlcyBjaGFubmVsIG9mIERpc2NvcmQuIFJlYWQgb2YgUmVtdXMgYW5kIFJvbXVsdXMsIGFuZCBsZWFybiBvZiB0aGVpciBHbG9yaWE=";`
+            __html: `const scribenotes = "VW5kZXIgc2VhbCBvZiB0aGUgQ3VyaWEsIHRoZSBhbnN3ZXIgaXMgR2xvcmlh";`
           }}
         />
       </head>
