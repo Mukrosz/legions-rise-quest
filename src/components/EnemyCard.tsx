@@ -21,8 +21,8 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         overflow: 'hidden',
         border: '2px solid rgba(180, 0, 0, 0.5)',
         boxShadow: '0 4px 16px rgba(139, 0, 0, 0.5)',
-        opacity: isDefeated ? 0.5 : 1,
-        filter: isDefeated ? 'grayscale(50%)' : 'none',
+        opacity: isDefeated ? 0.35 : 1,
+        filter: isDefeated ? 'grayscale(70%) brightness(0.7)' : 'none',
       }}
       onMouseEnter={(e) => {
         if (!isDefeated) {
@@ -102,6 +102,25 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
                 }}>
             INVESTIGATE
+          </span>
+        </div>
+      )}
+
+      {isDefeated && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="font-display"
+                style={{
+                  fontSize: 'clamp(16px, 2vw, 24px)',
+                  fontWeight: 900,
+                  letterSpacing: '0.15em',
+                  color: '#ff4444',
+                  textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,0,0,0.6)',
+                  background: 'rgba(0,0,0,0.8)',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  border: '2px solid rgba(180,0,0,0.6)',
+                }}>
+            DEFEATED
           </span>
         </div>
       )}
