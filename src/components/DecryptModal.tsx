@@ -310,7 +310,7 @@ export function DecryptModal({
                      fontWeight: 500,
                      textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                    }}>
-                  To bring down this foe, you must secure two requisites: an encrypted image and a spoken key - one won by favor, the other by wit.
+                  To bring down this foe, you must secure two requisites: an encrypted image and a passphrase - one won by favor, the other by wit.
                 </p>
                 
                 <div className="space-y-3">
@@ -340,7 +340,7 @@ export function DecryptModal({
                              letterSpacing: '0.06em',
                              marginBottom: '4px',
                            }}>
-                          Image
+                          ENCRYPTED IMAGE
                         </p>
                         <p className="font-spectral"
                            style={{
@@ -390,7 +390,7 @@ export function DecryptModal({
                              lineHeight: 1.6,
                              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                            }}>
-                          Consult the Legion Whitepaper (<a href="#" style={{ color: '#ff6b6b', textDecoration: 'underline', fontWeight: 600 }}>link</a>). At ____, heed the heading and claim what opens beyond it - its first breath will arm your tongue.
+                          Consult the <a href="https://legion.cc/documents/Legion_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#ff6b6b', textDecoration: 'underline', fontWeight: 600 }}>Legion Whitepaper</a>. At ____, heed the heading word - its breath will arm your tongue.
                         </p>
                       </div>
                     </div>
@@ -465,7 +465,7 @@ export function DecryptModal({
               className="block font-spectral text-sm mb-2"
               style={{ color: '#ffcccc', fontWeight: 500 }}
             >
-              Passphrase (from Stage I):
+              Passphrase:
             </label>
             <input
               id="passphrase-input"
