@@ -287,19 +287,21 @@ export function DecryptModal({
                   }}>
                 ⚔ BATTLE PLAN
               </h3>
-              <p className="font-spectral text-center"
-                 style={{
-                   fontSize: 'clamp(13px, 1.1vw, 15px)',
-                   color: '#ffcccc',
-                   lineHeight: 1.6,
-                   fontStyle: 'italic',
-                   textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-                 }}>
-                {riddleClue}
-              </p>
+              {riddleClue && (
+                <p className="font-spectral text-center"
+                   style={{
+                     fontSize: 'clamp(13px, 1.1vw, 15px)',
+                     color: '#ffcccc',
+                     lineHeight: 1.6,
+                     fontStyle: 'italic',
+                     textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                   }}>
+                  {riddleClue}
+                </p>
+              )}
               
               {/* Requisites Section */}
-              <div className="mt-5 pt-4 border-t border-red-900/30">
+              <div className="mt-4">
                 <p className="font-spectral text-center mb-4"
                    style={{
                      fontSize: 'clamp(13px, 1.1vw, 15px)',

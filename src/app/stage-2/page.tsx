@@ -16,7 +16,7 @@ const ENEMIES = [
     caption: 'Thunder and iron; the charge decides all.',
     imagePath: '/enemies/beastmaster.png',
     fragment: 'vi',
-    clue: 'Placeholder for a clue',
+    clue: '',
     description: 'Mounted on a massive armored rhinoceros, this gladiator is a terrifying blend of brute force and mastery over chaos. Wielding a double-edged axe, he crushed foes beneath horn and hoof. Few survived a charge once the ironclad beast began its rampage.',
   },
   {
@@ -25,7 +25,7 @@ const ENEMIES = [
     caption: 'White fury within a ring of fire.',
     imagePath: '/enemies/tigress.png',
     fragment: 'rt',
-    clue: 'Placeholder for a clue',
+    clue: '',
     description: 'A chained white tiger, starved and enraged, loosed only when blood is spilled. Gladiators have to face the beast in a shrinking arena of fire and noise. Whispers claim it once devoured its own handler mid-show. No weapon - just reflex and terror.',
   },
   {
@@ -34,7 +34,7 @@ const ENEMIES = [
     caption: 'Eyes and joints hunted from the chariot.',
     imagePath: '/enemies/archer.png',
     fragment: 'us',
-    clue: 'Placeholder for a clue',
+    clue: '',
     description: 'Riding a two-horse chariot, this desert-born marksman looses arrows with terrifying precision while circling the arena. His bowstring never rests; each shot aimed for exposed throats, eyes, and knees. The ground soaks red before the horses break stride.',
   },
 ];
