@@ -18,6 +18,7 @@ const ENEMIES = [
     fragment: 'vi',
     clue: '',
     description: 'Mounted on a massive armored rhinoceros, this gladiator is a terrifying blend of brute force and mastery over chaos. Wielding a double-edged axe, he crushed foes beneath horn and hoof. Few survived a charge once the ironclad beast began its rampage.',
+    sectionRef: 'IV.II',
   },
   {
     id: 'tigress' as const,
@@ -27,6 +28,7 @@ const ENEMIES = [
     fragment: 'rt',
     clue: '',
     description: 'A chained white tiger, starved and enraged, loosed only when blood is spilled. Gladiators have to face the beast in a shrinking arena of fire and noise. Whispers claim it once devoured its own handler mid-show. No weapon - just reflex and terror.',
+    sectionRef: 'V.I',
   },
   {
     id: 'archer' as const,
@@ -36,6 +38,7 @@ const ENEMIES = [
     fragment: 'us',
     clue: '',
     description: 'Riding a two-horse chariot, this desert-born marksman looses arrows with terrifying precision while circling the arena. His bowstring never rests; each shot aimed for exposed throats, eyes, and knees. The ground soaks red before the horses break stride.',
+    sectionRef: 'V.II',
   },
 ];
 
@@ -371,6 +374,7 @@ export default function Stage2Page() {
           isDefeated={defeats[selectedEnemy.id]}
           onDefeatEnemy={handleDefeatEnemy}
           description={selectedEnemy.description}
+          sectionRef={selectedEnemy.sectionRef}
         />
       )}
 

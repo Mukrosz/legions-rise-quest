@@ -106,55 +106,6 @@ export function EnemyCard({ name, caption, imagePath, onClick, isDefeated = fals
         </div>
       )}
 
-      {isDefeated && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-full h-full">
-            <div
-              className="absolute"
-              style={{
-                top: '0',
-                left: '50%',
-                width: '8px',
-                height: '141.4%',
-                background: 'linear-gradient(180deg, rgba(139,0,0,0.9) 0%, rgba(180,0,0,0.95) 50%, rgba(139,0,0,0.9) 100%)',
-                transform: 'translateX(-50%) rotate(45deg)',
-                transformOrigin: 'center',
-                boxShadow: '0 0 20px rgba(180,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.6)',
-                borderRadius: '2px',
-              }}
-            />
-            <div
-              className="absolute"
-              style={{
-                top: '0',
-                left: '50%',
-                width: '8px',
-                height: '141.4%',
-                background: 'linear-gradient(180deg, rgba(139,0,0,0.9) 0%, rgba(180,0,0,0.95) 50%, rgba(139,0,0,0.9) 100%)',
-                transform: 'translateX(-50%) rotate(-45deg)',
-                transformOrigin: 'center',
-                boxShadow: '0 0 20px rgba(180,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.6)',
-                borderRadius: '2px',
-              }}
-            />
-          </div>
-          
-          <span className="absolute font-display"
-                style={{
-                  fontSize: 'clamp(16px, 2vw, 24px)',
-                  fontWeight: 900,
-                  letterSpacing: '0.15em',
-                  color: '#ff4444',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,0,0,0.6)',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  border: '2px solid rgba(180,0,0,0.6)',
-                }}>
-            DEFEATED
-          </span>
-        </div>
-      )}
     </button>
   );
 }

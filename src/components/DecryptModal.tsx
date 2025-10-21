@@ -13,6 +13,7 @@ interface DecryptModalProps {
   isDefeated: boolean;
   onDefeatEnemy?: (fragment: string) => void;
   description: string;
+  sectionRef: string;
 }
 
 export function DecryptModal({
@@ -25,6 +26,7 @@ export function DecryptModal({
   isDefeated,
   onDefeatEnemy,
   description,
+  sectionRef,
 }: DecryptModalProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [passphrase, setPassphrase] = useState('');
@@ -390,7 +392,7 @@ export function DecryptModal({
                              lineHeight: 1.6,
                              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
                            }}>
-                          Consult the <a href="https://legion.cc/documents/Legion_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#ff6b6b', textDecoration: 'underline', fontWeight: 600 }}>Legion Whitepaper</a>. At ____, heed the heading word - its breath will arm your tongue.
+                          Consult the <a href="https://legion.cc/documents/Legion_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#ff6b6b', textDecoration: 'underline', fontWeight: 600 }}>Legion Whitepaper</a>. At <strong style={{ color: '#ff6b6b' }}>{sectionRef}</strong>, heed the heading word - its breath will arm your tongue.
                         </p>
                       </div>
                     </div>
