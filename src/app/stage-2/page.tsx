@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { EnemyCard } from '@/components/EnemyCard';
 import { DecryptModal } from '@/components/DecryptModal';
 import { ProgressBar } from '@/components/ProgressBar';
+import { PageTransition } from '@/components/PageTransition';
+import { StageParticles } from '@/components/StageParticles';
+import { ThreeBackground } from '@/components/ThreeBackground';
 import { useStageGuard } from '@/lib/guard';
 import { slowHash } from '@/lib/crypto';
 import { setProgress, getEnemyDefeats, defeatEnemy, getCollectedFragments } from '@/lib/progress';
@@ -123,9 +126,11 @@ export default function Stage2Page() {
 
   if (isChecking) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-parchment font-display text-xl">Checking access...</p>
-      </div>
+      <PageTransition>
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-parchment font-display text-xl">Checking access...</p>
+        </div>
+      </PageTransition>
     );
   }
 
@@ -143,17 +148,24 @@ export default function Stage2Page() {
           background: #B8633A !important;
         }
       `}</style>
-      <div
-        className="min-h-screen"
-        style={{
-          backgroundImage: 'url("/stage2-bg.webp")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          animation: 'heatHaze 8s ease-in-out infinite',
-        }}
-      >
-        <ProgressBar />
+      
+      <PageTransition variant="crack">
+        <ThreeBackground theme="blood" />
+        <StageParticles theme="blood" />
+        
+        <div
+          className="min-h-screen"
+          style={{
+            backgroundImage: 'url("/stage2-bg.webp")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            animation: 'heatHaze 8s ease-in-out infinite',
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
+          <ProgressBar />
 
         <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
           <div
@@ -384,6 +396,7 @@ export default function Stage2Page() {
           sectionRef={selectedEnemy.sectionRef}
         />
       )}
+      </PageTransition>
 
       <style jsx>{`
         @keyframes heatHaze {

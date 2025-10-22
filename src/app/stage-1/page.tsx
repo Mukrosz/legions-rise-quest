@@ -9,6 +9,9 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
+import { PageTransition } from '@/components/PageTransition';
+import { StageParticles } from '@/components/StageParticles';
+import { ThreeBackground } from '@/components/ThreeBackground';
 import { slowHash } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
@@ -47,17 +50,27 @@ export default function Stage1Page() {
           background: #005F8D !important;
         }
       `}</style>
-      <div 
-        className="min-h-screen"
-        style={{
-          backgroundImage: 'url("/stage1-bg.webp")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        {/* Progress Bar at Top */}
-        <ProgressBar />
+      
+      <PageTransition variant="break-chains">
+        {/* Three.js Epic Background */}
+        <ThreeBackground theme="chains" />
+        
+        {/* Particle Effects */}
+        <StageParticles theme="chains" />
+        
+        <div 
+          className="min-h-screen"
+          style={{
+            backgroundImage: 'url("/stage1-bg.webp")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
+          {/* Progress Bar at Top */}
+          <ProgressBar />
 
       {/* Main Content - Centered */}
       <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
@@ -211,6 +224,7 @@ export default function Stage1Page() {
       </div>
       </main>
     </div>
+      </PageTransition>
     </>
   );
 }
