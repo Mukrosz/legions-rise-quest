@@ -60,7 +60,7 @@ export default function Stage4Page() {
     <div
       className="min-h-screen"
       style={{
-        backgroundImage: 'url("/stage4-bg.png")',
+        backgroundImage: 'url("/stage4-bg.webp")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

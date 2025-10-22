@@ -8,7 +8,7 @@ import { useStageGuard } from '@/lib/guard';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 import { slowHash } from '@/lib/crypto';
 
-const _0xbg5 = '/stage5-bg.png';
+const _0xbg5 = '/stage5-bg.webp';
 
 const COPY = {
   subheader: 'By mandate of the Founders, the Senate speaks through the Legatus.',

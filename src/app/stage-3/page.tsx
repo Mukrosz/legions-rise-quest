@@ -59,7 +59,7 @@ export default function Stage3Page() {
       <div 
         className="min-h-screen"
         style={{
-          backgroundImage: 'url("/stage3-bg.png")',
+          backgroundImage: 'url("/stage3-bg.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'

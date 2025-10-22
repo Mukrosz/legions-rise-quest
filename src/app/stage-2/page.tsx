@@ -146,7 +146,7 @@ export default function Stage2Page() {
       <div
         className="min-h-screen"
         style={{
-          backgroundImage: 'url("/stage2-bg.png")',
+          backgroundImage: 'url("/stage2-bg.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',

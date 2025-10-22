@@ -50,7 +50,7 @@ export default function Stage1Page() {
       <div 
         className="min-h-screen"
         style={{
-          backgroundImage: 'url("/stage1-bg.png")',
+          backgroundImage: 'url("/stage1-bg.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'

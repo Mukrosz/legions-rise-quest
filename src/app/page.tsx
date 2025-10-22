@@ -46,7 +46,7 @@ export default function LandingPage() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("/colosseum-sunset.jpg")',
+          backgroundImage: 'url("/colosseum-sunset.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

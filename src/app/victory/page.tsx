@@ -59,7 +59,7 @@ export default function VictoryPage() {
       <div 
         className="min-h-screen relative overflow-auto"
         style={{
-          backgroundImage: 'url("/final-bg.png")',
+          backgroundImage: 'url("/final-bg.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
