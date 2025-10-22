@@ -52,11 +52,69 @@ export default function Stage1Page() {
       `}</style>
       
       <PageTransition variant="break-chains">
-        {/* TEST OVERLAY */}
-        <VisibleTestOverlay theme="chains" />
+        {/* INLINE TEST - NO EXTERNAL COMPONENTS */}
+        <div
+          style={{
+            position: 'fixed',
+            top: 20,
+            right: 20,
+            padding: '30px',
+            background: '#FF0000',
+            color: '#FFFFFF',
+            fontSize: '28px',
+            fontWeight: 'bold',
+            zIndex: 9999,
+            border: '5px solid #FFFF00',
+            borderRadius: '15px',
+            boxShadow: '0 0 30px rgba(255,0,0,0.8)',
+          }}
+        >
+          🎨 INLINE TEST WORKING!
+        </div>
         
-        {/* Simple CSS Animations - MUCH more visible */}
-        <SimpleAnimations theme="chains" />
+        {/* Big Blue Circles - INLINE */}
+        {[0, 1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            style={{
+              position: 'fixed',
+              width: `${100 + i * 30}px`,
+              height: `${100 + i * 30}px`,
+              borderRadius: '50%',
+              background: `radial-gradient(circle at 30% 30%, #00B4D8aa, #0077B644)`,
+              top: `${15 + i * 18}%`,
+              left: `${8 + i * 20}%`,
+              zIndex: 1,
+              pointerEvents: 'none',
+              animation: `floatAnimation${i} ${5 + i}s ease-in-out infinite`,
+              filter: 'blur(3px)',
+              boxShadow: '0 0 50px #0077B688',
+            }}
+          />
+        ))}
+        
+        <style jsx>{`
+          @keyframes floatAnimation0 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, -40px); }
+          }
+          @keyframes floatAnimation1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 50px); }
+          }
+          @keyframes floatAnimation2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 30px); }
+          }
+          @keyframes floatAnimation3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-40px, -35px); }
+          }
+          @keyframes floatAnimation4 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(35px, 45px); }
+          }
+        `}</style>
         
         <div 
           className="min-h-screen"
