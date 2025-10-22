@@ -6,9 +6,9 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { InputCard } from '@/components/InputCard';
 import { useStageGuard } from '@/lib/guard';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
+import { hashWithPepper, derivePepper } from '@/lib/crypto';
 
 const _0xbg5 = '/stage5-bg.png';
-const _0xans = 'imperium';
 
 const COPY = {
   subheader: 'By mandate of the Founders, the Senate speaks through the Legatus.',
@@ -31,15 +31,20 @@ export default function Stage5Page() {
   const [savedInput] = useState(loadStageInput(5));
 
   const validateAnswer = async (input: string): Promise<boolean> => {
-    const normalized = input.toLowerCase().trim();
+    const { v } = await import('@/validators/v5.js');
     
-    if (normalized === _0xans) {
+    const pepper = derivePepper(5);
+    const hash = await hashWithPepper(input, pepper);
+    
+    const isCorrect = v(hash);
+    
+    if (isCorrect) {
       setProgress(5);
       return true;
-    } else {
-      saveStageInput(5, input);
-      return false;
     }
+    
+    saveStageInput(5, input);
+    return false;
   };
 
   const handleSuccess = () => {

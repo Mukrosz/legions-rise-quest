@@ -17,14 +17,11 @@ export default function Stage1Page() {
   const [savedInput] = useState(loadStageInput(1));
 
   const validateAnswer = async (input: string): Promise<boolean> => {
-    // Import validator dynamically
     const { v } = await import('@/validators/v1.js');
     
-    // Hash user input with pepper
     const pepper = derivePepper(1);
     const hash = await hashWithPepper(input, pepper);
     
-    // Validate
     const isCorrect = v(hash);
     
     if (isCorrect) {
@@ -32,7 +29,6 @@ export default function Stage1Page() {
       return true;
     }
     
-    // Save attempt
     saveStageInput(1, input);
     return false;
   };

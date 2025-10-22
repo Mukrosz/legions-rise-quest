@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
-import { validateWithCandidates, timeSaltCandidates } from '@/lib/crypto';
+import { hashWithPepper, derivePepper } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
 export default function Stage4Page() {
@@ -17,15 +17,10 @@ export default function Stage4Page() {
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v4.js');
     
-    // Get candidate salts and compute hashes
-    const salts = timeSaltCandidates();
-    const { hashWithTimeSalt } = await import('@/lib/crypto');
+    const pepper = derivePepper(4);
+    const hash = await hashWithPepper(input, pepper);
     
-    const hashes = await Promise.all(
-      salts.map(salt => hashWithTimeSalt(input, salt))
-    );
-    
-    const isCorrect = v(hashes[0]) || v(hashes[1]);
+    const isCorrect = v(hash);
     
     if (isCorrect) {
       setProgress(4);

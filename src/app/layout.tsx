@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ClientInit } from '@/components/ClientInit';
 
 export const metadata: Metadata = {
   title: 'The Ascent of Kaeso Dardanus',
@@ -29,6 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ClientInit />
         <div className="min-h-screen bg-obsidian">
           {children}
         </div>

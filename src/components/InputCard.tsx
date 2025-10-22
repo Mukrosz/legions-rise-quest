@@ -80,7 +80,7 @@ export function InputCard({
   const isStage5 = stageNumber === 5;
   const hasCustomStyling = isStage1 || isStage3 || isStage4 || isStage5;
 
-  const getInputStyle = () => {
+  const getInputStyle = (): React.CSSProperties => {
     if (isStage1) {
       return {
         width: '100%',
@@ -93,7 +93,7 @@ export function InputCard({
         border: '2px solid rgba(212, 175, 55, 0.4)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         letterSpacing: '0.05em',
       };
     }
@@ -109,7 +109,7 @@ export function InputCard({
         border: '2px solid rgba(218, 165, 32, 0.5)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         letterSpacing: '0.05em',
       };
     }
@@ -125,7 +125,7 @@ export function InputCard({
         border: '2px solid rgba(76, 175, 80, 0.4)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         letterSpacing: '0.05em',
       };
     }
@@ -141,7 +141,7 @@ export function InputCard({
         border: '2px solid rgba(106, 58, 138, 0.4)',
         borderRadius: '12px',
         boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         letterSpacing: '0.05em',
       };
     }

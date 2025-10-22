@@ -1,3 +1,16 @@
+const _0xd = (s: string) => btoa(s).split('').reverse().join('');
+const _0xe = (s: string) => atob(s.split('').reverse().join(''));
+
+const _0xp = {
+  1: '==QQN9kU',
+  2: '=MVSEZlU',
+  3: '=0kVS9kR',
+  4: '=M1TO9ES',
+  5: 'S9EVBJVRQ1US',
+};
+
+const _0xf = ['SPQR', 'CAESAR', 'LEGION', 'SENATE', 'EMPIRE'];
+
 export function normalize(input: string): string {
   return input
     .toLowerCase()
@@ -14,15 +27,14 @@ export async function sha256Hex(data: string | Uint8Array): Promise<string> {
 }
 
 export function derivePepper(strategyId: number): string {
-  switch (strategyId) {
-    case 1:
-      return 'ROMA';
-    case 2:
-      return 'RVDIS';
-    case 3:
-      return '';
-    default:
-      return '';
+  const _0xa = strategyId;
+  const _0xb = _0xa in _0xp;
+  const _0xc = _0xb ? _0xp[_0xa as keyof typeof _0xp] : '';
+  
+  try {
+    return _0xc ? _0xe(_0xc) : '';
+  } catch {
+    return '';
   }
 }
 
@@ -93,4 +105,3 @@ export async function precomputeHash(
   const pepper = derivePepper(strategyId);
   return sha256Hex(pepper + normalized);
 }
-
