@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { HintBubble } from './HintBubble';
+import { _0x7 as checkRateLimit, _0xd as clearRateLimit } from '@/lib/rateLimit';
 
 interface InputCardProps {
   onSubmit: (input: string) => Promise<boolean>;
@@ -48,6 +49,13 @@ export function InputCard({
     
     if (!input.trim() || isSubmitting) return;
 
+    try {
+      checkRateLimit(stageNumber);
+    } catch (error) {
+      alert((error as Error).message);
+      return;
+    }
+
     setIsSubmitting(true);
     setShowError(false);
     setShowSuccess(false);
@@ -56,6 +64,7 @@ export function InputCard({
       const isCorrect = await onSubmit(input);
       
       if (isCorrect) {
+        clearRateLimit(stageNumber);
         setShowSuccess(true);
         setTimeout(() => {
           onSuccess?.();

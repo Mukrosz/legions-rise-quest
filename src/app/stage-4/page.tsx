@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
-import { hashWithPepper, derivePepper } from '@/lib/crypto';
+import { slowHash } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
 export default function Stage4Page() {
@@ -16,10 +16,7 @@ export default function Stage4Page() {
 
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v4.js');
-    
-    const pepper = derivePepper(4);
-    const hash = await hashWithPepper(input, pepper);
-    
+    const hash = await slowHash(input);
     const isCorrect = v(hash);
     
     if (isCorrect) {

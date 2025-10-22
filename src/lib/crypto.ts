@@ -1,13 +1,4 @@
-const _0xd = (s: string) => btoa(s).split('').reverse().join('');
-const _0xe = (s: string) => atob(s.split('').reverse().join(''));
-
-const _0xp = {
-  1: '==QQN9kU',
-  2: '=MVSEZlU',
-  3: '=0kVS9kR',
-  4: '=M1TO9ES',
-  5: 'S9EVBJVRQ1US',
-};
+import { argon2id } from 'hash-wasm';
 
 const _0xf = ['SPQR', 'CAESAR', 'LEGION', 'SENATE', 'EMPIRE'];
 
@@ -26,82 +17,42 @@ export async function sha256Hex(data: string | Uint8Array): Promise<string> {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-export function derivePepper(strategyId: number): string {
-  const _0xa = strategyId;
-  const _0xb = _0xa in _0xp;
-  const _0xc = _0xb ? _0xp[_0xa as keyof typeof _0xp] : '';
+async function _0xa(input: string): Promise<string> {
+  const _0xb = normalize(input);
+  const _0xc = new TextEncoder().encode(_0xb);
   
   try {
-    return _0xc ? _0xe(_0xc) : '';
+    const _0xd = await argon2id({
+      password: _0xc,
+      salt: new Uint8Array([0x4c, 0x45, 0x47, 0x49, 0x4f, 0x4e, 0x52, 0x49, 0x53, 0x45, 0x51, 0x55, 0x45, 0x53, 0x54, 0x21]),
+      parallelism: 1,
+      iterations: 3,
+      memorySize: 65536,
+      hashLength: 32,
+      outputType: 'hex',
+    });
+    return _0xd;
   } catch {
     return '';
   }
 }
 
-export function timeSaltCandidates(): string[] {
-  const now = Date.now();
-  const today = Math.floor(now / 86400000);
-  const yesterday = today - 1;
-  
-  return [
-    `SALT${today.toString(36).toUpperCase()}`,
-    `SALT${yesterday.toString(36).toUpperCase()}`,
-  ];
-}
-
-export async function hashWithPepper(input: string, pepper: string): Promise<string> {
-  const normalized = normalize(input);
-  const combined = pepper + normalized;
-  return sha256Hex(combined);
-}
-
-export async function hashWithTimeSalt(input: string, salt: string): Promise<string> {
-  const normalized = normalize(input);
-  const combined = salt + normalized;
-  return sha256Hex(combined);
-}
-
-export async function validateWithCandidates(
-  input: string,
-  expectedHashes: string[]
-): Promise<boolean> {
-  const salts = timeSaltCandidates();
-  
-  for (const salt of salts) {
-    const hash = await hashWithTimeSalt(input, salt);
-    if (expectedHashes.includes(hash)) {
-      return true;
-    }
+async function _0xe(hash: string, rounds: number): Promise<string> {
+  let _0xf = hash;
+  for (let _0xg = 0; _0xg < rounds; _0xg++) {
+    _0xf = await sha256Hex(_0xf);
   }
-  
-  return false;
+  return _0xf;
 }
 
-export function xorHex(hex1: string, hex2: string): string {
-  if (hex1.length !== hex2.length) {
-    throw new Error('Hex strings must be same length');
-  }
+export async function slowHash(input: string): Promise<string> {
+  const _0xh = await _0xa(input);
+  if (!_0xh) return '';
   
-  let result = '';
-  for (let i = 0; i < hex1.length; i++) {
-    const xor = parseInt(hex1[i], 16) ^ parseInt(hex2[i], 16);
-    result += xor.toString(16);
-  }
-  
-  return result;
+  const _0xi = await _0xe(_0xh, 10000);
+  return _0xi;
 }
 
-export async function precomputeHash(
-  answer: string,
-  strategyId: number,
-  salt?: string
-): Promise<string> {
-  const normalized = normalize(answer);
-  
-  if (salt) {
-    return sha256Hex(salt + normalized);
-  }
-  
-  const pepper = derivePepper(strategyId);
-  return sha256Hex(pepper + normalized);
+export async function precomputeHash(answer: string): Promise<string> {
+  return slowHash(answer);
 }

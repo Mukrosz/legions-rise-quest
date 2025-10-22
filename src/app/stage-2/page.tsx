@@ -6,8 +6,9 @@ import { EnemyCard } from '@/components/EnemyCard';
 import { DecryptModal } from '@/components/DecryptModal';
 import { ProgressBar } from '@/components/ProgressBar';
 import { useStageGuard } from '@/lib/guard';
-import { hashWithPepper, derivePepper } from '@/lib/crypto';
+import { slowHash } from '@/lib/crypto';
 import { setProgress, getEnemyDefeats, defeatEnemy, getCollectedFragments } from '@/lib/progress';
+import { _0x7 as checkRateLimit, _0xd as clearRateLimit } from '@/lib/rateLimit';
 
 const ENEMIES = [
   {
@@ -61,9 +62,7 @@ export default function Stage2Page() {
 
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v2.js');
-    const pepper = derivePepper(2);
-    const hash = await hashWithPepper(input, pepper);
-    
+    const hash = await slowHash(input);
     const isCorrect = v(hash);
     
     if (isCorrect) {
@@ -78,6 +77,13 @@ export default function Stage2Page() {
     e.preventDefault();
     if (!answerInput.trim() || isSubmitting) return;
 
+    try {
+      checkRateLimit(2);
+    } catch (error) {
+      alert((error as Error).message);
+      return;
+    }
+
     setIsSubmitting(true);
     setShowError(false);
     setShowSuccess(false);
@@ -86,6 +92,7 @@ export default function Stage2Page() {
       const isCorrect = await validateAnswer(answerInput);
 
       if (isCorrect) {
+        clearRateLimit(2);
         setShowSuccess(true);
         setTimeout(() => {
           router.push('/stage-3');

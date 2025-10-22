@@ -6,7 +6,7 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { InputCard } from '@/components/InputCard';
 import { useStageGuard } from '@/lib/guard';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
-import { hashWithPepper, derivePepper } from '@/lib/crypto';
+import { slowHash } from '@/lib/crypto';
 
 const _0xbg5 = '/stage5-bg.png';
 
@@ -32,10 +32,7 @@ export default function Stage5Page() {
 
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v5.js');
-    
-    const pepper = derivePepper(5);
-    const hash = await hashWithPepper(input, pepper);
-    
+    const hash = await slowHash(input);
     const isCorrect = v(hash);
     
     if (isCorrect) {

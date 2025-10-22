@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
-import { hashWithPepper, derivePepper } from '@/lib/crypto';
+import { slowHash } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
 export default function Stage1Page() {
@@ -19,9 +19,7 @@ export default function Stage1Page() {
   const validateAnswer = async (input: string): Promise<boolean> => {
     const { v } = await import('@/validators/v1.js');
     
-    const pepper = derivePepper(1);
-    const hash = await hashWithPepper(input, pepper);
-    
+    const hash = await slowHash(input);
     const isCorrect = v(hash);
     
     if (isCorrect) {
