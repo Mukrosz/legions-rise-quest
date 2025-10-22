@@ -24,9 +24,9 @@ export function StageParticles({ theme }: StageParticlesProps) {
         },
       },
       particles: {
-        number: { density: { enable: true, width: 1920, height: 1080 }, value: 50 },
-        opacity: { value: { min: 0.1, max: 0.5 } },
-        size: { value: { min: 1, max: 3 } },
+        number: { density: { enable: true, width: 1920, height: 1080 }, value: 80 },
+        opacity: { value: { min: 0.3, max: 0.8 } },
+        size: { value: { min: 2, max: 5 } },
         move: {
           enable: true,
           speed: 0.5,

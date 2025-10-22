@@ -61,14 +61,25 @@ export default function Stage1Page() {
         <div 
           className="min-h-screen"
           style={{
-            backgroundImage: 'url("/stage1-bg.webp")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
             position: 'relative',
             zIndex: 2,
           }}
         >
+          {/* Background with semi-transparency to show effects */}
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundImage: 'url("/stage1-bg.webp")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.85,
+              zIndex: -1,
+            }}
+          />
           {/* Progress Bar at Top */}
           <ProgressBar />
 

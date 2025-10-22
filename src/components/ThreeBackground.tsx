@@ -173,7 +173,8 @@ export function ThreeBackground({ theme }: ThreeBackgroundProps) {
         width: '100%',
         height: '100%',
         zIndex: 0,
-        opacity: 0.3,
+        opacity: 0.6,
+        pointerEvents: 'none',
       }}
     >
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>

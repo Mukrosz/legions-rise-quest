@@ -156,15 +156,26 @@ export default function Stage2Page() {
         <div
           className="min-h-screen"
           style={{
-            backgroundImage: 'url("/stage2-bg.webp")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            animation: 'heatHaze 8s ease-in-out infinite',
             position: 'relative',
             zIndex: 2,
           }}
         >
+          {/* Background with semi-transparency */}
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundImage: 'url("/stage2-bg.webp")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.85,
+              animation: 'heatHaze 8s ease-in-out infinite',
+              zIndex: -1,
+            }}
+          />
           <ProgressBar />
 
         <main className="min-h-[calc(100vh-120px)] flex items-center justify-center p-4">
