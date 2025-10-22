@@ -106,6 +106,9 @@ export function resetProgress(): void {
     for (let i = 1; i <= 5; i++) {
       localStorage.removeItem(`${INPUT_KEY_PREFIX}${i}.input`);
     }
+    
+    // Clear enemy defeats
+    localStorage.removeItem(ENEMY_DEFEATS_KEY);
   } catch (e) {
     console.error('Failed to reset progress:', e);
   }
