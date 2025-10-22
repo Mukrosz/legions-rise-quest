@@ -6,8 +6,8 @@ import { EnemyCard } from '@/components/EnemyCard';
 import { DecryptModal } from '@/components/DecryptModal';
 import { ProgressBar } from '@/components/ProgressBar';
 import { PageTransition } from '@/components/PageTransition';
-import { StageParticles } from '@/components/StageParticles';
-import { ThreeBackground } from '@/components/ThreeBackground';
+import { SimpleAnimations } from '@/components/SimpleAnimations';
+import { VisibleTestOverlay } from '@/components/VisibleTestOverlay';
 import { useStageGuard } from '@/lib/guard';
 import { slowHash } from '@/lib/crypto';
 import { setProgress, getEnemyDefeats, defeatEnemy, getCollectedFragments } from '@/lib/progress';
@@ -150,8 +150,8 @@ export default function Stage2Page() {
       `}</style>
       
       <PageTransition variant="crack">
-        <ThreeBackground theme="blood" />
-        <StageParticles theme="blood" />
+        <VisibleTestOverlay theme="blood" />
+        <SimpleAnimations theme="blood" />
         
         <div
           className="min-h-screen"

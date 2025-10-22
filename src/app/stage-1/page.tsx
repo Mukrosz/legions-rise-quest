@@ -10,8 +10,8 @@ import { useRouter } from 'next/navigation';
 import { InputCard } from '@/components/InputCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { PageTransition } from '@/components/PageTransition';
-import { StageParticles } from '@/components/StageParticles';
-import { ThreeBackground } from '@/components/ThreeBackground';
+import { SimpleAnimations } from '@/components/SimpleAnimations';
+import { VisibleTestOverlay } from '@/components/VisibleTestOverlay';
 import { slowHash } from '@/lib/crypto';
 import { setProgress, loadStageInput, saveStageInput } from '@/lib/progress';
 
@@ -52,11 +52,11 @@ export default function Stage1Page() {
       `}</style>
       
       <PageTransition variant="break-chains">
-        {/* Three.js Epic Background */}
-        <ThreeBackground theme="chains" />
+        {/* TEST OVERLAY */}
+        <VisibleTestOverlay theme="chains" />
         
-        {/* Particle Effects */}
-        <StageParticles theme="chains" />
+        {/* Simple CSS Animations - MUCH more visible */}
+        <SimpleAnimations theme="chains" />
         
         <div 
           className="min-h-screen"
